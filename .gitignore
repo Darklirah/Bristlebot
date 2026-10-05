@@ -36,3 +36,6 @@ desktop.ini
 # Editor
 .vscode/
 *.code-workspace
+
+# Lokale UI-Vorschau mit Daten-Stub, kein Teil der Firmware
+.preview/

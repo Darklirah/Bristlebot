@@ -86,6 +86,46 @@ Basis-Pulldowns R3/R4.
 Dann *Manuell*, *Freigeben*, Joystick langsam nach oben: beide Motoren müssen
 gleichmäßig anlaufen.
 
+### Schritt 7 — Funktionstest laufen lassen
+
+Zum Abschluss der Montage und bei jeder späteren Fehlersuche: in der
+Weboberfläche ganz unten **Funktionstest starten** (die Freigabe muss
+gesetzt sein, weil Motoren anlaufen).
+
+Der Test läuft in Schleife, bis du ihn stoppst, und zeigt den aktuellen
+Abschnitt im Klartext an:
+
+| Abschnitt | Dauer | Was zu sehen sein muss |
+|---|---|---|
+| LED vorne links | 0,7 s | nur LED1 leuchtet |
+| LED vorne rechts | 0,7 s | LED1 **und** LED2 |
+| LED hinten links | 0,7 s | dazu LED3 |
+| LED hinten rechts | 0,7 s | alle vier leuchten |
+| alle LEDs blinken | 3 s | alle vier im Gleichtakt, 2 Hz |
+| Motor links | 3 s | **nur** der linke Motor, langsam anlaufend bis Vollgas; dabei leuchtet die vordere **linke** LED |
+| Motor rechts | 3 s | dasselbe rechts, mit der vorderen **rechten** LED |
+
+Dazwischen liegen kurze Pausen, damit die Abschnitte auseinanderzuhalten sind.
+
+**Warum die LED beim Motortest mitleuchtet:** Sie zeigt, welche Seite gerade
+*angesteuert* wird. Vibriert der rechte Motor, während die linke LED
+leuchtet, sind Motor und Seite vertauscht verdrahtet — ein Fehler, der sich
+im Fahrbetrieb nur als „lenkt falschherum" äußert und dort schwer
+zuzuordnen ist.
+
+Weitere typische Befunde:
+
+| Beobachtung | Ursache |
+|---|---|
+| eine LED bleibt dunkel | Polung vertauscht, Vorwiderstand oder Lötstelle |
+| beide Motoren laufen gleichzeitig | Transistoren oder PWM-Leitungen verbunden/vertauscht |
+| Motor startet erst spät in der Rampe | normal — das ist genau die Haftreibung, gegen die die *Anlaufschwelle* eingestellt wird |
+| Motor läuft gar nicht an | Transistor, Freilaufdiode verpolt, oder 5-V-Schiene bricht ein |
+| ESP32 startet während der Motorrampe neu | Brownout: Step-Up am Anschlag. Siehe [Review B2](01_Schaltplan-Review.md) |
+
+Der Funktionstest ist fest in der Firmware verdrahtet, belegt keinen der
+vier Programmplätze und lässt sich nicht versehentlich löschen.
+
 ---
 
 ## 3 · Kalibrierung der Linie

@@ -2,14 +2,21 @@
 //  B R I S T L E B O T
 //  Linienfolgender Zahnbuersten-Roboter auf ESP32
 //
+//  Drei Betriebsarten, umschaltbar in der Web-App:
+//    manuell   Joystick
+//    autonom   Linienfolger mit PD-Regler
+//    Programm  gespeicherter Ablauf aus einem von vier Flash-Plaetzen
+//
 //  Diese Datei macht nur die Orchestrierung: Zustandsmaschine, Regler,
 //  Telemetrie. Alles Hardwarenahe steckt in den Modulen:
 //
 //    Config.h        Pins, Kennwerte, Feature-Flags  -- hier tunen
-//    RobotState.h    Betriebsart, Phase, Tuningstruktur
+//    RobotState.h    Betriebsart, Phase, LED-Zustaende, Tuningstruktur
 //    Motors.*        PWM, Kennlinienspreizung, Kickstart
 //    LineSensor.*    2x TCRT5000, Median-Filter, Kalibrierung in NVS
-//    Leds.*          Blinkmuster fuer Lenkung und Status
+//    Leds.*          Blinkmuster, im Programmbetrieb direkt steuerbar
+//    Program.*       Fahrprogramme: Parser, vier Flash-Slots, Interpreter
+//    SelfTest.*      eingebauter Funktionstest fuer die Inbetriebnahme
 //    RemoteControl.* Access Point, Webserver, WebSocket, Protokoll
 //    WebUI.h         die Bedienoberflaeche (iPhone + Android, Browser)
 //
@@ -24,6 +31,8 @@
 #include "Motors.h"
 #include "LineSensor.h"
 #include "Leds.h"
+#include "Program.h"
+#include "SelfTest.h"
 #include "RemoteControl.h"
 
 // ---------------------------------------------------------------------
@@ -31,7 +40,9 @@
 // ---------------------------------------------------------------------
 static Motors        motors;
 static LineSensor    line;
-static Leds           leds;
+static Leds          leds;
+static Program       prog;
+static SelfTest      selftest;
 static RemoteControl rc;
 
 // ---------------------------------------------------------------------
@@ -193,24 +204,83 @@ static void runAuto() {
   else         { motors.set(0.0f, PIVOT_LEVEL); leds.setSteer(-1.0f); }
 }
 
+// ---------------------------------------------------------------------
+//  Fahrprogramm abspielen
+//
+//  Der Interpreter rechnet nur aus, was er haben will -- Motoren und
+//  LEDs werden hier gesetzt. So bleibt Program.* frei von Hardware.
+// ---------------------------------------------------------------------
+static void runProgram() {
+  prog.update();
+
+  if (!prog.running()) {
+    halt();
+    leds.setOverride(false);
+    g_phase = prog.finished() ? Phase::ProgramDone : Phase::Idle;
+    return;
+  }
+
+  g_phase = Phase::Running;
+
+  // Lichter: im Programmbetrieb bestimmt der Ablauf jede LED einzeln
+  leds.setOverride(true);
+  for (uint8_t i = 0; i < LED_COUNT; i++) leds.setLed(i, prog.led(i));
+  leds.setBlinkLevel(prog.blinkLevel());
+
+  if (prog.moving()) {
+    const float s = prog.steer();
+    motors.set(clamp01(prog.speed() + s), clamp01(prog.speed() - s));
+    g_lastSteer = s;
+  } else {
+    motors.stop();
+    g_lastSteer = 0.0f;
+  }
+}
+
+// ---------------------------------------------------------------------
+//  Funktionstest
+//
+//  Hat Vorrang vor allen Betriebsarten -- es ist ein Diagnosewerkzeug,
+//  kein Fahrmodus. Die Freigabe braucht er trotzdem, weil Motoren laufen.
+// ---------------------------------------------------------------------
+static void runSelfTest() {
+  selftest.update();
+  g_phase = Phase::SelfTest;
+
+  leds.setOverride(true);
+  for (uint8_t i = 0; i < LED_COUNT; i++) leds.setLed(i, selftest.led(i));
+  leds.setBlinkLevel(selftest.blinkLevel());
+
+  motors.set(selftest.motorL(), selftest.motorR());
+  g_lastSteer = 0.0f;
+}
+
 // =====================================================================
 //  Anfragen der Web-App
 // =====================================================================
+static void leaveProgramMode() {
+  prog.stop();
+  selftest.stop();
+  leds.setOverride(false);
+}
+
 static void applyRequests() {
   RcRequests q = rc.takeRequests();
 
   if (q.estop) {
     g_armed = false;
+    leaveProgramMode();
     halt();
   }
   if (q.haveArm) {
     g_armed = q.arm;
-    if (!g_armed) halt();
+    if (!g_armed) { leaveProgramMode(); halt(); }
   }
   if (q.haveMode && q.mode != g_mode) {
     g_mode = q.mode;
-    halt();                         // Betriebsart wechselt nie "fliegend"
-    g_lastError = 0.0f;
+    leaveProgramMode();             // Betriebsart wechselt nie "fliegend"
+    halt();
+    g_lastError   = 0.0f;
     g_lostSinceMs = 0;
   }
   if (q.calibrate) {
@@ -226,30 +296,50 @@ static void applyRequests() {
     rc.publishTuning(g_tune);
     g_tuneDirtyMs = millis();       // NVS-Schreiben verzoegert, s. loop()
   }
+  if (q.haveRun) {
+    if (q.run) {
+      // Ohne Freigabe laeuft kein Motor -- das Programm trotzdem starten
+      // zu lassen waere irrefuehrend.
+      selftest.stop();
+      if (g_armed) prog.start();
+    } else {
+      leaveProgramMode();
+      halt();
+    }
+  }
+  if (q.haveTest) {
+    if (q.test) {
+      prog.stop();                 // Test und Fahrprogramm schliessen sich aus
+      if (g_armed) selftest.start();
+    } else {
+      selftest.stop();
+      leds.setOverride(false);
+      halt();
+    }
+  }
 }
 
 // =====================================================================
 //  Telemetrie
 // =====================================================================
 static void sendTelemetry() {
-  char buf[256];
+  char buf[320];
+  int n = snprintf(buf, sizeof(buf),
+    "{\"p\":%u,\"m\":%u,\"a\":%u,\"sL\":%.3f,\"sR\":%.3f,\"e\":%.3f,"
+    "\"dL\":%u,\"dR\":%u,\"dMax\":%u,\"calOk\":%u,\"hz\":%u,"
+    "\"pr\":%u,\"pc\":%u,\"pn\":%u,\"pass\":%u,\"slot\":%u,"
+    "\"ts\":%u,\"tp\":%u,\"tv\":%u",
+    (unsigned)g_phase, (unsigned)g_mode, g_armed ? 1u : 0u,
+    line.linenessL(), line.linenessR(), line.error(),
+    motors.dutyL(), motors.dutyR(), Motors::dutyMax(),
+    line.calibrated() ? 1u : 0u, g_loopHz,
+    prog.running() ? 1u : 0u, prog.pc(), prog.count(), prog.pass(), prog.activeSlot(),
+    selftest.running() ? 1u : 0u, selftest.step(), selftest.percent());
 #if FEATURE_BATTERY_MONITOR
-  snprintf(buf, sizeof(buf),
-    "{\"p\":%u,\"m\":%u,\"a\":%u,\"sL\":%.3f,\"sR\":%.3f,\"e\":%.3f,"
-    "\"dL\":%u,\"dR\":%u,\"dMax\":%u,\"calOk\":%u,\"hz\":%u,\"vb\":%.2f}",
-    (unsigned)g_phase, (unsigned)g_mode, g_armed ? 1u : 0u,
-    line.linenessL(), line.linenessR(), line.error(),
-    motors.dutyL(), motors.dutyR(), Motors::dutyMax(),
-    line.calibrated() ? 1u : 0u, g_loopHz, g_vbat);
-#else
-  snprintf(buf, sizeof(buf),
-    "{\"p\":%u,\"m\":%u,\"a\":%u,\"sL\":%.3f,\"sR\":%.3f,\"e\":%.3f,"
-    "\"dL\":%u,\"dR\":%u,\"dMax\":%u,\"calOk\":%u,\"hz\":%u}",
-    (unsigned)g_phase, (unsigned)g_mode, g_armed ? 1u : 0u,
-    line.linenessL(), line.linenessR(), line.error(),
-    motors.dutyL(), motors.dutyR(), Motors::dutyMax(),
-    line.calibrated() ? 1u : 0u, g_loopHz);
+  n += snprintf(buf + n, sizeof(buf) - n, ",\"vb\":%.2f", g_vbat);
 #endif
+  snprintf(buf + n, sizeof(buf) - n, "}");
+
   rc.sendTelemetry(buf);
 
 #if FEATURE_SERIAL_DEBUG
@@ -274,12 +364,14 @@ void setup() {
   leds.setPhase(Phase::Disarmed);
   line.begin();
   loadTuning();
+  prog.begin();
 
 #if FEATURE_MODE_BUTTON
   pinMode(PIN_MODE_BTN, INPUT_PULLUP);
 #endif
 
   rc.publishTuning(g_tune);
+  rc.attachProgram(&prog);
   rc.begin();
 
 #if FEATURE_SERIAL_DEBUG
@@ -288,6 +380,8 @@ void setup() {
   Serial.printf("Duty : max %u von %u (%.1f V Motor an %.1f V Schiene)\n",
                 Motors::dutyMax(), PWM_FULL, MOTOR_RATED_V, MOTOR_SUPPLY_V);
   Serial.printf("Kal. : %s\n", line.calibrated() ? "geladen" : "FEHLT");
+  Serial.printf("Prog : Platz %u \"%s\", %u Schritte\n",
+                prog.activeSlot() + 1, prog.slotName(prog.activeSlot()), prog.count());
 #endif
 
   g_lastCtrlMs = millis();
@@ -304,13 +398,16 @@ void loop() {
   applyRequests();
 
 #if FEATURE_MODE_BUTTON
-  // Kurzer Druck schaltet die Betriebsart um
+  // Kurzer Druck schaltet die Betriebsart weiter
   const bool btn = digitalRead(PIN_MODE_BTN);
   if (btn != g_btnLast && (now - g_btnDebounceMs) > 40) {
     g_btnDebounceMs = now;
     g_btnLast = btn;
     if (btn == LOW) {
-      g_mode = (g_mode == Mode::Manual) ? Mode::Auto : Mode::Manual;
+      g_mode = (g_mode == Mode::Manual) ? Mode::Auto
+             : (g_mode == Mode::Auto)   ? Mode::Program
+                                        : Mode::Manual;
+      leaveProgramMode();
       halt();
     }
   }
@@ -331,18 +428,26 @@ void loop() {
   else if (g_vbat > 1.0f && g_vbat < VBAT_CUTOFF_V) {
     halt();
     g_armed = false;
+    leaveProgramMode();
     g_phase = Phase::LowBattery;
   }
 #endif
   else if (!g_armed) {
     halt();
+    leaveProgramMode();             // Sperren beendet Test und Programm
     g_phase = Phase::Disarmed;
   }
+  else if (selftest.running()) {
+    runSelfTest();                  // Diagnose geht vor Betriebsart
+  }
   else if (g_mode == Mode::Manual) {
-    runManual();            // setzt g_phase selbst (Running / Idle)
+    runManual();                // setzt g_phase selbst (Running / Idle)
+  }
+  else if (g_mode == Mode::Auto) {
+    runAuto();
   }
   else {
-    runAuto();
+    runProgram();
   }
 
   leds.setPhase(g_phase);

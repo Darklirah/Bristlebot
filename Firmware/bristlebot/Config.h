@@ -101,6 +101,33 @@ static const uint16_t LINE_LOST_SEARCH_MS = 220;   // Halbperiode des Pendelns
 static const uint16_t LINE_LOST_GIVEUP_MS = 4000;  // danach Stop
 
 // ---------------------------------------------------------------------
+//  F A H R P R O G R A M M
+//
+//  Ein Programm ist eine Folge einfacher Befehle. Fahrbefehle setzen nur
+//  den Zustand, Zeit verbraucht ausschliesslich "warte" -- so lassen sich
+//  Fahrt und LEDs frei kombinieren.
+// ---------------------------------------------------------------------
+static const uint8_t  PROG_SLOTS      = 4;    // Speicherplaetze im Flash
+static const uint8_t  PROG_MAX_STEPS  = 48;   // Schritte je Programm
+static const uint16_t PROG_MAX_CHARS  = 512;  // serialisierte Laenge
+static const uint8_t  PROG_NAME_MAX   = 20;   // Zeichen im Slotnamen
+
+static const uint16_t PROG_WAIT_MIN_MS = 50;
+static const uint16_t PROG_WAIT_MAX_MS = 60000;
+
+// Wie viele Sofortbefehle hoechstens in einem loop()-Durchlauf abgearbeitet
+// werden. Verhindert, dass ein Programm die Schleife blockiert.
+static const uint8_t  PROG_INSTANT_BUDGET = 32;
+
+// Kurvenradius 1..10 -> Lenkanteil. Stufe 1 ist die engste Kurve
+// (dreht fast auf der Stelle), Stufe 10 eine weite, sanfte Kurve.
+static const uint8_t  PROG_RADIUS_LEVELS = 10;
+
+// Blinkfrequenz Stufe 1..10 -> 0,5 .. 5,0 Hz.
+// Halbe Periode in ms = 1000 / Stufe.
+static const uint8_t  BLINK_LEVEL_DEFAULT = 4;   // = 2 Hz
+
+// ---------------------------------------------------------------------
 //  F E R N S T E U E R U N G   (eigener Access Point + Web-App)
 // ---------------------------------------------------------------------
 static const char     AP_SSID[]      = "Bristlebot";
@@ -110,5 +137,23 @@ static const uint16_t WS_PORT        = 81;
 static const uint16_t TELEMETRY_MS   = 150;   // ~6,7 Hz an die App
 static const uint16_t RC_TIMEOUT_MS  = 500;   // Totmannschalter im Handbetrieb
 
+// Groesste Textzeile, die die App schicken darf. Muss ein komplettes
+// Fahrprogramm samt Slotname aufnehmen koennen.
+static const uint16_t RC_LINE_MAX    = PROG_MAX_CHARS + PROG_NAME_MAX + 16;
+
 // NVS-Namespace fuer Kalibrierung und Tuningwerte
 static const char NVS_NAMESPACE[] = "bbot";
+
+// ---------------------------------------------------------------------
+//  F U N K T I O N S T E S T
+//
+//  Eingebauter Selbsttest fuer Inbetriebnahme und Fehlersuche. Laeuft
+//  alle Ausgaenge der Reihe nach durch und wiederholt sich, bis er
+//  gestoppt wird. Kein Fahrprogramm -- belegt keinen Speicherplatz und
+//  ist nicht editierbar.
+// ---------------------------------------------------------------------
+static const uint16_t TEST_LED_STEP_MS = 700;   // je LED beim Durchschalten
+static const uint16_t TEST_BLINK_MS    = 3000;  // alle gemeinsam blinkend
+static const uint16_t TEST_RAMP_MS     = 3000;  // Motorrampe min -> max
+static const uint16_t TEST_GAP_MS      = 600;   // Pause zwischen den Abschnitten
+static const uint8_t  TEST_BLINK_LEVEL = 4;     // 2 Hz

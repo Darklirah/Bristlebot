@@ -23,6 +23,8 @@ den der ESP32 selbst aufspannt — die Bedienoberfläche liefert er gleich mit.
 | Anzeige | 4 LEDs: gelb vorne = Lenkrichtung, rot hinten = Status |
 | Energie | LiPo 500 mAh, TP4056 über USB-C, MT3608 auf 5 V |
 | Laufzeit | ≈ 1,2 h fahrend, ≈ 2,0 h Standby |
+| Betriebsarten | Linie folgen · selbst fahren · Fahrprogramm |
+| Fahrprogramme | 4 Speicherplätze im Flash, je 48 Schritte, Baukasten-Editor |
 | Fernsteuerung | WLAN-AP + eigene Web-App, läuft auf iPhone **und** Android im Browser |
 | Materialkosten | ≈ 26,50 € im Einzelstück |
 | Masse | ≈ 40 g (größtes technisches Risiko, siehe Doku) |

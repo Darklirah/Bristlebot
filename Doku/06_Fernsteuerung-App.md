@@ -55,16 +55,24 @@ Serverlogik in [`RemoteControl.cpp`](../Firmware/bristlebot/RemoteControl.cpp).
 |---|---|
 | Statuspunkt oben | grün = WebSocket verbunden |
 | **Freigeben / Motoren sperren** | Nach dem Einschalten ist der Roboter **gesperrt**. Ohne Freigabe läuft kein Motor — verhindert, dass er beim Einschalten vom Tisch fährt |
-| Manuell / Autonom | Betriebsart. Beim Wechsel stoppen die Motoren immer erst |
+| Linie folgen / Selbst fahren / Fahrprogramm | Betriebsart. Beim Wechsel stoppen die Motoren immer erst, ein laufendes Programm wird beendet |
 | Joystick | hoch = schneller, seitlich = lenken. Loslassen = Stillstand. Bei Stillstand und vollem Seitenausschlag: Drehen auf der Stelle |
-| Grundvibration | Basisgeschwindigkeit im autonomen Modus |
-| Kp / Kd | Reglerabstimmung live, siehe [07](07_Inbetriebnahme-und-Tuning.md) |
-| Anlaufschwelle | PWM-Mindestwert, ab dem die Motoren überhaupt anlaufen |
+| Grundgeschwindigkeit | Basisvibration im Linienfolger-Modus |
 | Linie kalibrieren | 5-Sekunden-Kalibrierfahrt, Werte landen im NVS-Flash |
+| Programm-Editor | Vier Speicherplätze, Baukasten statt Texteingabe, Schrittzähler. Siehe [08_Fahrprogramm.md](08_Fahrprogramm.md) |
 | Sensorbalken L/R, Ablage | Live-Messwerte — das wichtigste Werkzeug beim Einrichten |
 | Motorbalken L/R | tatsächlich ausgegebener PWM-Duty |
 | Statuszeile | Phase, Kalibrierzustand, Schleifenfrequenz, ggf. Akkuspannung |
-| **NOTHALT** | sperrt sofort und hebt die Freigabe auf |
+| **Experten** (zugeklappt) | Kp, Kd, Anlaufschwelle, Kalibrierung löschen — bewusst versteckt, damit beim Ausprobieren nichts versehentlich verstellt wird |
+| **NOTHALT** | sperrt sofort, stoppt ein laufendes Programm und hebt die Freigabe auf |
+
+### Gestaltungsvorgabe
+
+Die Oberfläche ist auf **einfache Bedienbarkeit ab 14 Jahren** ausgelegt:
+Klartext statt Kürzel (*„warte 2,0 Sekunden"*, nicht `wa,2000`), große
+Tippflächen, Farbcodierung der Befehlsarten, und ein Baukasten, in dem
+Syntaxfehler gar nicht erst entstehen können. Alles, was man zum Fahren
+nicht braucht, liegt hinter dem zugeklappten Experten-Bereich.
 
 ### Technische Eckpunkte
 
@@ -113,38 +121,59 @@ native App, ein Skript oder eine Fernsteuerung mit echten Knöppen anbinden will
 | Befehl | Bedeutung |
 |---|---|
 | `J,<x>,<y>` | Joystick, je −1 … +1. `y ≤ 0` heißt Halt |
-| `M,0` / `M,1` | Betriebsart manuell / autonom |
+| `M,0` / `M,1` / `M,2` | Betriebsart manuell / Linienfolger / Fahrprogramm |
 | `A,0` / `A,1` | sperren / freigeben |
 | `X` | Nothalt |
 | `C` | Kalibrierfahrt starten |
 | `R` | Kalibrierung löschen |
 | `T,<kp>,<kd>,<base>,<min>` | Tuningwerte setzen (werden 1,5 s später ins NVS gesichert) |
 | `P` | Ping, hält den Totmannschalter wach |
+| `B,0` / `B,1` | Fahrprogramm stoppen / starten. Starten schaltet zugleich auf `M,2` |
+| `L,<slot>` | Speicherplatz 0–3 laden, Antwort `prog` |
+| `W,<slot>|<name>|<text>` | Speicherplatz schreiben, Antwort `ok` oder `err` |
+| `S,0` / `S,1` | Funktionstest stoppen / starten |
+
+Bei `W` trennt `|` die Felder, weil Name und Programmtext selbst Kommas
+enthalten. Alle übrigen Befehle bleiben kommagetrennt. Ein ungültiges
+Programm wird abgewiesen und **nicht** geschrieben; die Fehlermeldung nennt
+den Schritt.
 
 ### Roboter → App
 
 Eine JSON-Zeile je Telemetrieintervall:
 
 ```json
-{"p":1,"m":1,"a":1,"sL":0.82,"sR":0.11,"e":-0.71,
- "dL":512,"dR":430,"dMax":613,"calOk":1,"hz":2840}
+{"p":1,"m":2,"a":1,"sL":0.82,"sR":0.11,"e":-0.71,
+ "dL":512,"dR":430,"dMax":613,"calOk":1,"hz":2840,
+ "pr":1,"pc":7,"pn":18,"pass":1,"slot":0}
 ```
 
 | Feld | Bedeutung |
 |---|---|
-| `p` | Phase: 0 gesperrt, 1 fährt, 2 sucht Linie, 3 Linie verloren, 4 kalibriert, 5 Akku leer, 6 wartet auf Befehl |
-| `m` | Betriebsart (0 manuell, 1 autonom) |
+| `p` | Phase: 0 gesperrt, 1 fährt, 2 sucht Linie, 3 Linie verloren, 4 kalibriert, 5 Akku leer, 6 wartet auf Befehl, 7 Programm beendet |
+| `m` | Betriebsart (0 manuell, 1 Linienfolger, 2 Fahrprogramm) |
 | `a` | freigegeben |
 | `sL`, `sR` | „Linienanteil" je Sensor, 0 … 1 |
 | `e` | Regelfehler, > 0 = Linie liegt rechts |
 | `dL`, `dR`, `dMax` | PWM-Duty und zulässiges Maximum |
 | `calOk` | Kalibrierung gültig |
 | `hz` | Schleifenfrequenz — guter Gesundheitswert |
+| `pr` | Fahrprogramm läuft |
+| `pc`, `pn` | aktueller Schritt und Gesamtzahl — daraus die grüne Markierung in der Liste |
+| `pass` | abgeschlossene Durchläufe |
+| `slot` | aktiver Speicherplatz |
+| `ts` | Funktionstest laeuft |
+| `tp`, `tv` | Abschnitt des Funktionstests (0..7) und, bei den Motorabschnitten, die aktuelle Rampenstellung in Prozent |
 | `vb` | Akkuspannung, nur mit `FEATURE_BATTERY_MONITOR` |
 
-Beim Verbindungsaufbau schickt der Roboter zusätzlich einmal
-`{"t":"cfg","kp":…,"kd":…,"base":…,"min":…}`, damit die Schieberegler sofort
-richtig stehen.
+### Antworten außer der Telemetrie
+
+| Typ | Wann | Inhalt |
+|---|---|---|
+| `cfg` | beim Verbindungsaufbau | Tuningwerte, damit die Schieberegler sofort richtig stehen |
+| `slots` | beim Verbindungsaufbau und nach jedem Speichern | `a` aktiver Platz, `max` Schrittgrenze, `n[]` Namen, `c[]` belegte Schritte je Platz |
+| `prog` | als Antwort auf `L` | `slot`, `name`, `p` = Programmtext |
+| `ok` / `err` | nach `W` | Klartextmeldung für die Statuszeile des Editors |
 
 ---
 

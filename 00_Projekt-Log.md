@@ -4,6 +4,44 @@ Laufendes Protokoll. Neueste Einträge oben.
 
 ---
 
+## 2026-10-05 (2) — Fahrprogramm und Funktionstest
+
+**Entscheidungen (vom Auftraggeber bestätigt)**
+
+| Frage | Entscheidung |
+|---|---|
+| Zeitmodell | eigener `warte`-Befehl; Fahrbefehle setzen nur den Zustand |
+| Kurvenradius | Stufe 1 = engste Kurve, Stufe 10 = weite Kurve |
+| Speicherung | vier Slots im ESP32-Flash, je 48 Schritte |
+| Editor | Baukasten mit Auswahlfeldern, kein Texteditor |
+| Geschwindigkeit | **am Fahrbefehl**, kein eigener Tempo-Befehl (Korrektur im Nachgang) |
+| Oberfläche | einfach bedienbar, geeignet ab 14 Jahren |
+
+**Gebaut**
+
+- `Program.*` — Parser mit Klartext-Fehlermeldungen, vier NVS-Slots,
+  Interpreter mit Schrittbudget gegen Blockieren der Hauptschleife
+- `SelfTest.*` — eingebauter Funktionstest: LEDs einzeln, alle blinkend,
+  Motor links und rechts als Rampe. Bewusst **kein** Fahrprogramm: einzelne
+  Motoren und Rampen lassen sich mit der Programmsprache nicht ausdrücken,
+  und ein Diagnosewerkzeug soll keinen Speicherplatz belegen
+- `Leds.*` um Override erweitert; Sicherheitsanzeigen behalten Vorrang
+- dritter Modus in `bristlebot.ino`, neue Protokollbefehle `B`, `L`, `W`, `S`
+- Oberfläche: drei Betriebsarten, Baukasten-Editor mit Schrittzähler je
+  Slot, Farbcodierung, grüne Markierung des laufenden Schritts,
+  Experten-Bereich zugeklappt
+- Beispielprogramm „Achter" wird beim ersten Start automatisch angelegt
+- Doku 08 neu, 06 und 07 nachgezogen
+
+**Methodik**
+
+Die Oberfläche wurde vor dem Festschreiben mit einem Daten-Stub im Browser
+gerendert und am Bildschirm abgenommen (`.preview/`, gitignoriert).
+
+**Weiterhin ungetestet** — nichts davon lief je auf Hardware.
+
+---
+
 ## 2026-10-05 — Entwurf geprüft, Firmware und Doku gebaut
 
 **Entscheidungen (vom Auftraggeber bestätigt)**
