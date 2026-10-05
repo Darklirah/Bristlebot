@@ -192,3 +192,58 @@ Argument für die SMD-Revision, falls es je dazu kommt.
 über die Platinenkante hinausragend, Motoren und Sensoren vorn außen, Akku
 mittig unter dem DevKit.** Die Begründung und die Verlegungsregeln stehen in
 [04_PCB-Layout-Empfehlung.md](04_PCB-Layout-Empfehlung.md).
+
+---
+
+## 7 · Geprüft und verworfen: 3× AAA statt LiPo
+
+Frage vom 05.10.2026: Spart ein Batteriehalter mit Schalter für 3× AAA plus
+Buck-Boost Gewicht und bringt er Vorteile?
+
+**Gewicht: nein, im Gegenteil.**
+
+| Position | LiPo (gewählt) | 3× AAA |
+|---|---|---|
+| Zellen | 10,0 g (500 mAh, 503035) | **34,5 g** (3× 11,5 g Alkaline) |
+| Halter mit Schalter | — | **≈ 16 g** |
+| Ladeelektronik TP4056 + USB-C | 1,5 g | entfällt |
+| Wandler | 1,2 g (MT3608) | 2,0 g (Buck-Boost) |
+| JST-Buchse, Schiebeschalter | 1,25 g | entfällt |
+| **Summe** | **≈ 14 g** | **≈ 52 g** |
+
+Die Gesamtmasse stiege damit von ~45 g auf **~85 g**. Bei einem Antrieb,
+dessen Kraft mit der Masse sinkt, wäre das das Ende der Fahrleistung.
+
+**Energiedichte ebenfalls schlechter:** 3× AAA liefern ≈ 3,6 Wh gegenüber
+1,85 Wh beim LiPo — doppelte Energie für die 3,7-fache Masse. Fahrzeit ≈ 3 h
+statt 1,6 h.
+
+**Dazu ein elektrisches Problem:** AAA-Alkalizellen haben je ≈ 0,3 Ω
+Innenwiderstand, in Reihe 0,9 Ω. Bei den 1-A-Spitzen des ESP32 bricht die
+Spannung um 0,9 V ein. NiMH wäre mit ≈ 0,1 Ω je Zelle besser, wiegt aber
+nochmals mehr.
+
+### Was an dem Vorschlag trotzdem richtig war
+
+**Der Buck-Boost — und zwar unabhängig von der Zellwahl.** Der heutige Weg
+MT3608 → 5 V → bordeigener AMS1117 → 3,3 V hat ≈ 56 % Wirkungsgrad (siehe
+[Review B1](01_Schaltplan-Review.md)). Ein Buck-Boost **direkt auf 3,3 V**,
+eingespeist am 3V3-Pin, käme auf ≈ 90 % und brächte **rund ein Drittel mehr
+Laufzeit bei null Mehrgewicht** — ~1,7 h statt ~1,2 h.
+
+Haken: Man speist damit rückwärts in den Ausgang des AMS1117 ein. Das
+funktioniert praktisch, ist aber außerhalb der Spezifikation, und **USB und
+Akkuversorgung dürfen dann nicht gleichzeitig anliegen**. Sauberer wäre, den
+AMS1117 auszulöten — dann entfällt aber auch das Flashen über USB.
+
+**Entschieden:** LiPo bleibt wie geplant. Über den Buck-Boost wird erst
+entschieden, wenn der erste Aufbau fährt — die Massefrage ist bislang
+gerechnet, nicht gemessen.
+
+### Sicherheitsaspekt, der bestehen bleibt
+
+Gegen AAA sprach die Masse, nicht die Sicherheit. Der Einwand, dass eine
+LiPo-Zelle in einem Projekt für Jugendliche mehr Sorgfalt verlangt, ist
+berechtigt. Deshalb: **geschützte Zelle** (TP4056 + DW01A + FS8205 sind
+bereits in der Stückliste), Zelle **vollständig im Gehäuse**, keine freien
+Kontakte, und beim Laden nicht unbeaufsichtigt lassen.

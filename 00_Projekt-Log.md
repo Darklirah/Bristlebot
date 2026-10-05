@@ -2,6 +2,31 @@
 
 Laufendes Protokoll. Neueste Einträge oben.
 
+## 2026-10-05 (4) — Stromversorgung geprüft, LiPo bestätigt
+
+**Frage:** Spart ein Halter mit Schalter für 3× AAA plus Buck-Boost Gewicht?
+
+**Antwort: nein, er kostet ~36 g.** 3× AAA samt Halter wiegen ≈ 52 g gegen
+≈ 14 g der LiPo-Lösung; die Gesamtmasse stiege von ~45 g auf ~85 g. Dazu
+schlechtere Energiedichte (doppelte Energie für 3,7-fache Masse) und
+0,9 Ω Innenwiderstand in Reihe, was bei den 1-A-Spitzen des ESP32 um 0,9 V
+einbricht. Vollständige Rechnung in [Doku 02 §7](Doku/02_SMD-vs-THT-Wirtschaftlichkeit.md).
+
+**Entscheidung des Auftraggebers:** LiPo bleibt wie geplant. Über den
+**Buck-Boost direkt auf 3,3 V** (≈ 90 % statt ≈ 56 % Wirkungsgrad, rund ein
+Drittel mehr Laufzeit, kein Mehrgewicht) wird erst entschieden, **wenn der
+erste Aufbau fährt** — die Massefrage ist bislang gerechnet, nicht gemessen.
+
+**Nicht erledigt, bewusst offen:**
+
+- [ ] Buck-Boost auf 3,3 V nach dem ersten Fahrversuch bewerten. Haken dabei:
+      Rückwärtseinspeisung in den AMS1117 des DevKits, USB und Akku dürfen
+      dann nicht gleichzeitig anliegen
+- [ ] Sicherheitsvorgabe für den Aufbau: geschützte Zelle, vollständig im
+      Gehäuse, keine freien Kontakte, Laden nicht unbeaufsichtigt
+
+---
+
 ---
 
 ## 2026-10-05 (3) — Lagesensor und Abstandssensor
