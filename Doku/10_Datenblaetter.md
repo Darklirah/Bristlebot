@@ -2,7 +2,7 @@
 
 Linkliste zu allen verwendeten Bauteilen. **Die PDFs selbst liegen nicht im
 Repository** — sie gehören ihren Herstellern, und Weiterverbreitung erlauben
-längst nicht alle. Heruntergeladen gehören sie lokal nach `Datenblaetter/`,
+längst nicht alle. Heruntergeladen gehören sie lokal nach `Datasheets/`,
 dieser Ordner ist in `.gitignore` eingetragen.
 
 Stand: 05.10.2026. Legende: ✓ = liegt bereits lokal vor.
