@@ -1,0 +1,26 @@
+# Geheimnisse -- niemals ins Repo
+secrets.yaml
+secrets.local.yaml
+*.secret
+.env
+
+# ESPHome-Build-Artefakte (falls das Projekt in diese Richtung geht)
+/.esphome/
+/.esphome-venv/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Lokale Entwuerfe/Zwischenstufen -- bleiben lokal, halten das Repo sauber
+/Entwuerfe/
+/Entwurf/
+
+# Stray Clipboard-Screenshots (zeigen oft MAC-/Router-Infos)
+Clipboard*.png
+
+# OS-Kram
+Thumbs.db
+desktop.ini
+.DS_Store
