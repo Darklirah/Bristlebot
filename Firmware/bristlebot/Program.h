@@ -26,14 +26,23 @@
 //      re,<1..10>,<1..100>      Kurve rechts: Radius, Geschwindigkeit
 //                               Radius 1 = engste Kurve, 10 = weite Kurve
 //      st                       anhalten
+//      dl,<grad>,<1..100>       drehe links  um <grad> (5..360), geregelt
+//      dr,<grad>,<1..100>       drehe rechts um <grad>, geregelt
 //      wa,<ms>                  warten, 50 .. 60000 ms
 //      ld,<ziel>,<zust>         LED: ziel 0..6 (LT_*), zust 0..2 (LedState)
 //      bf,<1..10>               Blinkfrequenz, Stufe 1 = 0,5 Hz, 10 = 5 Hz
 //      lo,<0..10>               wiederholen; 0 = endlos, N = N weitere Läufe
 //
+//  Mit Abstandssensor auf dem Mast:
+//      fh,<mm>,<1..100>         fahre geradeaus, bis etwas naeher als <mm> ist
+//      tl,<mm>,<1..100>         drehe links,  bis der Weg weiter als <mm> frei ist
+//      tr,<mm>,<1..100>         drehe rechts, dto.
+//      wf,<mm>                  stehe still,  bis der Weg weiter als <mm> frei ist
+//
 //  Schritte werden mit ';' getrennt. "lo" darf nur als letzter Schritt
-//  stehen und ein wiederholtes Programm muss mindestens ein "wa"
-//  enthalten -- sonst würde es die Hauptschleife blockieren.
+//  stehen und ein wiederholtes Programm muss mindestens einen Befehl
+//  enthalten, der Zeit verbraucht -- sonst wuerde es die Hauptschleife
+//  blockieren. Das sind "wa", "dl", "dr", "fh", "tl", "tr" und "wf".
 // =====================================================================
 #pragma once
 #include <Arduino.h>
@@ -42,14 +51,15 @@
 #include "RobotState.h"
 
 enum class Op : uint8_t {
-  Straight = 0, Left, Right, Stop, Wait, Led, BlinkFreq, Loop
+  Straight = 0, Left, Right, Stop, Wait, Led, BlinkFreq, Loop,
+  TurnLeft, TurnRight, DriveUntil, TurnClearLeft, TurnClearRight, WaitClear
 };
 
 struct Step {
   uint8_t  op;   // Op
   uint8_t  a;    // Geschwindigkeit / Radius / LED-Ziel / Stufe / Wiederholungen
   uint8_t  b;    // Geschwindigkeit bei Kurven, LED-Zustand
-  uint16_t c;    // Wartezeit in ms
+  uint16_t c;    // Wartezeit in ms, oder Drehwinkel in Grad
 };
 
 class Program {
@@ -88,6 +98,32 @@ public:
   uint8_t  count() const { return _count; }
   uint8_t  pass()  const { return _pass; }
 
+  // --- Befehle, die auf einen Sensor warten ---
+  //
+  // Der Interpreter kennt weder Kurs noch Abstand. Er meldet nur an, was
+  // ansteht; ausgefuehrt und beendet wird es in der Hauptschleife, die
+  // die Sensoren hat. Zurueck kommt reportAwaitDone().
+  //
+  // Diese Befehle und "warte" sind die einzigen, die Zeit verbrauchen.
+  enum class Await : uint8_t {
+    None = 0,
+    Turn,        // drehe um turnDegrees()
+    Obstacle,    // fahre geradeaus, bis naeher als awaitMm()
+    TurnClear,   // drehe in Richtung awaitDir(), bis weiter als awaitMm()
+    WaitClear    // stehe still, bis weiter als awaitMm()
+  };
+
+  Await    awaiting()     const { return _await; }
+  int16_t  turnDegrees()  const { return _turnDeg; }   // + = rechts
+  uint16_t awaitMm()      const { return _awaitMm; }
+  float    awaitSpeed()   const { return _awaitSpeed; }
+  int8_t   awaitDir()     const { return _awaitDir; }  // -1 links, +1 rechts
+  void     reportAwaitDone() { _await = Await::None; }
+
+  // Zaehlt bei jedem Befehl hoch, der die Fahrt aendert. Die
+  // Kursregelung erkennt daran, wann sie ihren Sollkurs neu setzen muss.
+  uint8_t  motionSeq() const { return _motionSeq; }
+
 private:
   static float radiusToSteer(uint8_t radius);
   void  setError(const char* msg, int step = -1);
@@ -122,4 +158,11 @@ private:
   LedState _led[LED_COUNT] = { LedState::Off, LedState::Off,
                                LedState::Off, LedState::Off };
   uint8_t  _blinkLevel = BLINK_LEVEL_DEFAULT;
+
+  Await    _await      = Await::None;
+  int16_t  _turnDeg    = 0;
+  uint16_t _awaitMm    = 100;
+  float    _awaitSpeed = 0.5f;
+  int8_t   _awaitDir   = 1;
+  uint8_t  _motionSeq  = 0;
 };

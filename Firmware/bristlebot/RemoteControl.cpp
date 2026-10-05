@@ -174,6 +174,15 @@ void RemoteControl::handleText(uint8_t num, const char* line) {
       break;
 
     case 'C': _req.calibrate = true; break;
+    case 'G': _req.zeroGyro  = true; break;
+
+    case 'O':
+      if (sscanf(line + 1, ",%f,%f", &a, &b) == 2) {
+        _req.haveGuard = true;
+        _req.guard   = (a >= 0.5f);
+        _req.guardMm = (uint16_t)constrain((int)b, (int)DIST_MIN_MM, (int)DIST_MAX_MM);
+      }
+      break;
     case 'R': _req.resetCal  = true; break;
 
     case 'T':

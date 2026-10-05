@@ -143,6 +143,11 @@ select,input[type=text]{width:100%;background:var(--panel2);color:var(--fg);font
 #toast{font-size:13px;min-height:17px;margin-top:4px}
 #toast.ok{color:var(--ok)} #toast.bad{color:var(--bad)}
 #prun{font-size:13px;color:var(--ok);font-variant-numeric:tabular-nums;min-height:17px;margin-top:8px}
+#imuline{font-size:12px;color:var(--dim);margin-top:9px;font-variant-numeric:tabular-nums}
+#imuline.warn{color:var(--warn)}
+#tres{font-size:12.5px;margin-top:6px}
+#tres div{margin-top:2px;color:var(--dim)}
+#tres div.ok{color:var(--ok)} #tres div.bad{color:var(--bad)} #tres div.warn{color:var(--warn)}
 #tphase{font-size:13px;color:var(--warn);font-variant-numeric:tabular-nums;min-height:17px;margin-top:8px}
 
 details{background:var(--panel2);border-radius:11px;padding:0}
@@ -221,6 +226,12 @@ details .inner{padding:0 var(--pad) 6px}
           <option value="ge">geradeaus fahren</option>
           <option value="li">Kurve nach links</option>
           <option value="re">Kurve nach rechts</option>
+          <option value="dl">drehen nach links um &hellip; Grad</option>
+          <option value="dr">drehen nach rechts um &hellip; Grad</option>
+          <option value="fh">fahren bis Hindernis</option>
+          <option value="tl">drehen nach links, bis frei</option>
+          <option value="tr">drehen nach rechts, bis frei</option>
+          <option value="wf">warten, bis der Weg frei ist</option>
           <option value="st">anhalten</option>
         </optgroup>
         <optgroup label="Zeit">
@@ -238,6 +249,14 @@ details .inner{padding:0 var(--pad) 6px}
       <div id="pRad" class="hide">
         <label>Kurvenradius Stufe <b id="vRad">3</b> &ndash; <span id="tRad">eng</span></label>
         <input type="range" id="aRad" min="1" max="10" value="3">
+      </div>
+      <div id="pDeg" class="hide">
+        <label>Drehwinkel <b id="vDeg">90</b>&deg;</label>
+        <input type="range" id="aDeg" min="5" max="360" step="5" value="90">
+      </div>
+      <div id="pObs" class="hide">
+        <label>anhalten bei <b id="vObs">150</b> mm Abstand</label>
+        <input type="range" id="aObs" min="40" max="1200" step="10" value="150">
       </div>
       <div id="pSpd" class="hide">
         <label>Geschwindigkeit <b id="vSpd">60</b> %</label>
@@ -301,6 +320,7 @@ details .inner{padding:0 var(--pad) 6px}
       <span>Motor L</span><div class="bar"><i id="bML" style="background:var(--ok)"></i></div>
       <span>Motor R</span><div class="bar"><i id="bMR" style="background:var(--ok)"></i></div>
     </div>
+    <div id="imuline"></div>
     <div id="status" style="margin-top:10px">&mdash;</div>
   </div>
 
@@ -309,11 +329,15 @@ details .inner{padding:0 var(--pad) 6px}
     <h2>Funktionstest</h2>
     <button class="big" id="bTest" style="background:var(--warn)">Funktionstest starten</button>
     <div id="tphase"></div>
+    <div id="tres"></div>
     <p class="note">Pr&uuml;ft alles der Reihe nach: die vier LEDs einzeln, dann alle
        gemeinsam blinkend, dann Motor links von langsam auf schnell, dann Motor
        rechts. Beim Motortest leuchtet die LED der getesteten Seite &ndash; so f&auml;llt
-       auf, wenn Motor und Seite vertauscht verdrahtet sind. L&auml;uft in Schleife,
-       bis du ihn stoppst. Braucht die Freigabe, weil Motoren anlaufen.</p>
+       auf, wenn Motor und Seite vertauscht verdrahtet sind. Zum Schluss dreht er
+       sich einmal nach rechts und einmal nach links und pr&uuml;ft dabei den
+       Lagesensor &ndash; auch auf die Drehrichtung &ndash; und zeigt den Messwert des
+       Abstandssensors. L&auml;uft in Schleife, bis du ihn stoppst. Braucht die
+       Freigabe, weil Motoren anlaufen.</p>
   </div>
 
   <!-- ============ Experten ============ -->
@@ -326,7 +350,14 @@ details .inner{padding:0 var(--pad) 6px}
       <input type="range" id="sKp" min="0" max="200" value="55">
       <label>Kd &ndash; D&auml;mpfung <b id="vKd">0.08</b></label>
       <input type="range" id="sKd" min="0" max="100" value="8">
-      <button class="btn sm" id="bCalReset" style="width:100%">Kalibrierung l&ouml;schen</button>
+      <label style="display:flex;align-items:center;gap:9px;margin-bottom:10px">
+        <input type="checkbox" id="cGuard" checked style="width:20px;height:20px;accent-color:var(--accent)">
+        <span style="color:var(--fg)">Hindernis-Stopp aktiv</span>
+      </label>
+      <label>anhalten unter <b id="vGuard">90</b> mm Abstand</label>
+      <input type="range" id="sGuard" min="40" max="600" step="10" value="90">
+      <button class="btn sm" id="bGyro" style="width:100%;margin-bottom:9px">Lagesensor nullen</button>
+      <button class="btn sm" id="bCalReset" style="width:100%">Linien-Kalibrierung l&ouml;schen</button>
       <p class="note">Anlaufschwelle so weit hochdrehen, bis beide Motoren gerade
          sicher anlaufen. Kp und Kd nur im Modus &bdquo;Linie folgen&ldquo; wirksam.</p>
     </div>
@@ -353,6 +384,12 @@ var OPS={
   ge:{c:"drive",txt:function(s){ return "geradeaus mit "+s.a+" %" }},
   li:{c:"drive",txt:function(s){ return "Kurve links, Stufe "+s.a+" ("+RADTXT[s.a]+"), "+s.b+" %" }},
   re:{c:"drive",txt:function(s){ return "Kurve rechts, Stufe "+s.a+" ("+RADTXT[s.a]+"), "+s.b+" %" }},
+  fh:{c:"drive",txt:function(s){ return "fahren bis Hindernis in "+s.c+" mm, "+s.a+" %" }},
+  tl:{c:"drive",txt:function(s){ return "drehen nach links, bis "+s.c+" mm frei, "+s.a+" %" }},
+  tr:{c:"drive",txt:function(s){ return "drehen nach rechts, bis "+s.c+" mm frei, "+s.a+" %" }},
+  wf:{c:"wait", txt:function(s){ return "warten, bis "+s.c+" mm frei sind" }},
+  dl:{c:"drive",txt:function(s){ return "drehen nach links um "+s.c+"°, "+s.a+" %" }},
+  dr:{c:"drive",txt:function(s){ return "drehen nach rechts um "+s.c+"°, "+s.a+" %" }},
   st:{c:"drive",txt:function( ){ return "anhalten" }},
   wa:{c:"wait", txt:function(s){ return "warte "+(s.c/1000).toFixed(1).replace(".",",")+" Sekunden" }},
   ld:{c:"light",txt:function(s){ return LDT[s.a]+" "+LDS[s.b] }},
@@ -365,6 +402,12 @@ function wire(s){
     case "ge": return "ge,"+s.a;
     case "li":
     case "re": return s.op+","+s.a+","+s.b;
+    case "dl":
+    case "dr":
+    case "fh":
+    case "tl":
+    case "tr": return s.op+","+s.c+","+s.a;
+    case "wf": return "wf,"+s.c;
     case "st": return "st";
     case "wa": return "wa,"+s.c;
     case "ld": return "ld,"+s.a+","+s.b;
@@ -382,6 +425,10 @@ function fromWire(t){
     if(!OPS[op]) return;
     var s={op:op,a:0,b:0,c:0};
     if(op==="wa")                       s.c=parseInt(p[1],10)||0;
+    else if(op==="wf")                  s.c=parseInt(p[1],10)||0;
+    else if(op==="dl"||op==="dr"||op==="fh"||op==="tl"||op==="tr"){
+      s.c=parseInt(p[1],10)||0; s.a=parseInt(p[2],10)||0;
+    }
     else if(op==="ld"||op==="li"||op==="re"){
       s.a=parseInt(p[1],10)||0; s.b=parseInt(p[2],10)||0;
     }
@@ -418,9 +465,15 @@ function toast(m,good){
 
 /* =================== Telemetrie =================== */
 var PHASE=["gesperrt","fährt","sucht Linie","Linie verloren","kalibriert…",
-           "Akku leer","wartet auf Befehl","Programm beendet","Funktionstest"];
+           "Akku leer","wartet auf Befehl","Programm beendet","Funktionstest",
+           "umgekippt oder hochgehoben","Hindernis voraus"];
 var TPH=["LED vorne links","LED vorne rechts","LED hinten links","LED hinten rechts",
-         "alle LEDs blinken","Motor links","Motor rechts","Pause"];
+         "alle LEDs blinken","Motor links","Motor rechts","Pause",
+         "Lagesensor: Drehung rechts","Lagesensor: Drehung links","Abstandssensor"];
+var VERD=["","in Ordnung","keine Reaktion – Sensor oder Antrieb",
+          "Drehrichtung vertauscht","Sensor meldet sich nicht",
+          "nichts im Messbereich"];
+var VCLS=["","ok","bad","bad","bad","warn"];
 function paint(d){
   E("bL").style.width=(d.sL*100).toFixed(0)+"%";
   E("bR").style.width=(d.sR*100).toFixed(0)+"%";
@@ -449,9 +502,41 @@ function paint(d){
   tb.textContent = d.ts ? "■ Funktionstest stoppen" : "Funktionstest starten";
   tb.style.background = d.ts ? "var(--bad)" : "var(--warn)";
   tb.style.color      = d.ts ? "#fff" : "#06121f";
-  E("tphase").textContent = d.ts
-    ? (TPH[d.tp]||"") + ((d.tp===5||d.tp===6) ? "  ·  "+d.tv+" %" : "")
-    : "";
+  var tx = TPH[d.tp]||"";
+  if(d.tp===5||d.tp===6)      tx += "  ·  "+d.tv+" %";
+  else if(d.tp===8||d.tp===9) tx += "  ·  "+(d.ti>0?"+":"")+d.ti+"°";
+  else if(d.tp===10)          tx += "  ·  "+(d.ti>0 ? d.ti+" mm" : "nichts in Sicht");
+  E("tphase").textContent = d.ts ? tx : "";
+
+  /* Urteile der letzten Sensorpruefung, bleiben nach dem Test stehen */
+  var tr=E("tres");
+  if(d.tg||d.td){
+    tr.innerHTML="";
+    [["Lagesensor",d.tg],["Abstandssensor",d.td]].forEach(function(p){
+      if(!p[1]) return;
+      var e=document.createElement("div");
+      e.className=VCLS[p[1]]||"";
+      e.textContent=p[0]+": "+VERD[p[1]];
+      tr.appendChild(e);
+    });
+  }
+
+  /* Lagesensor */
+  var il=E("imuline");
+  if(d.imu){
+    il.textContent = "Kurs "+(d.hd>0?"+":"")+d.hd.toFixed(0)+"°"
+                   + (d.ic ? "" : "  ·  Nullpunkt fehlt")
+                   + (d.dsp ? ("  ·  Abstand "+(d.ds?d.ds+" mm":"frei")) : "");
+    il.className = d.ic ? "" : "warn";
+  } else {
+    il.textContent = "kein Lagesensor – Drehbefehle laufen zeitgesteuert"
+                   + (d.dsp ? ("  ·  Abstand "+(d.ds?d.ds+" mm":"frei")) : "");
+    il.className = "warn";
+  }
+  if(d.og!==undefined && document.activeElement!==E("sGuard")){
+    E("cGuard").checked = !!d.og;
+    if(+E("sGuard").value!==d.om){ E("sGuard").value=d.om; E("vGuard").textContent=d.om }
+  }
 
   var s=E("status"), txt=PHASE[d.p]||"?";
   if(!d.calOk && d.m===1) txt+=" · nicht kalibriert";
@@ -542,16 +627,20 @@ function paintGauge(){
 
 /* =================== Befehl hinzufuegen =================== */
 var PANELS={ge:["pSpd"],li:["pRad","pSpd"],re:["pRad","pSpd"],st:[],
+            dl:["pDeg","pSpd"],dr:["pDeg","pSpd"],fh:["pObs","pSpd"],
+            tl:["pObs","pSpd"],tr:["pObs","pSpd"],wf:["pObs"],
             wa:["pWa"],ld:["pLd"],bf:["pBf"],lo:["pLo"]};
 function paintAddForm(){
   var want=PANELS[E("aOp").value]||[];
-  ["pRad","pSpd","pWa","pLd","pBf","pLo"].forEach(function(id){
+  ["pRad","pDeg","pObs","pSpd","pWa","pLd","pBf","pLo"].forEach(function(id){
     E(id).classList.toggle("hide",want.indexOf(id)<0);
   });
 }
 E("aOp").onchange=paintAddForm;
 function live(id,out,fn){ E(id).addEventListener("input",function(){ fn(this.value,E(out)) }) }
 live("aSpd","vSpd",function(v,o){ o.textContent=v });
+live("aDeg","vDeg",function(v,o){ o.textContent=v });
+live("aObs","vObs",function(v,o){ o.textContent=v });
 live("aRad","vRad",function(v,o){ o.textContent=v; E("tRad").textContent=RADTXT[v|0] });
 live("aWa","vWa", function(v,o){ o.textContent=(v/10).toFixed(1).replace(".",",") });
 live("aBf","vBf", function(v,o){ o.textContent=v; E("tBf").textContent=(v*0.5).toFixed(1).replace(".",",") });
@@ -562,6 +651,9 @@ E("bAdd").onclick=function(){
   var op=E("aOp").value, s={op:op,a:0,b:0,c:0};
   if(op==="ge") s.a=+E("aSpd").value;
   if(op==="li"||op==="re"){ s.a=+E("aRad").value; s.b=+E("aSpd").value }
+  if(op==="dl"||op==="dr"){ s.c=+E("aDeg").value; s.a=+E("aSpd").value }
+  if(op==="fh"||op==="tl"||op==="tr"){ s.c=+E("aObs").value; s.a=+E("aSpd").value }
+  if(op==="wf"){ s.c=+E("aObs").value }
   if(op==="wa") s.c=Math.round(E("aWa").value*100);
   if(op==="ld"){ s.a=+E("aLdT").value; s.b=+E("aLdS").value }
   if(op==="bf") s.a=+E("aBf").value;
@@ -613,6 +705,10 @@ E("bTest").onclick=function(){
   send("S,"+(E("bTest").textContent.indexOf("stoppen")>0?0:1));
 };
 E("bCalReset").onclick=function(){ send("R") };
+E("bGyro").onclick    =function(){ send("G"); toast("Nullpunkt wird aufgenommen – Roboter ruhig halten.",true) };
+function sendGuard(){ send("O,"+(E("cGuard").checked?1:0)+","+E("sGuard").value) }
+E("cGuard").onchange=sendGuard;
+E("sGuard").addEventListener("input",function(){ E("vGuard").textContent=this.value; sendGuard() });
 
 /* =================== Feinabstimmung =================== */
 function sendTune(){

@@ -157,3 +157,85 @@ static const uint16_t TEST_BLINK_MS    = 3000;  // alle gemeinsam blinkend
 static const uint16_t TEST_RAMP_MS     = 3000;  // Motorrampe min -> max
 static const uint16_t TEST_GAP_MS      = 600;   // Pause zwischen den Abschnitten
 static const uint8_t  TEST_BLINK_LEVEL = 4;     // 2 Hz
+static const uint16_t TEST_GYRO_MS     = 1800;  // Drehabschnitt je Richtung
+static const uint16_t TEST_DIST_MS     = 4000;  // Abstandsmesswert anzeigen
+
+// ---------------------------------------------------------------------
+//  L A G E S E N S O R   (MPU-6050 am I2C)
+//
+//  Liefert ueber das Z-Gyro einen Kurswinkel. Damit wird aus "dreh 1,2 s
+//  nach rechts" ein geregeltes "dreh um 90 Grad", und "geradeaus" kann
+//  seinen Kurs halten statt wegzudriften.
+//
+//  Was er NICHT kann: Strecken messen. Zweifache Integration der
+//  Beschleunigung ist auf einem vibrationsgetriebenen Roboter binnen
+//  ein bis zwei Sekunden unbrauchbar.
+//
+//  Der Sensor ist optional. Fehlt er, laeuft alles weiter; Drehbefehle
+//  fallen dann auf eine Zeitschaetzung zurueck (TURN_RATE_FALLBACK_DPS).
+// ---------------------------------------------------------------------
+#define FEATURE_IMU 1
+
+static const uint8_t  PIN_I2C_SDA  = 21;
+static const uint8_t  PIN_I2C_SCL  = 22;
+static const uint8_t  IMU_ADDR     = 0x68;   // AD0 auf GND
+static const uint32_t I2C_FREQ_HZ  = 400000;
+
+// Digitalfilter im Sensor. 4 = 21 Hz. Die Motorvibration liegt bei
+// 100..200 Hz und wuerde sich ohne dieses Filter ins Nutzsignal falten.
+// Bleibt trotzdem Unruhe im Kurs: auf 5 (10 Hz) heruntergehen.
+static const uint8_t  IMU_DLPF_CFG = 4;
+static const uint8_t  IMU_GYRO_FS  = 1;      // 1 = +-500 deg/s, 65,5 LSB je deg/s
+static const uint8_t  IMU_ACCEL_FS = 2;      // 2 = +-8 g, 4096 LSB je g
+                                             // bewusst grob: enge Bereiche
+                                             // uebersteuern bei Vibration und
+                                             // erzeugen dadurch Scheinwerte
+static const uint16_t IMU_SAMPLE_MS = 5;     // 200 Hz Abtastung
+static const uint16_t IMU_CAL_MS    = 1200;  // Nullpunktaufnahme im Stillstand
+static const float    IMU_RATE_DEADBAND_DPS = 0.3f;  // gegen Driften im Stand
+
+// Kurs halten bei "geradeaus"
+static const float    HOLD_KP  = 0.020f;     // Lenkanteil je Grad Abweichung
+static const float    HOLD_MAX = 0.40f;
+
+// Drehen nach Winkel
+static const float    TURN_TOLERANCE_DEG     = 3.0f;
+static const uint16_t TURN_TIMEOUT_MS        = 12000;
+static const float    TURN_RATE_FALLBACK_DPS = 90.0f;  // nur ohne Lagesensor
+static const uint16_t TURN_DEG_MAX           = 360;
+
+// Kipp- und Aufheb-Erkennung
+static const float    TILT_AZ_MIN_G    = 0.45f;  // darunter liegt er nicht mehr flach
+static const uint16_t TILT_CONFIRM_MS  = 400;
+static const float    LIFT_G_LOW       = 0.55f;  // Betrag der Beschleunigung
+static const float    LIFT_G_HIGH      = 1.45f;
+static const uint16_t LIFT_CONFIRM_MS  = 500;
+
+// ---------------------------------------------------------------------
+//  A B S T A N D S S E N S O R   (VL53L0X auf dem Mast)
+//
+//  Laufzeitmessung mit Infrarotlaser, am selben I2C-Bus wie der
+//  Lagesensor (Adresse 0x29 gegen 0x68, kein Konflikt).
+//
+//  Warum auf einem Mast: der Sensor soll waagerecht nach vorn schauen,
+//  nicht auf den Boden. Und anders als ein Magnetometer stoert ihn die
+//  Montage dort oben nicht -- eine optische Laufzeitmessung mittelt ueber
+//  ihr Messfenster, ein peitschender Mast verwischt hoechstens den
+//  Zielpunkt, nicht den Messwert.
+//
+//  Treiber: Bibliothek "VL53L0X" von Pololu. Die Initialisierung des
+//  Chips ist eine mehrere hundert Zeilen lange Registersequenz -- die
+//  schreibt man nicht selbst nach.
+// ---------------------------------------------------------------------
+#define FEATURE_DISTANCE 1
+
+static const uint16_t DIST_TIMING_BUDGET_US = 33000;  // ~30 Messungen je Sekunde
+static const uint16_t DIST_SAMPLE_MS = 35;
+static const uint16_t DIST_MIN_MM    = 40;    // darunter ist der Sensor blind
+static const uint16_t DIST_MAX_MM    = 1200;  // darueber unzuverlaessig
+static const uint8_t  DIST_MEDIAN    = 3;     // Median gegen Ausreisser
+
+// Hindernis-Stopp: faehrt der Roboter auf etwas zu, halten die Motoren an.
+// In der Oberflaeche abschaltbar.
+static const uint16_t OBSTACLE_STOP_MM_DEFAULT = 90;
+static const uint16_t OBSTACLE_TIMEOUT_MS      = 15000;  // fuer "fahre bis Hindernis"

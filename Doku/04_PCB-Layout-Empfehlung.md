@@ -150,3 +150,56 @@ Sensorik anzufassen.
 - [ ] Sensorabstand zur Linienbreite passend (15–20 mm bei 19-mm-Band)
 - [ ] Beschriftung im Siebdruck: Polung des Akkus, Soll-Ausgangsspannung von U5
       („**SET 5V0**") direkt neben dem Trimmer
+
+---
+
+## 6 · Nachtrag: die beiden Sensoren
+
+### MPU-6050 (Lage) — aufs Chassis, nicht auf den Mast
+
+Drei Regeln, und alle drei sind auf diesem Roboter nicht optional:
+
+1. **Nahe der Drehachse.** Der Sensor misst die Drehrate um die Hochachse.
+   Sitzt er weit außen, überlagert die Zentrifugalbeschleunigung die
+   Lagemessung. Platz: mittig, möglichst dicht am Schwerpunkt.
+2. **Weit weg von den Motoren.** Nicht wegen des Magnetfelds — das stört ein
+   Gyro kaum — sondern wegen der mechanischen Anregung. Jeder Zentimeter
+   Abstand hilft.
+3. **Weich ankoppeln.** Mit demselben Schaumklebeband aufsetzen wie den
+   Akku. Starr verschraubt bekommt der Sensor die volle Motorvibration ab,
+   und die ist auf diesem Gerät das größte Messproblem überhaupt.
+   Stiftleisten abknipsen und flach verlöten — ein gestecktes Modul wackelt
+   im Sockel, und genau dieses Wackeln misst der Sensor dann.
+
+### VL53L0X (Abstand) — auf den Mast
+
+| | |
+|---|---|
+| Masthöhe | ca. 60 mm über der Platine |
+| Position | vorn mittig, zwischen den beiden Liniensensoren |
+| Blickrichtung | **waagerecht nach vorn** |
+| Werkstoff | CFK-Rundstab Ø 3 mm — steif und mit 0,6 g fast masselos |
+
+**Warum der Mast hier funktioniert, ein Magnetometer dort aber nicht:** Eine
+optische Laufzeitmessung mittelt über ihr Messfenster von 33 ms. Ein
+peitschender Mast verwischt dabei höchstens den Zielpunkt, nicht den
+Messwert. Ein Magnetometer dagegen würde oben zwar weniger Motorfeld sehen,
+dafür aber in der Mastbewegung seine Ausrichtung verlieren — und die
+Ausrichtung ist bei einem Kompass die Messgröße.
+
+**Nicht nach unten neigen.** Ein zum Boden geneigter Sensor misst die
+Tischplatte und meldet dauernd „Hindernis". Waagerecht, und beim ersten
+Aufbau mit der Live-Anzeige in der Oberfläche prüfen: freie Strecke muss
+„frei" anzeigen, nicht einen Wert um 100 mm.
+
+**Kabel verdrillt am Mast entlang, am Fuß eine Schlaufe lassen.** Ein straff
+gespanntes Kabel bricht an einem vibrierenden Mast genau an der Lötstelle.
+
+### Massefolgen fürs Layout
+
+Die 4,5 g der Sensorik sitzen zu etwa der Hälfte oben. Das verschiebt den
+Schwerpunkt nach vorn und nach oben. Zwei Gegenmaßnahmen, beide kostenlos:
+
+* Akku so weit **nach hinten** setzen, wie das Layout zulässt
+* PCB in **1,0 mm** statt 1,6 mm bestellen (siehe Checkliste oben) —
+  das allein holt die Mastmasse mehr als zurück

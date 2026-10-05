@@ -253,3 +253,84 @@ Die Firmware speichert immer ihre eigene, kanonische Fassung — nicht den
 Rohtext aus der App. Das Protokoll der WebSocket-Befehle steht in
 [06_Fernsteuerung-App.md](06_Fernsteuerung-App.md), der eingebaute
 Funktionstest in [07_Inbetriebnahme-und-Tuning.md](07_Inbetriebnahme-und-Tuning.md).
+
+---
+
+## 8 · Nachtrag: Befehle mit Sensorik
+
+Mit Lagesensor (MPU-6050) und Abstandssensor (VL53L0X) kommen vier Befehle
+dazu. **Alle vier verbrauchen Zeit** — sie sind damit neben `warte` die
+einzigen Ausnahmen von der Regel aus Abschnitt 1.
+
+### Drehen nach Winkel
+
+| Befehl | Werte | Was er tut |
+|---|---|---|
+| **drehen nach links um … Grad** | 5–360°, Geschwindigkeit 1–100 % | Dreht auf der Stelle, bis der Lagesensor die Winkeländerung meldet. Dann erst geht es weiter. |
+| **drehen nach rechts um … Grad** | dto. | |
+
+Das ist der eigentliche Gewinn des Lagesensors: statt „dreh 1,2 Sekunden und
+hoff das Beste" wird daraus ein geregelter Vorgang. Toleranz 3°, Zeitgrenze
+12 s. Jeder Drehbefehl nullt den Kurs vorher neu — damit spielt die Drift des
+Kreisels (3–6° je Minute) keine Rolle mehr.
+
+> **Ohne Lagesensor** fällt der Befehl auf eine reine Zeitschätzung zurück
+> (90 °/s angenommen). Die Oberfläche schreibt dann unter die Messwerte
+> „kein Lagesensor – Drehbefehle laufen zeitgesteuert". Das ist dann keine
+> Winkelregelung mehr, sondern eine Annahme.
+
+### Abstand
+
+| Befehl | Werte | Was er tut |
+|---|---|---|
+| **fahren bis Hindernis** | 40–1200 mm, Geschwindigkeit | Fährt geradeaus (bei vorhandenem Lagesensor auf Kurs gehalten), bis etwas näher als der Wert ist. Zeitgrenze 15 s. |
+| **drehen nach links/rechts, bis frei** | 40–1200 mm, Geschwindigkeit | Dreht auf der Stelle, bis nach vorn wieder mehr als der Wert frei ist. |
+| **warten, bis frei** | 40–1200 mm | Steht still, bis der Weg frei ist. Hand davorhalten = Stopp, Hand weg = weiter. |
+
+### Ausweichen mit vier Zeilen
+
+```
+fahren bis Hindernis in 120 mm, 60 %
+drehen nach rechts, bis 300 mm frei, 70 %
+warte 0,3 Sekunden
+von vorn wiederholen, endlos
+```
+
+Damit fährt der Roboter selbsttätig durch einen Raum und weicht aus. Die
+`warte`-Zeile ist kein Zierrat: sie gibt dem Abstandssensor nach der Drehung
+einen Moment, bevor die nächste Anfahrt beginnt.
+
+### Kurs halten
+
+Ist der Lagesensor vorhanden und genullt, hält **geradeaus** seinen Kurs
+aktiv — der Roboter merkt sich die Richtung beim Start des Befehls und regelt
+Abweichungen aus. Ohne das zieht er immer zur Seite, weil zwei
+Vibrationsmotoren nie exakt gleich stark sind. In Kurven ist die Regelung
+abgeschaltet; dort ist die Drehbewegung ja das Gewollte.
+
+### Hindernis-Stopp
+
+Unabhängig von den Programmbefehlen gibt es im Experten-Bereich einen
+Schutzschalter: **Hindernis-Stopp**. Ist er aktiv (Vorgabe) und kommt der
+Roboter einem Hindernis näher als der eingestellte Wert (Vorgabe 90 mm),
+halten die Motoren an und die Statuszeile meldet „Hindernis voraus".
+Ausgenommen sind die drei Abstandsbefehle oben — die wollen ja gerade
+heranfahren.
+
+### Was weiterhin nicht geht: Strecken
+
+Der Lagesensor misst Drehungen, keine Wege. Die zweifache Integration der
+Beschleunigung ist auf einem vibrationsgetriebenen Roboter binnen ein bis
+zwei Sekunden unbrauchbar. **„Fahre 30 cm" bleibt unmöglich.** Drehungen sind
+jetzt reproduzierbar, Strecken nicht — dafür bräuchte es Radgeber, die dieser
+Antrieb nicht hat. Als Ersatz dient „fahren bis Hindernis": kein Weg, aber
+ein definierter Endpunkt.
+
+### Textformat, Nachtrag
+
+| Kürzel | Bedeutung | Argumente |
+|---|---|---|
+| `dl` / `dr` | drehen links / rechts um Winkel | Grad 5–360, Geschwindigkeit 1–100 |
+| `fh` | fahren bis Hindernis | mm 40–1200, Geschwindigkeit 1–100 |
+| `tl` / `tr` | drehen links / rechts bis frei | mm 40–1200, Geschwindigkeit 1–100 |
+| `wf` | warten bis frei | mm 40–1200 |

@@ -21,7 +21,9 @@ enum class Phase : uint8_t {
   LowBattery  = 5,
   Idle        = 6, // freigegeben, aber kein Fahrbefehl
   ProgramDone = 7, // Fahrprogramm durchgelaufen
-  SelfTest    = 8  // eingebauter Funktionstest laeuft
+  SelfTest    = 8, // eingebauter Funktionstest laeuft
+  Tilted      = 9, // umgekippt oder hochgehoben -- Motoren gesperrt
+  Obstacle    = 10 // Hindernis voraus -- Motoren angehalten
 };
 
 // Zustand einer einzelnen Signal-LED. Im Fahrprogramm direkt setzbar.

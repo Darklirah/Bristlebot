@@ -18,6 +18,8 @@ Maßgeblich ist `Firmware/bristlebot/Config.h`. Diese Tabelle muss damit
 | **26** | Digital out | LED rot hinten **links** | R11 220 Ω → LED3 → GND | ≈ 6 mA |
 | **25** | Digital out | LED rot hinten **rechts** | R12 220 Ω → LED4 → GND | ≈ 6 mA |
 | 39 | Analog in | *optional* Akkuspannung | R16/R17 je 100 kΩ Teiler | ADC1_CH3, `FEATURE_BATTERY_MONITOR` |
+| **21** | I2C SDA | Lage- und Abstandssensor | U6 GY-521, U7 GY-530 | 400 kHz, Pull-ups auf den Modulen |
+| **22** | I2C SCL | dto. | dto. | |
 | 4 | Digital in | *optional* Taster Betriebsart | gegen GND, interner Pullup | `FEATURE_MODE_BUTTON` |
 
 ## Versorgung
@@ -69,7 +71,7 @@ nicht will, legt LED1 auf GPIO 18 oder 19 (beide frei).
 
 | GPIO | Eignung |
 |---|---|
-| 18, 19, 21, 22, 23 | uneingeschränkt, Ausgang oder Eingang |
+| 18, 19, 23 | uneingeschränkt, Ausgang oder Eingang |
 | 16, 17 | uneingeschränkt (UART2, aber hier unbenutzt) |
 | 4 | frei, aber ADC2 — nicht analog nutzen |
 | 36, 39 | nur Eingang, ADC1 — gut für weitere Analogsensoren |

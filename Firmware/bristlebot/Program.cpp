@@ -200,6 +200,40 @@ bool Program::parse(const char* text) {
       s.a  = (uint8_t)arg[0];
       s.b  = (uint8_t)arg[1];
     }
+    else if (!strcmp(op, "dl") || !strcmp(op, "dr")) {
+      if (nargs < 2)                                 { setError("Drehen braucht Winkel und Geschwindigkeit", _count); return false; }
+      if (arg[0] < 5 || arg[0] > TURN_DEG_MAX)       { setError("Winkel muss 5..360 Grad sein", _count); return false; }
+      if (arg[1] < 1 || arg[1] > 100)                { setError("Geschwindigkeit muss 1..100 sein", _count); return false; }
+      s.op = (uint8_t)(op[1] == 'l' ? Op::TurnLeft : Op::TurnRight);
+      s.c  = (uint16_t)arg[0];
+      s.a  = (uint8_t)arg[1];
+      hasWait = true;        // eine Drehung verbraucht ebenfalls Zeit
+    }
+    else if (!strcmp(op, "fh")) {
+      if (nargs < 2)                                              { setError("Fahren bis Hindernis braucht Abstand und Geschwindigkeit", _count); return false; }
+      if (arg[0] < DIST_MIN_MM || arg[0] > DIST_MAX_MM)           { setError("Abstand muss 40..1200 mm sein", _count); return false; }
+      if (arg[1] < 1 || arg[1] > 100)                             { setError("Geschwindigkeit muss 1..100 sein", _count); return false; }
+      s.op = (uint8_t)Op::DriveUntil;
+      s.c  = (uint16_t)arg[0];
+      s.a  = (uint8_t)arg[1];
+      hasWait = true;        // verbraucht ebenfalls Zeit
+    }
+    else if (!strcmp(op, "tl") || !strcmp(op, "tr")) {
+      if (nargs < 2)                                    { setError("Drehen bis frei braucht Abstand und Geschwindigkeit", _count); return false; }
+      if (arg[0] < DIST_MIN_MM || arg[0] > DIST_MAX_MM) { setError("Abstand muss 40..1200 mm sein", _count); return false; }
+      if (arg[1] < 1 || arg[1] > 100)                   { setError("Geschwindigkeit muss 1..100 sein", _count); return false; }
+      s.op = (uint8_t)(op[1] == 'l' ? Op::TurnClearLeft : Op::TurnClearRight);
+      s.c  = (uint16_t)arg[0];
+      s.a  = (uint8_t)arg[1];
+      hasWait = true;
+    }
+    else if (!strcmp(op, "wf")) {
+      if (nargs < 1)                                    { setError("Warten bis frei braucht einen Abstand", _count); return false; }
+      if (arg[0] < DIST_MIN_MM || arg[0] > DIST_MAX_MM) { setError("Abstand muss 40..1200 mm sein", _count); return false; }
+      s.op = (uint8_t)Op::WaitClear;
+      s.c  = (uint16_t)arg[0];
+      hasWait = true;
+    }
     else if (!strcmp(op, "st")) { s.op = (uint8_t)Op::Stop; }
     else if (!strcmp(op, "wa")) {
       if (nargs < 1 || arg[0] < PROG_WAIT_MIN_MS || arg[0] > PROG_WAIT_MAX_MS) { setError("Wartezeit muss 0,05 .. 60 s sein", _count); return false; }
@@ -230,7 +264,7 @@ bool Program::parse(const char* text) {
   // Ein wiederholtes Programm ohne Wartezeit würde die Hauptschleife
   // mit Volldampf im Kreis laufen lassen.
   if (hasLoop && !hasWait) {
-    setError("Ein wiederholtes Programm braucht mindestens ein 'warte'");
+    setError("Ein wiederholtes Programm braucht mindestens ein 'warte' oder 'drehe'");
     _count = 0;
     return false;
   }
@@ -247,6 +281,12 @@ void Program::serialize(char* out, size_t outLen) const {
       case Op::Straight:  snprintf(frag, sizeof(frag), "ge,%u", s.a);         break;
       case Op::Left:      snprintf(frag, sizeof(frag), "li,%u,%u", s.a, s.b); break;
       case Op::Right:     snprintf(frag, sizeof(frag), "re,%u,%u", s.a, s.b); break;
+      case Op::TurnLeft:  snprintf(frag, sizeof(frag), "dl,%u,%u", s.c, s.a); break;
+      case Op::TurnRight: snprintf(frag, sizeof(frag), "dr,%u,%u", s.c, s.a); break;
+      case Op::DriveUntil:    snprintf(frag, sizeof(frag), "fh,%u,%u", s.c, s.a); break;
+      case Op::TurnClearLeft: snprintf(frag, sizeof(frag), "tl,%u,%u", s.c, s.a); break;
+      case Op::TurnClearRight:snprintf(frag, sizeof(frag), "tr,%u,%u", s.c, s.a); break;
+      case Op::WaitClear:     snprintf(frag, sizeof(frag), "wf,%u", s.c);         break;
       case Op::Stop:      snprintf(frag, sizeof(frag), "st");                 break;
       case Op::Wait:      snprintf(frag, sizeof(frag), "wa,%u", s.c);         break;
       case Op::Led:       snprintf(frag, sizeof(frag), "ld,%u,%u", s.a, s.b); break;
@@ -290,13 +330,16 @@ void Program::start() {
   _pass      = 0;
   _waitUntil = 0;
   _done      = false;
+  _await     = Await::None;
+  _motionSeq = 0;
   _running   = true;
 }
 
 void Program::stop() {
-  _running = false;
-  _moving  = false;
+  _running   = false;
+  _moving    = false;
   _waitUntil = 0;
+  _await     = Await::None;
 }
 
 void Program::applyLedTarget(uint8_t target, LedState st) {
@@ -314,6 +357,11 @@ void Program::applyLedTarget(uint8_t target, LedState st) {
 
 void Program::update() {
   if (!_running) return;
+
+  // Eine Drehung regelt die Hauptschleife; bis sie fertig meldet, steht
+  // der Interpreter still. "drehe" ist neben "warte" der einzige Befehl,
+  // der Zeit verbraucht.
+  if (_await != Await::None) return;
 
   if (_waitUntil) {
     if ((int32_t)(millis() - _waitUntil) < 0) return;   // noch am Warten
@@ -336,12 +384,55 @@ void Program::update() {
 
     switch ((Op)s.op) {
       case Op::Straight:
-        _steer = 0.0f;  _speed = s.a / 100.0f;  _moving = true;  break;
+        _steer = 0.0f;  _speed = s.a / 100.0f;  _moving = true;  _motionSeq++;  break;
       case Op::Left:
-        _steer = -radiusToSteer(s.a);  _speed = s.b / 100.0f;  _moving = true;  break;
+        _steer = -radiusToSteer(s.a);  _speed = s.b / 100.0f;  _moving = true;  _motionSeq++;  break;
       case Op::Right:
-        _steer =  radiusToSteer(s.a);  _speed = s.b / 100.0f;  _moving = true;  break;
-      case Op::Stop:      _moving = false;                          break;
+        _steer =  radiusToSteer(s.a);  _speed = s.b / 100.0f;  _moving = true;  _motionSeq++;  break;
+      case Op::Stop:      _moving = false;  _motionSeq++;           break;
+
+      // --- Befehle, die auf einen Sensor warten ---
+      // Alle vier melden sich nur an; ausgefuehrt werden sie in der
+      // Hauptschleife, die Lage- und Abstandssensor hat.
+
+      // Drehung um einen Winkel. Vorzeichen: + = nach rechts.
+      case Op::TurnLeft:
+      case Op::TurnRight:
+        _turnDeg    = (int16_t)(((Op)s.op == Op::TurnRight) ? (int)s.c : -(int)s.c);
+        _awaitSpeed = s.a / 100.0f;
+        _await      = Await::Turn;
+        _moving     = false;
+        _motionSeq++;
+        return;
+
+      // Geradeaus, bis der Mastsensor ein Hindernis meldet
+      case Op::DriveUntil:
+        _awaitMm    = s.c;
+        _awaitSpeed = s.a / 100.0f;
+        _await      = Await::Obstacle;
+        _steer      = 0.0f;
+        _moving     = false;
+        _motionSeq++;
+        return;
+
+      // Drehen, bis der Weg nach vorn wieder frei ist
+      case Op::TurnClearLeft:
+      case Op::TurnClearRight:
+        _awaitMm    = s.c;
+        _awaitSpeed = s.a / 100.0f;
+        _awaitDir   = ((Op)s.op == Op::TurnClearRight) ? 1 : -1;
+        _await      = Await::TurnClear;
+        _moving     = false;
+        _motionSeq++;
+        return;
+
+      // Stehen bleiben, bis der Weg frei ist
+      case Op::WaitClear:
+        _awaitMm = s.c;
+        _await   = Await::WaitClear;
+        _moving  = false;
+        _motionSeq++;
+        return;
       case Op::Led:       applyLedTarget(s.a, (LedState)s.b);       break;
       case Op::BlinkFreq: _blinkLevel = s.a;                        break;
 

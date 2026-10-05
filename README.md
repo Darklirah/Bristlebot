@@ -20,6 +20,8 @@ den der ESP32 selbst aufspannt — die Bedienoberfläche liefert er gleich mit.
 | Rechenkern | ESP32 DevKit V1, 30-Pin, gesteckt |
 | Antrieb | 2× Vibrationsmotor 3 V über BC337-40, 20 kHz PWM (LEDC) |
 | Sensorik | 2× TCRT5000 analog an ADC1 (GPIO 34/35) |
+| Lage | MPU-6050 am I²C: Drehen nach Winkel, Kurs halten, Kippschutz |
+| Abstand | VL53L0X auf einem Mast: Hindernisse erkennen und umfahren |
 | Anzeige | 4 LEDs: gelb vorne = Lenkrichtung, rot hinten = Status |
 | Energie | LiPo 500 mAh, TP4056 über USB-C, MT3608 auf 5 V |
 | Laufzeit | ≈ 1,2 h fahrend, ≈ 2,0 h Standby |

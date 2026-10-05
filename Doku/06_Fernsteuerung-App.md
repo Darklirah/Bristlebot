@@ -208,3 +208,31 @@ Terminal nachbilden.
 - [Dabble – Erste Schritte (STEMpedia-Doku, iOS nur BLE)](https://ai.thestempedia.com/docs/dabble-app/getting-started-with-dabble/)
 - [Bluefruit Connect im App Store](https://apps.apple.com/us/app/bluefruit-connect/id830125974)
 - [Adafruit Learn: Bluefruit LE Connect – Controller-Modus](https://learn.adafruit.com/introducing-the-adafruit-bluefruit-le-uart-friend/controller)
+
+---
+
+## 5 · Nachtrag: Sensorbefehle und Telemetriefelder
+
+### App → Roboter
+
+| Befehl | Bedeutung |
+|---|---|
+| `G` | Lagesensor nullen (Roboter dabei ruhig halten) |
+| `O,<0\|1>,<mm>` | Hindernis-Stopp aus/ein und Auslöseabstand |
+
+### Roboter → App, zusätzliche Felder
+
+| Feld | Bedeutung |
+|---|---|
+| `imu` | Lagesensor gefunden |
+| `hd` | Kurswinkel in Grad, relativ |
+| `ic` | Nullpunkt aufgenommen |
+| `dsp` | Abstandssensor gefunden |
+| `ds` | Abstand in mm, 0 = nichts im Messbereich |
+| `og`, `om` | Hindernis-Stopp aktiv und dessen Abstand |
+| `ti` | Zusatzwert des Funktionstests: Grad bei den Drehabschnitten, mm beim Abstandsabschnitt |
+| `tg`, `td` | Urteil über Lage- und Abstandssensor: 0 ungeprüft, 1 in Ordnung, 2 keine Reaktion, 3 Drehrichtung vertauscht, 4 meldet sich nicht, 5 nichts im Messbereich |
+
+Die Phasen (`p`) sind um **9 umgekippt oder hochgehoben** und
+**10 Hindernis voraus** erweitert, die Funktionstest-Abschnitte (`tp`) um
+**8 Drehung rechts**, **9 Drehung links** und **10 Abstandssensor**.

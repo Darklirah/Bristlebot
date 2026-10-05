@@ -25,6 +25,8 @@
 //    L,<slot>                  Speicherplatz laden und zuruecksenden
 //    W,<slot>|<name>|<text>    Speicherplatz schreiben
 //    S,<0|1>                   Funktionstest stoppen / starten
+//    G                         Lagesensor nullen (Roboter ruhig halten)
+//    O,<0|1>,<mm>              Hindernis-Stopp aus/ein und Abstand
 //
 //  Bei W trennt '|' die Felder, weil Name und Programmtext selbst Kommas
 //  enthalten. Alle uebrigen Befehle bleiben kommagetrennt.
@@ -52,6 +54,9 @@ struct RcRequests {
   bool   haveTuning = false;  Tuning tuning;
   bool   haveRun    = false;  bool run  = false;   // Fahrprogramm
   bool   haveTest   = false;  bool test = false;   // Funktionstest
+  bool   zeroGyro   = false;                       // Lagesensor nullen
+  bool   haveGuard  = false;  bool guard = true;   // Hindernis-Stopp
+  uint16_t guardMm  = OBSTACLE_STOP_MM_DEFAULT;
 };
 
 class RemoteControl {

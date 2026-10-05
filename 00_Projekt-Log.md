@@ -4,6 +4,63 @@ Laufendes Protokoll. Neueste Einträge oben.
 
 ---
 
+## 2026-10-05 (3) — Lagesensor und Abstandssensor
+
+**Frage des Auftraggebers:** Bringt ein MPU-6050 Genauigkeit? Und wäre ein
+GY-511 (LSM303DLHC) auf einem Mast wie bei Curiosity besser?
+
+**Antwort und Entscheidung**
+
+- MPU-6050: **ja, für Drehungen — nein, für Strecken.** Zweifache Integration
+  der Beschleunigung ist auf einem vibrationsgetriebenen Roboter binnen ein
+  bis zwei Sekunden unbrauchbar.
+- LSM303DLHC **abgelehnt**: hat kein Gyroskop, sondern Beschleunigung +
+  Magnetometer. Für „drehe um 90°" braucht es die Drehrate. Der Mast wäre
+  physikalisch richtig gedacht (Störfeld fällt mit 1/r³, 20 → 80 mm sind
+  64× weniger), löst aber ein Problem, das bei Manövern von Sekunden gar
+  nicht auftritt: die Gyro-Drift liegt dabei unter 1°.
+- Stattdessen: **MPU-6050 flach aufs Chassis + VL53L0X auf den Mast.** Der
+  ToF-Sensor verträgt die Mastschwingung, weil er über sein Messfenster
+  mittelt — ein Magnetometer dagegen verlöre dort seine Ausrichtung, und
+  die ist bei einem Kompass die Messgröße.
+
+**Umgesetzte Funktionen** (vom Auftraggeber ausgewählt)
+
+Lagesensor: Drehen nach Winkel · Geradeauslauf halten · Kipp- und
+Aufheb-Erkennung. Kursgeführte Liniensuche wurde verworfen.
+Abstandssensor: fahren bis Hindernis · drehen bis frei · warten bis frei,
+dazu ein abschaltbarer Hindernis-Stopp als Schutzfunktion.
+
+**Gebaut**
+
+- `Imu.*` — MPU-6050 ohne Fremdbibliothek. DLPF auf 21 Hz und Messbereiche
+  bewusst grob (±8 g), weil ein übersteuernder MEMS-Sensor unter Vibration
+  einen Gleichanteil erzeugt, der wie echte Neigung aussieht
+- `Distance.*` — VL53L0X über die Pololu-Bibliothek. Gelesen wird nur, wenn
+  der Chip ein Ergebnis gemeldet hat, sonst würde der Lesebefehl bis zu
+  33 ms in der Hauptschleife stehen
+- vier Warte-Flags im Interpreter zu **einem** Zustand `Await`
+  zusammengefasst, bevor die Zustandsmaschine unübersichtlich wurde
+- Funktionstest um beide Sensoren erweitert — er dreht sich dabei selbst
+  einmal nach rechts und einmal nach links und prüft damit auch die
+  **Drehrichtung** des Kreisels. Ein um 180° verdreht montierter Sensor
+  fällt sonst erst beim ersten Fahrprogramm auf und sieht dort wie ein
+  Programmierfehler aus
+- Urteile im Klartext unter dem Testknopf
+
+**Beide Sensoren sind optional.** Fehlen sie, läuft alles weiter: Drehbefehle
+fallen auf eine Zeitschätzung zurück, Abstandsbefehle enden nach ihrer
+Zeitgrenze. Die Oberfläche sagt das auch.
+
+**Massefolge:** +4,5 g auf ~45 g, davon 2 g oben auf dem Mast. Das verschärft
+das Hauptrisiko aus Doku 02 §4. Die dortige Abspeckliste holt ~6,5 g zurück.
+
+**Weiterhin ungetestet** — nichts davon lief je auf Hardware.
+
+---
+
+---
+
 ## 2026-10-05 (2) — Fahrprogramm und Funktionstest
 
 **Entscheidungen (vom Auftraggeber bestätigt)**

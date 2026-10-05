@@ -104,6 +104,9 @@ Abschnitt im Klartext an:
 | alle LEDs blinken | 3 s | alle vier im Gleichtakt, 2 Hz |
 | Motor links | 3 s | **nur** der linke Motor, langsam anlaufend bis Vollgas; dabei leuchtet die vordere **linke** LED |
 | Motor rechts | 3 s | dasselbe rechts, mit der vorderen **rechten** LED |
+| Lagesensor: Drehung rechts | 1,8 s | Roboter dreht sich nach rechts, angezeigt wird die gemessene Kursänderung |
+| Lagesensor: Drehung links | 1,8 s | dasselbe nach links 2013 damit wird auch die **Drehrichtung** geprüft |
+| Abstandssensor | 4 s | Motoren aus, vordere LEDs an, der Messwert läuft live mit |
 
 Dazwischen liegen kurze Pausen, damit die Abschnitte auseinanderzuhalten sind.
 
@@ -122,6 +125,34 @@ Weitere typische Befunde:
 | Motor startet erst spät in der Rampe | normal — das ist genau die Haftreibung, gegen die die *Anlaufschwelle* eingestellt wird |
 | Motor läuft gar nicht an | Transistor, Freilaufdiode verpolt, oder 5-V-Schiene bricht ein |
 | ESP32 startet während der Motorrampe neu | Brownout: Step-Up am Anschlag. Siehe [Review B2](01_Schaltplan-Review.md) |
+
+Nach den beiden Drehabschnitten und nach der Abstandsmessung steht unter dem
+Testknopf ein Urteil im Klartext:
+
+| Meldung | Bedeutung |
+|---|---|
+| **in Ordnung** | Sensor antwortet und die Werte passen |
+| **keine Reaktion – Sensor oder Antrieb** | Es wurde keine Drehung gemessen. Zwei mögliche Ursachen: der Kreisel liefert nichts, **oder** der Roboter hat sich mechanisch gar nicht gedreht. Erst nachsehen, ob er sich überhaupt bewegt hat |
+| **Drehrichtung vertauscht** | Der Kreisel zählt andersherum. Jede Winkeldrehung im Fahrprogramm würde in die falsche Richtung gehen — der Sensor ist um 180° verdreht montiert |
+| **Sensor meldet sich nicht** | Am I²C-Bus antwortet nichts. Verdrahtung SDA und SCL, Versorgung, Lötstellen prüfen |
+| **nichts im Messbereich** | Der Abstandssensor lebt, hatte aber nichts zwischen 40 und 1200 mm vor sich. Hand davorhalten und erneut laufen lassen |
+
+**Der Drehrichtungstest ist der wertvollste Teil.** Ein um 180° verdreht
+montierter Lagesensor fällt sonst erst beim ersten Fahrprogramm auf — und
+dort sieht es aus wie ein Programmierfehler, nicht wie ein Montagefehler.
+
+### Vor dem ersten Drehbefehl: Nullpunkt aufnehmen
+
+Im Experten-Bereich **Lagesensor nullen** antippen und den Roboter dabei
+1,2 Sekunden ruhig stehen lassen. Der Wert landet im Flash und überlebt
+Neustarts. Ohne ihn melden die Messwerte „Nullpunkt fehlt" und der Kurs
+driftet sichtbar weg.
+
+### Abstandssensor ausrichten
+
+In den Messwerten steht der Abstand live. Bei freier Strecke muss dort
+**„frei"** stehen. Zeigt er stattdessen einen festen Wert um 100–200 mm,
+blickt der Sensor auf den Tisch — der Mast ist zu stark nach unten geneigt.
 
 Der Funktionstest ist fest in der Firmware verdrahtet, belegt keinen der
 vier Programmplätze und lässt sich nicht versehentlich löschen.

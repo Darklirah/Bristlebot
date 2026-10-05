@@ -136,3 +136,47 @@ Jeweils GPIO → Widerstand → LED-Anode, LED-Kathode → GND (Sensorabgang).
 `GPIO12` und `GPIO13` bleiben bewusst frei — Begründung in der
 [Pinbelegung](../Doku/05_Pinbelegung.md). `TX0`/`RX0` sind von der
 USB-Konsole belegt.
+
+---
+
+## I²C-Bus (Nachtrag: Lage- und Abstandssensor)
+
+Beide Sensoren teilen sich einen Bus. Die Adressen kollidieren nicht.
+
+| Netz | Verbindung |
+|---|---|
+| `SDA` | U1 `GPIO21` → U6 `SDA`, U7 `SDA` |
+| `SCL` | U1 `GPIO22` → U6 `SCL`, U7 `SCL` |
+| `+3V3` | U1 `3V3` → U6 `VCC`, U7 `VIN` |
+| `GND` | Sensorabgang → U6 `GND`, U7 `GND` |
+
+| Sensor | Adresse | Platz |
+|---|---|---|
+| U6 · MPU-6050 (GY-521) | `0x68` (AD0 offen/GND) | flach auf dem Chassis |
+| U7 · VL53L0X (GY-530) | `0x29` | auf dem Mast, nach vorn blickend |
+
+**Pull-ups:** beide Breakouts bringen eigene 4,7-kΩ-Pull-ups auf SDA und SCL
+mit. Zwei Module parallel ergeben also rechnerisch 2,35 kΩ — bei 400 kHz
+völlig unkritisch, es sind keine weiteren Widerstände nötig. Kommt ein
+drittes Modul dazu, auf einem die Pull-ups auslöten.
+
+**Nicht belegt:** `AD0` (Adresswahl des MPU-6050), `INT` beider Module,
+`XSHUT` des VL53L0X. XSHUT bräuchte man nur, wenn ein zweiter VL53L0X
+dazukäme — zwei Sensoren haben dieselbe feste Adresse und müssen beim Start
+nacheinander aufgeweckt und umadressiert werden.
+
+### Mast
+
+| | |
+|---|---|
+| Werkstoff | CFK-Rundstab Ø 3 mm |
+| Länge | ca. 60 mm über der Platine |
+| Position | vorn mittig, zwischen den beiden TCRT5000 |
+| Blickrichtung | waagerecht nach vorn, **nicht** zum Boden geneigt |
+| Befestigung | in eine Ø-3,2-mm-Bohrung geklebt, zusätzlich mit Heißkleber verkeilt |
+
+**Kabelführung:** die vier Litzen **verdrillt** am Mast entlangführen und am
+Fuß eine kleine Schlaufe lassen. Ein straff gespanntes Kabel an einem
+vibrierenden Mast bricht an der Lötstelle — die Schlaufe nimmt die Bewegung
+auf. Mit zwei Tropfen Heißkleber am Mast fixieren, nicht an der Platine
+ziehen lassen.
