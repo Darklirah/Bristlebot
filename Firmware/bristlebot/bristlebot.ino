@@ -1,6 +1,6 @@
 // =====================================================================
-//  B R I S T L E B O T
-//  Linienfolgender Zahnbuersten-Roboter auf ESP32
+//  O N E - O F - A - K I N D   M A R S   R O V E R
+//  Linienfolgender Zahnbuersten-Roboter auf ESP32 (Bauart: Bristlebot)
 //
 //  Drei Betriebsarten, umschaltbar in der Web-App:
 //    manuell   Joystick
@@ -527,7 +527,7 @@ void setup() {
   Serial.begin(115200);
   delay(150);
   Serial.println();
-  Serial.println(F("Bristlebot startet"));
+  Serial.println(F("One-of-a-Kind Mars Rover startet"));
 #endif
 
   // Reihenfolge ist Absicht: erst die Motoren auf Null, dann der Rest.
@@ -552,7 +552,7 @@ void setup() {
   rc.begin();
 
 #if FEATURE_SERIAL_DEBUG
-  Serial.printf("AP   : %s / %s\n", AP_SSID, AP_PASSWORD);
+  Serial.printf("AP   : %s / %s\n", rc.ssid(), AP_PASSWORD);
   Serial.printf("URL  : http://%s/\n", WiFi.softAPIP().toString().c_str());
   Serial.printf("Duty : max %u von %u (%.1f V Motor an %.1f V Schiene)\n",
                 Motors::dutyMax(), PWM_FULL, MOTOR_RATED_V, MOTOR_SUPPLY_V);

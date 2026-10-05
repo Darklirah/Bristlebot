@@ -30,7 +30,7 @@ static const char WEBUI_HTML[] PROGMEM = R"BBUI(<!DOCTYPE html>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#11141a">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Bristlebot</title>
+<title>Mars Rover</title>
 <style>
 :root{
   --bg:#11141a; --panel:#1b2029; --panel2:#232a35; --panel3:#2b3340; --line:#2e3746;
@@ -167,7 +167,7 @@ details .inner{padding:0 var(--pad) 6px}
 
   <header>
     <div id="dot"></div>
-    <h1>Bristlebot</h1>
+    <h1 id="hdr">Mars Rover</h1>
     <div id="conn">verbinde&hellip;</div>
   </header>
 
@@ -356,6 +356,9 @@ details .inner{padding:0 var(--pad) 6px}
       </label>
       <label>anhalten unter <b id="vGuard">90</b> mm Abstand</label>
       <input type="range" id="sGuard" min="40" max="600" step="10" value="90">
+      <label>Eigener Name dieses Rovers <b id="vSsid">&mdash;</b></label>
+      <input type="text" id="apname" maxlength="16" placeholder="z.B. Petra &ndash; leer = automatisch">
+      <button class="btn sm" id="bName" style="width:100%;margin-bottom:9px">Namen speichern und neu starten</button>
       <button class="btn sm" id="bGyro" style="width:100%;margin-bottom:9px">Lagesensor nullen</button>
       <button class="btn sm" id="bCalReset" style="width:100%">Linien-Kalibrierung l&ouml;schen</button>
       <p class="note">Anlaufschwelle so weit hochdrehen, bis beide Motoren gerade
@@ -549,6 +552,8 @@ function paint(d){
 }
 function applyCfg(d){
   tune={kp:d.kp,kd:d.kd,base:d.base,min:d.min};
+  if(d.ssid){ E("vSsid").textContent=d.ssid; document.title=d.ssid }
+  if(document.activeElement!==E("apname")) E("apname").value=d.apname||"";
   E("sKp").value=Math.round(d.kp*100);     E("vKp").textContent=d.kp.toFixed(2);
   E("sKd").value=Math.round(d.kd*100);     E("vKd").textContent=d.kd.toFixed(2);
   E("sBase").value=Math.round(d.base*100); E("vBase").textContent=Math.round(d.base*100);
@@ -705,6 +710,11 @@ E("bTest").onclick=function(){
   send("S,"+(E("bTest").textContent.indexOf("stoppen")>0?0:1));
 };
 E("bCalReset").onclick=function(){ send("R") };
+E("bName").onclick    =function(){
+  send("N|"+E("apname").value.trim());
+  setTimeout(function(){ send("Z") },700);
+  toast("Gespeichert 2013 der Rover startet neu. Danach ins neue WLAN wechseln.",true);
+};
 E("bGyro").onclick    =function(){ send("G"); toast("Nullpunkt wird aufgenommen – Roboter ruhig halten.",true) };
 function sendGuard(){ send("O,"+(E("cGuard").checked?1:0)+","+E("sGuard").value) }
 E("cGuard").onchange=sendGuard;

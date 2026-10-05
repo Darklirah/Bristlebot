@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#11141a">
+<title>Mars Rover installieren</title>
+<style>
+:root{
+  --bg:#11141a; --panel:#1b2029; --panel2:#232a35; --line:#2e3746;
+  --fg:#e8edf5; --dim:#8c97a8;
+  --accent:#4da3ff; --ok:#39d98a; --warn:#ffc24b; --bad:#ff5c6c;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg); color:var(--fg);
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  padding:0 16px 60px;
+}
+.wrap{max-width:720px;margin:0 auto}
+header{padding:48px 0 8px}
+h1{font-size:30px;margin:0 0 6px;letter-spacing:-.4px}
+.sub{color:var(--dim);margin:0 0 28px}
+h2{font-size:17px;margin:34px 0 10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;margin:18px 0}
+.install{text-align:center;padding:30px 22px}
+esp-web-install-button{--esp-tools-button-color:#06121f;--esp-tools-button-text-color:#06121f}
+esp-web-install-button[install-unsupported]{display:none}
+.btn{display:inline-block;border:0;border-radius:12px;background:var(--ok);color:#06121f;
+     font:inherit;font-weight:700;font-size:17px;padding:15px 30px;cursor:pointer}
+.note{background:var(--panel2);border-left:3px solid var(--warn);border-radius:0 9px 9px 0;
+      padding:13px 16px;margin:16px 0;font-size:14.5px;color:var(--dim)}
+.note b{color:var(--fg)}
+.note.bad{border-left-color:var(--bad)}
+ol,ul{padding-left:22px}
+li{margin:7px 0}
+code{background:var(--panel2);padding:2px 6px;border-radius:5px;font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin:10px 0}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{color:var(--dim);font-weight:600}
+a{color:var(--accent)}
+footer{color:var(--dim);font-size:13.5px;margin-top:40px;border-top:1px solid var(--line);padding-top:18px}
+#unsupported{display:none}
+</style>
+<script type="module"
+  src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Mars Rover installieren</h1>
+    <p class="sub">Linienfolgender Zahnbürsten-Roboter auf ESP32 &mdash;
+       Firmware direkt aus dem Browser auf das Gerät schreiben.
+       Keine Entwicklungsumgebung nötig.</p>
+  </header>
+
+  <div class="card install">
+    <esp-web-install-button manifest="manifest.json">
+      <button slot="activate" class="btn">Mars Rover installieren</button>
+      <span slot="unsupported" id="unsupported-slot">
+        <p style="color:var(--bad);font-weight:600;margin:0 0 6px">
+          Dieser Browser kann nicht flashen.</p>
+        <p style="color:var(--dim);margin:0">
+          Es wird <b>Chrome, Edge oder Opera auf einem Rechner</b> gebraucht.
+          Firefox und Safari unterstützen die serielle Schnittstelle nicht,
+          Handys ebenfalls nicht &mdash; weder Android noch iOS.</p>
+      </span>
+      <span slot="not-allowed">
+        <p style="color:var(--bad);margin:0">
+          Die Seite muss über <code>https://</code> geladen werden.</p>
+      </span>
+    </esp-web-install-button>
+  </div>
+
+  <div class="note bad">
+    <b>Diese Firmware lief noch nie auf echter Hardware.</b> Sie kompiliert,
+    mehr ist bislang nicht geprüft. Wer sie aufspielt, ist der erste.
+  </div>
+
+  <h2>Was gebraucht wird</h2>
+  <ul>
+    <li>Ein <b>Rechner</b> mit Chrome, Edge oder Opera &mdash; Handys können das nicht</li>
+    <li>Ein <b>USB-Datenkabel</b> (viele Ladekabel haben keine Datenadern)</li>
+    <li>Der Roboter bzw. ein ESP32-DevKit, über USB angesteckt</li>
+  </ul>
+
+  <h2>So geht es</h2>
+  <ol>
+    <li>Gerät per USB anstecken</li>
+    <li>Oben auf <b>Bristlebot installieren</b> klicken</li>
+    <li>Im Auswahlfenster den seriellen Anschluss des Geräts wählen
+        (meist <code>CP210x</code> oder <code>CH340</code>)</li>
+    <li><b>Install One-of-a-Kind Mars Rover</b> bestätigen und warten &mdash; etwa eine Minute</li>
+  </ol>
+
+  <div class="note">
+    Erscheint kein Anschluss zur Auswahl, fehlt der <b>USB-Seriell-Treiber</b>.
+    Für Boards mit CP2102 gibt es ihn bei
+    <a href="https://www.silabs.com/developer-tools/usb-to-uart-bridge-vcp-drivers">Silicon Labs</a>,
+    für CH340 bei WCH. Windows installiert beide meist von selbst.
+    Hilft das nicht: Kabel tauschen &mdash; das ist die häufigste Ursache.
+  </div>
+
+  <h2>Nach der Installation</h2>
+  <ol>
+    <li>Gerät einschalten</li>
+    <li>Am Handy ins WLAN <b><code>MarsRover_&hellip;</code></b>, Passwort <b><code>bristlebot</code></b></li>
+    <li>Die Bedienseite öffnet sich meist von selbst.
+        Falls nicht: <code>http://192.168.4.1</code> im Browser aufrufen</li>
+  </ol>
+  <p>Die Bedienoberfläche läuft im Gegensatz zu dieser Installationsseite
+     <b>auf jedem Handy</b> &mdash; iPhone wie Android, ohne App.</p>
+
+  <h2>Was drauf ist</h2>
+  <table>
+    <tr><th>Betriebsarten</th><td>Linie folgen &middot; selbst fahren &middot; Fahrprogramm</td></tr>
+    <tr><th>Fahrprogramme</th><td>4 Speicherplätze, je 48 Schritte, Baukasten-Editor</td></tr>
+    <tr><th>Funktionstest</th><td>LEDs, beide Motoren, Lage- und Abstandssensor</td></tr>
+    <tr><th>Sensorik</th><td>2× TCRT5000, MPU-6050, VL53L0X &mdash; alle optional</td></tr>
+  </table>
+
+  <h2>Lieber selbst bauen?</h2>
+  <p>Quellcode, Schaltplan, Stückliste und die vollständige Dokumentation liegen im
+     <a href="https://github.com/Darklirah/One-of-a-Kind-Mars-Rover">Repository</a>.
+     Gebaut wird mit PlatformIO (<code>pio run</code>) oder der Arduino IDE.</p>
+
+  <footer>
+    <a href="https://github.com/Darklirah/One-of-a-Kind-Mars-Rover">Darklirah/One-of-a-Kind-Mars-Rover</a> &middot;
+    GPL-3.0 &middot; geflasht mit
+    <a href="https://esphome.github.io/esp-web-tools/">ESP Web Tools</a>
+  </footer>
+</div>
+</body>
+</html>

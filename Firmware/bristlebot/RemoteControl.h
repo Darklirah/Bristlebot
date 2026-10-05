@@ -26,6 +26,8 @@
 //    W,<slot>|<name>|<text>    Speicherplatz schreiben
 //    S,<0|1>                   Funktionstest stoppen / starten
 //    G                         Lagesensor nullen (Roboter ruhig halten)
+//    N|<name>                  eigenen Netznamen setzen, wirkt nach Neustart
+//    Z                         Neustart
 //    O,<0|1>,<mm>              Hindernis-Stopp aus/ein und Abstand
 //
 //  Bei W trennt '|' die Felder, weil Name und Programmtext selbst Kommas
@@ -40,6 +42,7 @@
 #include <WebServer.h>
 #include <DNSServer.h>
 #include <WebSocketsServer.h>
+#include <Preferences.h>
 #include "Config.h"
 #include "RobotState.h"
 #include "Program.h"
@@ -70,6 +73,11 @@ public:
   // RcRequests, damit die Zustandsmaschine die Kontrolle behaelt.
   void attachProgram(Program* p) { _prog = p; }
 
+  // Netzname: AP_PREFIX + "_" + eigener Name oder MAC-Kennung
+  const char* ssid()   const { return _ssid; }
+  const char* apName() const { return _apName; }   // leer = automatisch
+  bool setApName(const char* name);                 // wirkt nach Neustart
+
   const RemoteInput& input() const { return _in; }
   bool    clientConnected() const { return _clients > 0; }
   uint8_t clientCount() const { return _clients; }
@@ -81,6 +89,7 @@ public:
   void broadcastSlots();                      // nach dem Speichern
 
 private:
+  void buildSsid();
   void handleText(uint8_t num, const char* line);
   void sendCfg(uint8_t num);
   void sendSlots(int16_t num);                // num < 0 = an alle
@@ -97,4 +106,6 @@ private:
   RcRequests  _req;
   Tuning      _lastTuning;
   uint8_t     _clients = 0;
+  char        _ssid[33]   = {0};
+  char        _apName[AP_NAME_MAX + 1] = {0};
 };

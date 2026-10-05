@@ -1,6 +1,71 @@
-# Projekt-Log: Bristlebot
+# Projekt-Log: One-of-a-Kind Mars Rover
 
 Laufendes Protokoll. Neueste Einträge oben.
+
+---
+
+## 2026-10-05 (5) — Umbenannt, kompiliert, Web-Installer
+
+**Projekt heißt jetzt „One-of-a-Kind Mars Rover".** „Bristlebot" bleibt in
+der Technikdoku als Bezeichnung der Bauart stehen.
+
+**Erfolgreich kompiliert — erstmals.**
+
+```
+RAM:   15.2 % (49.784 von 327.680 Bytes)
+Flash: 69.8 % (914.437 von 1.310.720 Bytes)
+0 Fehler, 0 Warnungen (mit -Wall)
+```
+
+Gebaut gegen `espressif32@6.9.0` (offizielle Plattform, Arduino-Core 2.x),
+neue Umgebung `esp32dev_core2` in der `platformio.ini`. Damit ist auch der
+Core-2.x-Pfad der Firmware bestätigt.
+
+**Drei Hürden auf dem Weg dahin — alle in der Umgebung, keine im Code:**
+
+1. **`uv` lehnt GitHub-Zertifikate ab** (`invalid peer certificate:
+   UnknownIssuer`), während `curl` dieselbe Adresse mit HTTP 200 erreicht.
+   Klassische Signatur eines TLS-aufbrechenden Virenscanners oder Proxys.
+   Abhilfe: `UV_SYSTEM_CERTS=1` **und** `UV_NATIVE_TLS=1` (ältere
+   uv-Versionen kennen nur die zweite). Die Plattform verschluckt den
+   Fehler zusätzlich, weil sie die uv-Ausgabe nach DEVNULL wirft.
+2. **Windows-Pfadgrenze**, exakt 260 Zeichen erreicht beim Entpacken von
+   `esp32-arduino-libs`. `LongPathsEnabled` steht auf 0. Abhilfe ohne
+   Registry-Eingriff: `PLATFORMIO_CACHE_DIR=C:\pioc`.
+3. **Der pioarduino-Fork** (Plattform 55.03.37) scheitert reproduzierbar an
+   seiner penv-Einrichtung, auch nachdem die Pakete manuell erfolgreich
+   installiert wurden. Deshalb der Ausweichweg über die offizielle
+   Plattform. Ungeklärt, aber umgangen.
+
+**Neu: eindeutiger Netzname je Gerät.** Ab Werk `MarsRover_<MAC-Kennung>`,
+damit mehrere Rover nebeneinander funktionieren, ohne dass jemand etwas
+einstellt. Im Experten-Bereich lässt sich ein eigener Name vergeben
+(`MarsRover_Petra`), gespeichert im NVS, aktiv nach einem Neustart, den die
+Oberfläche gleich mit auslöst. Neue Protokollbefehle `N|<name>` und `Z`.
+
+**Neu: Web-Installer.** `docs/` enthält eine Installationsseite mit ESP Web
+Tools, `manifest.json` und die zusammengeführte Binärdatei
+(`marsrover-esp32.bin`, 986 KB, Offset 0x0). GitHub Pages muss noch
+eingeschaltet werden. Web Serial gibt es nur in Chrome, Edge und Opera auf
+dem Desktop — nicht auf Handys, nicht in Firefox und Safari.
+
+**Neu: `Doku/00_Projektbeschreibung.md`** — ausführliche Beschreibung des
+Projekts und aller Funktionen, mit einem langen Kapitel zum Programmieren
+(Zeitmodell, alle Befehle, Vorgehen, vier Beispiele vom Lichtspiel bis zum
+selbsttätigen Ausweichen, typische Fehler, Grenzen).
+
+**Nächste Sitzung:**
+
+- [ ] GitHub Pages einschalten, Installationsseite prüfen
+- [ ] Repo und lokalen Ordner auf `One-of-a-Kind-Mars-Rover` umbenennen
+- [ ] 3D-Basismodul entwerfen — Anforderungen stehen in
+      [Doku 00 §8](Doku/00_Projektbeschreibung.md). **Platine und Basismodul
+      gehören zusammen entworfen**, der endgültige Platinenumriss ist bis
+      dahin offen
+- [ ] Bauanleitung mit Bildern, entsteht beim Bau des ersten Exemplars
+- [ ] Teile bestellen, aufbauen, Funktionstest fahren
+
+---
 
 ## 2026-10-05 (4) — Stromversorgung geprüft, LiPo bestätigt
 

@@ -130,8 +130,14 @@ static const uint8_t  BLINK_LEVEL_DEFAULT = 4;   // = 2 Hz
 // ---------------------------------------------------------------------
 //  F E R N S T E U E R U N G   (eigener Access Point + Web-App)
 // ---------------------------------------------------------------------
-static const char     AP_SSID[]      = "Bristlebot";
-static const char     AP_PASSWORD[]  = "bristlebot";  // min. 8 Zeichen!
+// Der Netzname wird zur Laufzeit zusammengesetzt: AP_PREFIX + "_" + Kennung.
+// Die Kennung ist entweder ein selbst vergebener Name aus dem NVS
+// ("MarsRover_Petra") oder, solange keiner gesetzt ist, die letzten vier
+// Stellen der MAC-Adresse ("MarsRover_A3F2"). Damit sind mehrere Geraete
+// ab Werk unterscheidbar, ohne dass jemand etwas einstellen muss.
+static const char     AP_PREFIX[]    = "MarsRover";
+static const char     AP_PASSWORD[]  = "marsrover";  // min. 8 Zeichen!
+static const uint8_t  AP_NAME_MAX    = 16;           // Zeichen im eigenen Namen
 static const uint8_t  AP_CHANNEL     = 6;
 static const uint16_t WS_PORT        = 81;
 static const uint16_t TELEMETRY_MS   = 150;   // ~6,7 Hz an die App

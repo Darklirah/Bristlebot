@@ -8,11 +8,53 @@
 static char s_line[RC_LINE_MAX + 1];
 static char s_out[PROG_MAX_CHARS + 128];
 
+// Netznamen zusammensetzen. Eigener Name aus dem NVS, sonst die letzten
+// vier Stellen der MAC -- so hat jedes Geraet ab Werk einen eigenen Namen,
+// und mehrere Rover stoeren sich nicht gegenseitig.
+void RemoteControl::buildSsid() {
+  Preferences p;
+  p.begin(NVS_NAMESPACE, true);
+  String own = p.getString("apname", "");
+  p.end();
+
+  if (own.length() > 0) {
+    snprintf(_ssid, sizeof(_ssid), "%s_%s", AP_PREFIX, own.c_str());
+    snprintf(_apName, sizeof(_apName), "%s", own.c_str());
+  } else {
+    uint8_t mac[6] = {0};
+    WiFi.softAPmacAddress(mac);
+    snprintf(_ssid, sizeof(_ssid), "%s_%02X%02X", AP_PREFIX, mac[4], mac[5]);
+    _apName[0] = '\0';                 // leer = automatische Kennung
+  }
+}
+
+bool RemoteControl::setApName(const char* name) {
+  char clean[AP_NAME_MAX + 1];
+  uint8_t o = 0;
+  // Nur das, was in einem Netznamen nicht stoert. Leerzeichen werden zu
+  // Unterstrichen, alles Uebrige faellt weg.
+  for (const char* p = name; *p && o < AP_NAME_MAX; p++) {
+    const char c = *p;
+    if (isalnum((unsigned char)c))      clean[o++] = c;
+    else if (c == ' ' || c == '-' || c == '_') clean[o++] = '_';
+  }
+  clean[o] = '\0';
+
+  Preferences p;
+  p.begin(NVS_NAMESPACE, false);
+  if (o > 0) p.putString("apname", clean);
+  else       p.remove("apname");
+  p.end();
+  return true;
+}
+
 void RemoteControl::begin() {
+  buildSsid();
+
   WiFi.mode(WIFI_AP);
   // Sendeleistung bewusst reduziert: spart Strom und die Reichweite im
   // Zimmer ist ohnehin mehr als ausreichend.
-  WiFi.softAP(AP_SSID, AP_PASSWORD, AP_CHANNEL, 0 /*nicht versteckt*/, 4 /*max 4 Clients*/);
+  WiFi.softAP(_ssid, AP_PASSWORD, AP_CHANNEL, 0 /*nicht versteckt*/, 4 /*max 4 Clients*/);
   WiFi.setTxPower(WIFI_POWER_11dBm);
 
   const IPAddress ip = WiFi.softAPIP();
@@ -90,10 +132,14 @@ void RemoteControl::jsonEscape(const char* in, char* out, size_t outLen) {
 }
 
 void RemoteControl::sendCfg(uint8_t num) {
-  char buf[128];
+  char buf[256];
+  char esc[AP_NAME_MAX * 2 + 2];
+  jsonEscape(_apName, esc, sizeof(esc));
   snprintf(buf, sizeof(buf),
-           "{\"t\":\"cfg\",\"kp\":%.3f,\"kd\":%.3f,\"base\":%.3f,\"min\":%.3f}",
-           _lastTuning.kp, _lastTuning.kd, _lastTuning.base, _lastTuning.minLevel);
+           "{\"t\":\"cfg\",\"kp\":%.3f,\"kd\":%.3f,\"base\":%.3f,\"min\":%.3f,"
+           "\"ssid\":\"%s\",\"apname\":\"%s\"}",
+           _lastTuning.kp, _lastTuning.kd, _lastTuning.base, _lastTuning.minLevel,
+           _ssid, esc);
   _ws.sendTXT(num, buf);
 }
 
@@ -249,6 +295,25 @@ void RemoteControl::handleText(uint8_t num, const char* line) {
         _req.haveTest = true;
         _req.test = (a >= 0.5f);
       }
+      break;
+
+    // ---- eigenen Netznamen setzen:  N|<name> ----
+    case 'N': {
+      const char* bar = strchr(line, '|');
+      if (!bar) { sendResult(num, false, "Name fehlt"); break; }
+      setApName(bar + 1);
+      char msg[96];
+      if (*(bar + 1)) snprintf(msg, sizeof(msg), "Netzname gespeichert -- nach dem Neustart aktiv");
+      else            snprintf(msg, sizeof(msg), "Eigener Name geloescht -- wieder automatische Kennung");
+      sendResult(num, true, msg);
+      break;
+    }
+
+    // ---- Neustart ----
+    case 'Z':
+      sendResult(num, true, "Neustart...");
+      delay(120);                 // der Meldung noch Zeit zum Rausgehen geben
+      ESP.restart();
       break;
 
     case 'P':   // Ping -- lastPacketMs wurde oben schon aktualisiert

@@ -1,15 +1,25 @@
-# Bristlebot
+# One-of-a-Kind Mars Rover
 
 > Dieses Projekt wurde mit Unterstützung von [Claude Code](https://claude.com/claude-code) entwickelt.
 
-Linienfolgender Zahnbürsten-Roboter auf ESP32, aufgebaut auf einer eigenen
-Platine. Zwei Vibrationsmotoren treiben zwei getrennte Borstenfelder an;
+Linienfolgender, programmierbarer Zahnbürsten-Roboter auf ESP32 (Bauart:
+Bristlebot), aufgebaut auf einer eigenen Platine. Jedes Exemplar bekommt
+einen eigenen Namen und ein eigenes WLAN (`MarsRover_Petra`), damit mehrere
+nebeneinander fahren können.
+
+**[→ Firmware direkt im Browser installieren](https://darklirah.github.io/One-of-a-Kind-Mars-Rover/)**
+
+Die ausführliche Projektbeschreibung samt Programmier-Kapitel steht in
+[Doku/00_Projektbeschreibung.md](Doku/00_Projektbeschreibung.md).
+
+Zwei Vibrationsmotoren treiben zwei getrennte Borstenfelder an;
 differentielle Vibrationsintensität lenkt. Zwei Reflexkoppler lesen die Linie,
 ein PD-Regler hält ihn darauf. Gesteuert wird er über einen WLAN-Access-Point,
 den der ESP32 selbst aufspannt — die Bedienoberfläche liefert er gleich mit.
 
-**Status:** Hardware entworfen und geprüft, Firmware vollständig,
-**noch nichts in Hardware getestet.**
+**Status:** Hardware entworfen und geprüft, Firmware vollständig und
+**fehlerfrei kompiliert** (0 Fehler, 0 Warnungen mit `-Wall`;
+RAM 15,2 %, Flash 69,8 %) — **aber noch nie auf echter Hardware gelaufen.**
 
 ---
 
@@ -34,7 +44,7 @@ den der ESP32 selbst aufspannt — die Bedienoberfläche liefert er gleich mit.
 ## Bedienung in drei Schritten
 
 1. Einschalten
-2. Am Handy ins WLAN **`Bristlebot`**, Passwort **`bristlebot`**
+2. Am Handy ins WLAN **`MarsRover_…`**, Passwort **`marsrover`**
 3. Die Seite klappt von selbst auf — falls nicht: **`http://192.168.4.1`**
 
 Nach dem Einschalten ist der Roboter **gesperrt**. Erst *Freigeben* in der App
@@ -46,6 +56,7 @@ lässt die Motoren laufen.
 
 | Datei | Inhalt |
 |---|---|
+| [00 Projektbeschreibung](Doku/00_Projektbeschreibung.md) | Was das Projekt ist, alle Funktionen, ausführliches Kapitel zum Programmieren |
 | [01 Schaltplan-Review](Doku/01_Schaltplan-Review.md) | Prüfung des Entwurfs: 5 Blocker, 9 Verbesserungen, Änderungsliste |
 | [02 SMD vs. THT](Doku/02_SMD-vs-THT-Wirtschaftlichkeit.md) | Kostenvergleich bei 1/10/100 Stück, Massebudget, Laufzeitrechnung |
 | [03 Stückliste](Doku/03_Stueckliste-BOM.md) | Vollständige BOM mit Bauteilkürzeln, Preisen und Einkaufsfallen |
