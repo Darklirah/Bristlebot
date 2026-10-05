@@ -24,3 +24,15 @@ Clipboard*.png
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# PlatformIO
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# Arduino IDE Build-Cache
+/Firmware/bristlebot/build/
+
+# Editor
+.vscode/
+*.code-workspace
