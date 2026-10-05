@@ -154,7 +154,66 @@ COMPONENTS = [
         "1": "+5V", "2": "MOT_R_D"}),
     ("D2", "Diode", "1N5819", "1N5819", (78, 40), {"1": "MOT_R_D", "2": "+5V"}),
     ("C4", "Device", "C", "100n", (84, 48), {"1": "MOT_R_D", "2": "GND"}),
+
+    # --- Liniensensoren -----------------------------------------------
+    # Emitterfolger: Kollektor an 3V3, Emitter ueber 10k nach GND, der
+    # Abgriff am Emitter geht an den ADC. Heller Untergrund = hoher Wert.
+    ("R5",  "Device", "R", "150R", (98, 18), {"1": "+3V3", "2": "LS_L_A"}),
+    ("OS1", "MarsRover", "TCRT5000", "TCRT5000", (106, 22), {
+        "1": "LS_L_A", "2": "GND", "3": "+3V3", "4": "LINE_L"}),
+    ("R7",  "Device", "R", "10k",  (114, 28), {"1": "LINE_L", "2": "GND"}),
+
+    ("R6",  "Device", "R", "150R", (98, 36), {"1": "+3V3", "2": "LS_R_A"}),
+    ("OS2", "MarsRover", "TCRT5000", "TCRT5000", (106, 40), {
+        "1": "LS_R_A", "2": "GND", "3": "+3V3", "4": "LINE_R"}),
+    ("R8",  "Device", "R", "10k",  (114, 46), {"1": "LINE_R", "2": "GND"}),
+
+    # --- Signal-LEDs ---------------------------------------------------
+    ("R9",   "Device", "R",   "220R", (98, 56),  {"1": "LED_FL", "2": "LED_FL_A"}),
+    ("LED1", "Device", "LED", "gelb", (106, 56), {"2": "LED_FL_A", "1": "GND"}),
+    ("R10",  "Device", "R",   "220R", (98, 62),  {"1": "LED_FR", "2": "LED_FR_A"}),
+    ("LED2", "Device", "LED", "gelb", (106, 62), {"2": "LED_FR_A", "1": "GND"}),
+    ("R11",  "Device", "R",   "220R", (98, 68),  {"1": "LED_RL", "2": "LED_RL_A"}),
+    ("LED3", "Device", "LED", "rot",  (106, 68), {"2": "LED_RL_A", "1": "GND"}),
+    ("R12",  "Device", "R",   "220R", (98, 74),  {"1": "LED_RR", "2": "LED_RR_A"}),
+    ("LED4", "Device", "LED", "rot",  (106, 74), {"2": "LED_RR_A", "1": "GND"}),
+
+    # --- Sensormodule am I2C-Bus ---------------------------------------
+    # Als Steckverbinder gezeichnet: verbaut werden Fertigmodule, nicht
+    # die nackten Chips. Pull-ups bringen die Module mit.
+    ("U6", "Connector_Generic", "Conn_01x04", "GY-521 MPU-6050", (130, 22), {
+        "1": "+3V3", "2": "GND", "3": "I2C_SCL", "4": "I2C_SDA"}),
+    ("U7", "Connector_Generic", "Conn_01x04", "GY-530 VL53L0X", (130, 34), {
+        "1": "+3V3", "2": "GND", "3": "I2C_SCL", "4": "I2C_SDA"}),
+
+    # --- Energieversorgung ---------------------------------------------
+    ("BT1", "Device", "Battery_Cell", "LiPo 3,7V 500mAh", (20, 90), {
+        "1": "VBAT_RAW", "2": "GND"}),
+    ("J2",  "Connector_Generic", "Conn_01x02", "JST-PH 2,0", (28, 90), {
+        "1": "VBAT_RAW", "2": "GND"}),
+    ("U2",  "Connector_Generic", "Conn_01x06", "TP4056-Modul", (38, 90), {
+        "1": "USB_VBUS", "2": "GND", "3": "VBAT_RAW", "4": "GND",
+        "5": "VBAT_PROT", "6": "GND"}),
+    # Schalter: Pin 2 ist der Mittelkontakt, Pin 3 bleibt frei
+    ("S1",  "Switch", "SW_SPDT", "Schiebeschalter", (52, 90), {
+        "2": "VBAT_PROT", "1": "VBAT_SW"}),
+    ("U5",  "Connector_Generic", "Conn_01x04", "MT3608 auf 5,00V", (62, 90), {
+        "1": "VBAT_SW", "2": "GND", "3": "+5V", "4": "GND"}),
+    ("C1",  "Device", "C_Polarized", "100u/16V", (74, 94), {"1": "+5V", "2": "GND"}),
+    ("C2",  "Device", "C", "10u", (80, 94), {"1": "+5V", "2": "GND"}),
+
+    # --- Akkumessung, optional (FEATURE_BATTERY_MONITOR) ----------------
+    ("R16", "Device", "R", "100k", (46, 100), {"1": "VBAT_PROT", "2": "VBAT_SENSE"}),
+    ("R17", "Device", "R", "100k", (46, 106), {"1": "VBAT_SENSE", "2": "GND"}),
 ]
+
+# Pins, die bewusst frei bleiben, je Bauteil
+UNUSED = {
+    "U1": ["2", "3", "13", "15", "16", "17", "18", "20", "21", "22",
+           "23", "24", "25", "26", "27", "28", "29", "30", "31",
+           "34", "35", "37"],
+    "S1": ["3"],            # zweite Schaltstellung unbenutzt
+}
 
 # Power-Symbole benennen das Netz. Sie TREIBEN es aber nicht: ihr Pin ist
 # vom Typ "power_in". Solange keine echte Quelle am Netz haengt -- und der
@@ -168,12 +227,6 @@ POWER = [
     ("#PWR03", "GND",  (32, 62)),
 ]
 
-# Pins von U1, die wir bewusst nicht benutzen. Sie bekommen ein
-# "nicht angeschlossen"-Zeichen, damit ERC weiss, dass das Absicht ist.
-# GPIO 6..11 sind die Flash-Pins -- die duerfen gar nicht benutzt werden.
-U1_UNUSED = ["2", "3", "13", "15", "16", "17", "18", "20", "21", "22",
-             "23", "24", "25", "26", "27", "28", "29", "30", "31",
-             "34", "35", "37"]
 
 
 # =====================================================================
@@ -278,13 +331,13 @@ def build():
 
     for ref, lib, sym, value, (col, row), nets in COMPONENTS:
         place(ref, lib, sym, value, col, row, nets)
-        # Bewusst unbenutzte Pins von U1 als "nicht angeschlossen" markieren
-        if ref == "U1":
+        # Bewusst unbenutzte Pins als "nicht angeschlossen" markieren
+        if ref in UNUSED:
             pin_pos = collect(lib, sym)
             sx, sy = col * G, row * G
-            for num in U1_UNUSED:
+            for num in UNUSED[ref]:
                 if num not in pin_pos:
-                    raise KeyError(f"U1: Pin {num} gibt es nicht")
+                    raise KeyError(f"{ref}: Pin {num} gibt es nicht")
                 px, py = pin_pos[num]
                 noconn.append(
                     f"\t\t(no_connect\n\t\t\t(at {sx + px:.2f} {sy - py:.2f})\n"
