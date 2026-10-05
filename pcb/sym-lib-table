@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "MarsRover")(type "KiCad")(uri "${KIPRJMOD}/MarsRover.kicad_sym")(options "")(descr "Eigene Symbole des Projekts"))
+  (lib (name "Espressif")(type "KiCad")(uri "${KIPRJMOD}/lib/Espressif.kicad_sym")(options "")(descr "Offizielle Espressif-Bibliothek"))
+)

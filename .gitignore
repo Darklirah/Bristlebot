@@ -42,3 +42,11 @@ desktop.ini
 
 # Datenblaetter Dritter -- lokal nuetzlich, aber nicht unsere zum Weitergeben
 Datasheets/
+
+# KiCad-Zwischenergebnisse
+pcb/_render/
+pcb/_symcheck/
+pcb/_erc.rpt
+pcb/_netlist.xml
+pcb/*-backups/
+pcb/fp-info-cache
