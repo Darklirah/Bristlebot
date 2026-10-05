@@ -2,6 +2,62 @@
 
 Laufendes Protokoll. Neueste Einträge oben.
 
+## 2026-10-05 (7) — KiCad-MCP-Server, Schaltplan wird neu aufgebaut
+
+**Gemacht**
+
+- Schaltplan-Entwurf durchgesehen und **verworfen**: Bauteile wild über das
+  Blatt verteilt, Verbindungen ausschließlich über Netzlabels
+- [KiCAD-MCP-Server](https://github.com/mixelpixx/KiCAD-MCP-Server) v2.8.2
+  (MIT) nach `C:\Users\Frank-PC-AMD\Tools\KiCAD-MCP-Server` installiert und
+  in `~/.claude.json` unter dem Projekt „HA Claude" eingetragen.
+  Geprüft: 244 Werkzeuge, `pcbnew 10.0.0` startet sauber
+- KiCads Sperrdatei `*.lck` aus der Versionierung genommen — war versehentlich
+  eingecheckt. Ebenso ignoriert: `.history/`, `pcb/Bilder/`
+
+**Entscheidungen**
+
+- **Der Schaltplan wird in Bereiche gegliedert:** Rechenkern, Motortreiber,
+  Sensorik, Akku und Ladevorrichtung. Innerhalb der Bereiche **gezeichnete
+  Leitungen**, keine Netzlabels. Vorgabe des Nutzers, nicht verhandelbar.
+- **Werkzeugwechsel:** `pcb/gen_schematic.py` wird **nicht mehr ausgeführt**.
+  Es erzeugt die Datei komplett neu und überschreibt damit jede Handarbeit.
+  Es bleibt als Beleg der Netzliste liegen. Künftig gezielte Einzeleingriffe
+  über den MCP-Server — dadurch überleben manuelle Änderungen im
+  Schaltplaneditor.
+- **Regel für die Zusammenarbeit an der Datei: immer nur einer schreibt.**
+  Vor jedem Schreibzugriff wird geprüft, ob eine `*.lck` im `pcb/`-Ordner
+  liegt; dann hat KiCad die Datei offen und sie wird nicht angefasst.
+  Ungespeicherte Änderungen im Editor sind von außen unsichtbar — erst
+  speichern, dann übergeben.
+- KiCad **10** bleibt. Kein Wechsel auf 11: das ist derzeit ein Nightly, das
+  Dateiformat ist eine Einbahnstraße, und das Platinenlayout läuft auf 10
+  bereits live über die IPC-Schnittstelle.
+- Der Review-Screenshot bleibt **lokal**, kommt nicht ins Repo.
+
+**Offen — zum Projektabschluss, vom Nutzer bestellt**
+
+- [ ] **HowTo-Datei** mit allen benutzten Schnittstellen und ihrer
+      Einrichtung, damit Nachbauer dieselbe Umgebung herstellen können.
+      Mindestens: PlatformIO samt der drei nötigen Umgebungsvariablen
+      (`UV_SYSTEM_CERTS`, `UV_NATIVE_TLS`, `PLATFORMIO_CACHE_DIR`), der
+      KiCAD-MCP-Server samt Konfiguration, ESP Web Tools und GitHub Pages,
+      die Datenblattquellen aus [Doku/10](Doku/10_Datenblaetter.md)
+- [ ] **Fertiger Prompt für Claude**, der alle benötigten Werkzeuge und
+      Schritte ermöglicht, um diese Arbeiten durchzuführen — mit
+      ausführlicher Erklärung jedes einzelnen Schritts. So geschrieben,
+      dass jemand mit leerer Claude-Sitzung und leerem Rechner bis zum
+      fahrenden Roboter kommt und dabei versteht, *warum* jeder Schritt
+      nötig ist. Gehört mit der HowTo-Datei zusammen gedacht: die eine
+      beschreibt die Umgebung, der andere setzt sie in Gang.
+
+**Als Nächstes**
+
+Schaltplan neu aufbauen, Bereich für Bereich, mit gezeichneten Leitungen.
+Danach ERC, SVG zum Durchsehen, dann das Platinenlayout.
+
+---
+
 ## 2026-10-05 (6) — MOSFET statt Bipolartransistor, Datenblätter, KiCad-Start
 
 **Frage:** Wäre ein MOSFET als Ersatz für den BC337 nicht sinnvoller?
