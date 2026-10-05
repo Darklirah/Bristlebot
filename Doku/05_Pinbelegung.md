@@ -9,8 +9,8 @@ Maßgeblich ist `Firmware/bristlebot/Config.h`. Diese Tabelle muss damit
 
 | GPIO | Richtung | Funktion | Bauteile | Kennwerte |
 |---|---|---|---|---|
-| **32** | PWM out | Motor **links** | R1 1 kΩ → Basis Q1, R3 10 kΩ nach GND | 20 kHz, 10 bit, Duty ≤ 613 |
-| **33** | PWM out | Motor **rechts** | R2 1 kΩ → Basis Q2, R4 10 kΩ nach GND | 20 kHz, 10 bit, Duty ≤ 613 |
+| **32** | PWM out | Motor **links** | R1 100 Ω → Gate Q1, R3 100 kΩ nach GND | 20 kHz, 10 bit, Duty ≤ 613 |
+| **33** | PWM out | Motor **rechts** | R2 100 Ω → Gate Q2, R4 100 kΩ nach GND | 20 kHz, 10 bit, Duty ≤ 613 |
 | **34** | Analog in | Liniensensor **links** | Emitter OS1, R7 10 kΩ nach GND | ADC1_CH6, 12 bit, 11 dB |
 | **35** | Analog in | Liniensensor **rechts** | Emitter OS2, R8 10 kΩ nach GND | ADC1_CH7, 12 bit, 11 dB |
 | **14** | Digital out | LED gelb vorne **links** | R9 220 Ω → LED1 → GND | ≈ 6 mA |

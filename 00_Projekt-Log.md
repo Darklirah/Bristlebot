@@ -2,6 +2,46 @@
 
 Laufendes Protokoll. Neueste Einträge oben.
 
+## 2026-10-05 (6) — MOSFET statt Bipolartransistor, Datenblätter, KiCad-Start
+
+**Frage:** Wäre ein MOSFET als Ersatz für den BC337 nicht sinnvoller?
+
+**Antwort: ja — aber nicht wegen des Wirkungsgrads.** Der entscheidende
+Punkt ist der Spannungsabfall. Der BC337 frisst 0,25 V von der 5-V-Schiene,
+das sind rund **8 % der Motorspannung**, die nicht in Vibration umgesetzt
+werden. Bei einem Roboter, dessen größtes Risiko „zu schwer, fährt
+vielleicht nur kriechend" lautet, wirkt das direkt auf die Schwachstelle.
+
+**Entschieden: AO3400A** (SOT-23, 28 mΩ bei 4,5 V Gate, 5,7 A, ~10 ct).
+Verworfen: IRLZ44N in TO-220 — elektrisch top, aber 2 g je Stück bei einem
+Roboter, bei dem um Gramm gekämpft wird.
+
+Gewarnt und dokumentiert: **2N7000, BS170 und IRF540 taugen hier nicht.**
+Ihr R_DS(on) ist für 10 V Gate-Spannung spezifiziert; an 3,3 V sind sie kaum
+durchgesteuert. Klassischer Anfängerfehler, steht jetzt in Review B10.
+
+Nachgezogen: Stückliste, Netzliste (Gate/Drain/Source statt Basis/Kollektor/
+Emitter), Pinbelegung, Layoutempfehlung, Datenblattliste, README und das
+Generator-Skript. Gate-Widerstand 100 Ω statt 1 kΩ, Pulldown 100 kΩ statt
+10 kΩ. **Die Firmware ändert sich nicht.**
+
+**Datenblätter.** `docs/` ist der von GitHub Pages veröffentlichte Ordner,
+keine Dokumentenablage — das dort abgelegte AZ-Datenblatt ist nach
+`Datasheets/` gewandert und per `.gitignore` aus dem Repo gehalten.
+Stattdessen eine Linkliste ([Doku 10](Doku/10_Datenblaetter.md)): jeder kommt
+an jedes Dokument, und zwar an die aktuelle Fassung beim Hersteller statt an
+eine eingefrorene Kopie.
+
+**KiCad.** Live-Verbindung zur laufenden Instanz steht (IPC-API, `kipy`).
+Ordner `pcb/` mit eigener Bibliothek (TCRT5000-Symbol, von KiCad geprüft)
+und der offiziellen Espressif-Bibliothek. Generator-Skript für den
+Schaltplan angelegt, Stufe 1 (Rechenkern + Motorstufe) ist beschrieben.
+
+**Nächster Schritt:** Generator laufen lassen, Format gegen ERC prüfen, dann
+die restlichen rund 30 Bauteile ergänzen.
+
+---
+
 ---
 
 ## 2026-10-05 (5) — Umbenannt, kompiliert, Web-Installer

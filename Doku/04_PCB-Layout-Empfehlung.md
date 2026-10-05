@@ -26,7 +26,7 @@ Bei JLCPCB kosten 5 Stück in dieser Spezifikation etwa 7 € plus Versand.
 |---|---|---|
 | VBAT (Akku → Schalter → U5) | **0,8 mm** | Spitzenstrom bis 1,1 A |
 | +5 V (U5 → VIN) | **0,8 mm** | dito |
-| Motorzweige (+5 V → Motor → Kollektor) | **0,5 mm** | ≈ 100 mA, aber impulsförmig |
+| Motorzweige (+5 V → Motor → Drain) | **0,5 mm** | ≈ 100 mA, aber impulsförmig |
 | GND-Rückleitung der Motoren | **0,8 mm** | der kritischste Pfad, siehe unten |
 | Signale (PWM, ADC, LEDs) | 0,25 mm | |
 
@@ -53,8 +53,8 @@ die Motorrückleitung als eigene Bahn darauf führen.
 
 ### Entkopplung
 
-* **C3, C4 (100 nF)** so dicht wie möglich an den Kollektoren von Q1 und Q2,
-  Rückweg direkt zum Emitter desselben Transistors — nicht quer über das Board.
+* **C3, C4 (100 nF)** so dicht wie möglich an den Drains von Q1 und Q2,
+  Rückweg direkt zur Source desselben MOSFETs — nicht quer über das Board.
 * **C1 (100 µF Elko) + C2 (10 µF Keramik)** an der 5-V-Schiene, zwischen U5 und
   der Abzweigung zu den Motoren. Also dort, wo der Puls entsteht, nicht am
   DevKit.

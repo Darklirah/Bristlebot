@@ -65,11 +65,11 @@ Bauteilkürzel (`U1`, `R5` …) entsprechen der
 | Pos | Bauteil | Menge | Bauform | € | Bemerkung |
 |---|---|---|---|---|---|
 | M1, M2 | Vibrationsmotor 3 V, Ø 10 mm Münze | 2 | — | 2,40 | ≈ 80 mA bei 3 V. Alternative: Zylinder 6 × 14 mm, kräftiger, aber je 2 g schwerer |
-| Q1, Q2 | **BC337-40** NPN | 2 | TO-92 | 0,24 | Low-Side-Schalter, Sättigung bei 100 mA gesichert |
-| R1, R2 | 1 kΩ | 2 | THT 1/4 W | 0,04 | Basiswiderstand, ergibt I_B = 2,55 mA |
-| R3, R4 | **10 kΩ** | 2 | THT 1/4 W | 0,04 | **Basis-Pulldown nach GND — verhindert Motorzucken beim Booten** |
+| Q1, Q2 | **AO3400A** Logik-MOSFET | 2 | SOT-23 | 0,20 | Low-Side-Schalter, 28 mΩ bei 4,5 V Gate, 5,7 A. **Muss ein Logic-Level-Typ sein** — 2N7000, BS170 und IRF540 sind bei 3,3 V Gate praktisch zu |
+| R1, R2 | 100 Ω | 2 | 0805 | 0,02 | Gate-Widerstand, dämpft die Schaltflanke |
+| R3, R4 | **100 kΩ** | 2 | 0805 | 0,02 | **Gate-Pulldown nach GND — verhindert Motorzucken beim Booten** |
 | D1, D2 | **1N5819** Schottky | 2 | THT DO-41 | 0,16 | Freilauf, antiparallel zum Motor. 1N4148 wäre zulässig, aber schlechter |
-| C3, C4 | 100 nF Keramik | 2 | 0805 o. THT | 0,04 | Direkt am Kollektor jedes Transistors nach GND |
+| C3, C4 | 100 nF Keramik | 2 | 0805 | 0,04 | Direkt am Drain jedes MOSFETs nach GND |
 
 ---
 

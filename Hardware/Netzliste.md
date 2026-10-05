@@ -68,18 +68,18 @@ Begründung in der [Layout-Empfehlung §2](../Doku/04_PCB-Layout-Empfehlung.md):
 
 | Von | Nach |
 |---|---|
-| U1 `GPIO32` | R1 (1 kΩ) |
-| R1 | Q1 Basis |
-| Q1 Basis | R3 (10 kΩ) → GND |
+| U1 `GPIO32` | R1 (100 Ω) |
+| R1 | Q1 Gate |
+| Q1 Gate | R3 (100 kΩ) → GND |
 | `+5V` | M1 Anschluss A |
-| M1 Anschluss B | Q1 Kollektor |
+| M1 Anschluss B | Q1 Drain |
 | M1 Anschluss B | D1 **Kathode** |
 | M1 Anschluss A | D1 **Anode** |
-| Q1 Kollektor | C4 (100 nF) → GND |
-| Q1 Emitter | GND (Leistungsabgang) |
+| Q1 Drain | C4 (100 nF) → GND |
+| Q1 Source | GND (Leistungsabgang) |
 
 > D1 liegt **in Sperrrichtung parallel zum Motor**: Kathode an die Seite, die
-> zum Kollektor geht, Anode an +5 V. Im Betrieb sperrt sie, beim Abschalten
+> zum Drain geht, Anode an +5 V. Im Betrieb sperrt sie, beim Abschalten
 > übernimmt sie den Induktionsstrom.
 
 ---

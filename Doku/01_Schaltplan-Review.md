@@ -203,14 +203,50 @@ I_lade [A] = 1200 / R_prog [Ω]
 | **500 mAh** | **250 mA** | **4,7 kΩ** | **255 mA** |
 | 1000 mAh | 500 mA | 2,4 kΩ | 500 mA |
 
+### B10 · Logik-MOSFET statt Bipolartransistor
+
+Nachgetragen am 05.10.2026. Der BC337-40 war richtig dimensioniert, aber ein
+**AO3400A** ist an dieser Stelle in jeder Hinsicht besser.
+
+| | BC337-40 | AO3400A |
+|---|---|---|
+| Ansteuerung | **2,55 mA Basisstrom**, dauernd während „ein" | praktisch 0 |
+| Spannungsabfall bei 100 mA | 0,20–0,30 V (V_CE,sat) | 3 mV (28 mΩ) |
+| Verlustleistung je Motor | ≈ 25 mW | ≈ 1 mW |
+
+**Der Spannungsabfall ist der eigentliche Grund, nicht der Wirkungsgrad.**
+Die Motoren laufen mit begrenztem Duty an der 5-V-Schiene; der
+Bipolartransistor frisst davon 0,25 V — rund **8 % der Motorspannung**, die
+nicht in Vibration umgesetzt werden. Bei einem Roboter, dessen größtes
+Risiko „zu schwer, fährt vielleicht nur kriechend" lautet, ist das keine
+Nebensache, sondern wirkt direkt auf die Schwachstelle.
+
+Nebenbei entfallen 2 × 2,55 mA Belastung der GPIOs. Das Datenblatt des
+DevKits nennt 15 mA je Pin — kritisch war es nicht, geschenkt ist es
+trotzdem.
+
+> **Es muss ein Logic-Level-Typ sein.** Bei **2N7000, BS170 und IRF540** ist
+> R_DS(on) für 10 V Gate-Spannung spezifiziert. An 3,3 V sind sie kaum
+> durchgesteuert, werden heiß und begrenzen den Strom — ein klassischer
+> Anfängerfehler. Beim AO3400A gilt der Wert bei 4,5 V, bei 2,5 V sind es
+> noch ≈ 45 mΩ.
+
+**Beschaltung:** Gate-Widerstand **100 Ω** statt 1 kΩ Basiswiderstand
+(dämpft die Flanke bei 20 kHz), Gate-Pulldown **100 kΩ** statt 10 kΩ. Die
+Teilezahl bleibt gleich, die Firmware ändert sich nicht.
+
+Einziger Nachteil: SOT-23 statt TO-92. Von Hand lötbar, und 0805-Widerstände
+sowie die USB-C-Buchse sind in der Stückliste ohnehin schon SMD.
+
 ---
 
 ## C — Was unverändert bleibt, weil es passt
 
-* **Transistorstufe BC337-40 als Low-Side-Schalter.** Mit 1 kΩ Basiswiderstand
-  ist I_B = (3,3 − 0,75) / 1000 = 2,55 mA. Bei 100 mA Kollektorstrom ist das ein
-  Verhältnis von 39 — die Mindest-Stromverstärkung des -40-Typs ist 250, der
-  Transistor ist also sicher in Sättigung. Grenzwerte (800 mA, 45 V) weit weg.
+* ~~**Transistorstufe BC337-40 als Low-Side-Schalter.**~~ **Ersetzt am
+  05.10.2026 durch einen Logik-MOSFET AO3400A** — siehe B10 unten. Die
+  BC337-Dimensionierung war korrekt (I_B = 2,55 mA, Verhältnis 39 bei
+  h_FE ≥ 250, also sicher in Sättigung), aber ein MOSFET ist hier schlicht
+  die bessere Wahl.
 * **GPIO 34 als Analogeingang.** Richtig gewählt: GPIO 34 liegt auf **ADC1**, und
   nur ADC1 ist bei aktivem WLAN nutzbar — ADC2 wird vom WLAN-Treiber belegt. Der
   zweite Sensor geht entsprechend auf GPIO 35 (ebenfalls ADC1).

@@ -28,7 +28,7 @@ RAM 15,2 %, Flash 69,8 %) — **aber noch nie auf echter Hardware gelaufen.**
 | | |
 |---|---|
 | Rechenkern | ESP32 DevKit V1, 30-Pin, gesteckt |
-| Antrieb | 2× Vibrationsmotor 3 V über BC337-40, 20 kHz PWM (LEDC) |
+| Antrieb | 2× Vibrationsmotor 3 V über AO3400A Logik-MOSFET, 20 kHz PWM (LEDC) |
 | Sensorik | 2× TCRT5000 analog an ADC1 (GPIO 34/35) |
 | Lage | MPU-6050 am I²C: Drehen nach Winkel, Kurs halten, Kippschutz |
 | Abstand | VL53L0X auf einem Mast: Hindernisse erkennen und umfahren |
