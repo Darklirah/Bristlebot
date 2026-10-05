@@ -39,3 +39,6 @@ desktop.ini
 
 # Lokale UI-Vorschau mit Daten-Stub, kein Teil der Firmware
 .preview/
+
+# Datenblaetter Dritter -- lokal nuetzlich, aber nicht unsere zum Weitergeben
+Datenblaetter/
