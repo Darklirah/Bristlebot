@@ -50,3 +50,12 @@ pcb/_erc.rpt
 pcb/_netlist.xml
 pcb/*-backups/
 pcb/fp-info-cache
+
+# KiCad-Sperrdateien -- entstehen beim Oeffnen, gehoeren niemandem sonst
+*.lck
+
+# Lokale Dateihistorie der Editor-Erweiterung
+.history/
+
+# Screenshots zum Durchsehen -- wie pcb/_render/ reine Zwischenergebnisse
+pcb/Bilder/
