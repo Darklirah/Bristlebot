@@ -12422,7 +12422,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "d69b0b67-1e3b-4ed2-b95c-1dffc1da97ab")
-		(property "Reference" "#PWR34"
+		(property "Reference" "#PWR49"
 			(at 218.44 332.74 0)
 			(hide yes)
 			(show_name no)
@@ -12486,7 +12486,7 @@
 		(instances
 			(project "MarsRover"
 				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "#PWR34")
+					(reference "#PWR49")
 					(unit 1)
 				)
 			)
@@ -12686,7 +12686,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "01a52f66-c733-4344-b182-c55d1de84c18")
-		(property "Reference" "#PWR36"
+		(property "Reference" "#PWR50"
 			(at 255.27 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -12750,7 +12750,7 @@
 		(instances
 			(project "MarsRover"
 				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "#PWR36")
+					(reference "#PWR50")
 					(unit 1)
 				)
 			)
