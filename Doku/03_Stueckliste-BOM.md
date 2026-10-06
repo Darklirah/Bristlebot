@@ -1,8 +1,11 @@
 # Stückliste (BOM)
 
-Für **Variante A**: ESP32 DevKit V1 (30-Pin) gesteckt, 2× TCRT5000,
+Für **Variante A**: ESP32 DevKitC V4 (38-Pin) gesteckt, 2× TCRT5000,
 WLAN-Fernsteuerung. Preise sind Richtwerte in Euro für Einzelstück,
 europäische Distributoren, Stand Oktober 2026, ohne Versand.
+
+> Stand 06.10.2026. Maßgeblich ist der Schaltplan `pcb/MarsRover.kicad_sch`;
+> im Zweifel gilt dessen Netzliste, nicht diese Tabelle.
 
 Bauteilkürzel (`U1`, `R5` …) entsprechen der
 [Netzliste](../Hardware/Netzliste.md) und der [Pinbelegung](05_Pinbelegung.md).
@@ -13,8 +16,8 @@ Bauteilkürzel (`U1`, `R5` …) entsprechen der
 
 | Pos | Bauteil | Menge | Bauform | € | Bemerkung |
 |---|---|---|---|---|---|
-| U1 | ESP32 DevKit V1, **30-Pin** | 1 | THT, gesteckt | 5,50 | Nicht die 36-Pin-Version — anderes Rastermaß und andere Pinreihenfolge |
-| — | Buchsenleiste 15-pol, RM 2,54, gerade | 2 | THT | 0,60 | U1 steckbar halten, nicht einlöten |
+| U1 | **ESP32 DevKitC V4, 38-Pin** (AZ-Delivery) | 1 | THT, gesteckt | 5,50 | Reihenabstand **25,4 mm**, Platinenlänge 54,4 mm. Begründung in [09](09_Boardwahl-DevKitC-V4.md) |
+| — | Buchsenleiste 19-pol, RM 2,54, gerade | 2 | THT | 0,80 | U1 steckbar halten, nicht einlöten |
 
 > Das DevKit bringt USB-Buchse, CP2102/CH340 und den 3,3-V-Regler AMS1117 selbst
 > mit. Deshalb fehlen in dieser Stückliste USB-UART-Brücke und Boot-Taster.
@@ -52,8 +55,9 @@ Bauteilkürzel (`U1`, `R5` …) entsprechen der
 |---|---|---|---|---|---|
 | U5 | **MT3608 Step-Up-Modul**, einstellbar | 1 | THT-Modul | 1,20 | **Vor dem Anschluss des ESP32 im Leerlauf auf 5,00 V trimmen** |
 | S1 | Schiebeschalter SPDT, THT | 1 | THT | 0,45 | Zwischen Akku-Schutzausgang und Eingang von U5 — nicht direkt an die Zelle |
-| C1 | 100 µF / 16 V Elektrolyt | 1 | THT, Ø 6,3 mm | 0,18 | Nahe den Motoren an der 5-V-Schiene |
-| C2 | 10 µF Keramik / 16 V | 1 | 0805 | 0,12 | An der 5-V-Schiene, ergänzt C1 für schnelle Flanken |
+| C1 | 100 µF / **10 V** Elektrolyt | 1 | THT, Ø 6,3 mm | 0,18 | Am Ausgang von U5. 10 V reichen bei 5 V Schiene, zweifache Reserve ist bei Alu-Elkos üblich |
+| C2 | 10 µF Keramik / **25 V** | 1 | 0805 | 0,12 | **Nicht 10 V nehmen.** Ein X5R/X7R verliert unter Gleichspannung Kapazität; bei 5 V bleibt von einem 10-V-Typ oft nur die Hälfte übrig |
+| C5 | 100 nF Keramik | 1 | 0805 | 0,02 | Parallel zu C1/C2. Der Alu-Elko ist oberhalb ~100 kHz wirkungslos, U5 taktet mit 1,2 MHz |
 | D3 | Zenerdiode BZX55C5V6 | 1 | THT | 0,08 | *Optional, aber empfohlen:* Notbremse gegen einen falsch eingestellten U5 |
 | BT1 | LiPo 3,7 V, **500 mAh**, JST-PH 2.0 | 1 | — | 7,50 | Bauform 503035. 150 mAh ist zu klein, siehe [Review B8](01_Schaltplan-Review.md) |
 | J2 | JST-PH-2.0-Buchse, 2-pol, THT | 1 | THT | 0,25 | Polung zweimal prüfen — die Zellen sind nicht genormt belegt |
@@ -64,12 +68,26 @@ Bauteilkürzel (`U1`, `R5` …) entsprechen der
 
 | Pos | Bauteil | Menge | Bauform | € | Bemerkung |
 |---|---|---|---|---|---|
-| M1, M2 | Vibrationsmotor 3 V, Ø 10 mm Münze | 2 | — | 2,40 | ≈ 80 mA bei 3 V. Alternative: Zylinder 6 × 14 mm, kräftiger, aber je 2 g schwerer |
+| M1, M2 | Vibrationsmotor 3 V, Ø 10 mm Münze | 2 | **abgesetzt** | 2,40 | ≈ 80 mA bei 3 V. Alternative: Zylinder 6 × 14 mm, kräftiger, aber je 2 g schwerer |
+| — | **Lötaugen für M1/M2** | 2× 2 | THT, Ø 1,0 mm | — | Fußabdruck `PinHeader_1x02_P2.54mm_Vertical`. Die Motoren sitzen **nicht** auf der Platine; Litze direkt in die durchkontaktierten Löcher löten |
 | Q1, Q2 | **AO3400A** Logik-MOSFET | 2 | SOT-23 | 0,20 | Low-Side-Schalter, 28 mΩ bei 4,5 V Gate, 5,7 A. **Muss ein Logic-Level-Typ sein** — 2N7000, BS170 und IRF540 sind bei 3,3 V Gate praktisch zu |
 | R1, R2 | 100 Ω | 2 | 0805 | 0,02 | Gate-Widerstand, dämpft die Schaltflanke |
 | R3, R4 | **100 kΩ** | 2 | 0805 | 0,02 | **Gate-Pulldown nach GND — verhindert Motorzucken beim Booten** |
 | D1, D2 | **1N5819** Schottky | 2 | THT DO-41 | 0,16 | Freilauf, antiparallel zum Motor. 1N4148 wäre zulässig, aber schlechter |
-| C3, C4 | 100 nF Keramik | 2 | 0805 | 0,04 | Direkt am Drain jedes MOSFETs nach GND |
+| C3, C4 | 100 nF Keramik | 2 | 0805 | 0,04 | Direkt am Drain jedes MOSFETs nach GND. Das ist die Funkentstörung an der Motorklemme |
+| C11, C12 | **47 µF / 10 V Elektrolyt** | 2 | THT, Ø 5 mm | 0,24 | Je Motorstufe, **von +5 V nach GND** — siehe Kasten unten |
+
+> ### Warum die 47 µF nicht über die Motorklemmen gehören
+>
+> Über den Klemmen läge der Elko parallel zum MOSFET. Bei jedem Einschalten
+> entlädt er sich über den FET, begrenzt nur durch ESR und Bahnwiderstand —
+> das sind Ampere, und zwar **20 000-mal je Sekunde** bei 20 kHz PWM. Ein
+> 47-µF-Radialelko verträgt etwa 100–200 mA Rippelstrom; er wäre in Wochen
+> trocken, und der AO3400A bekäme die Stöße umsonst ab.
+>
+> Von **+5 V nach Masse**, direkt an der Stufe, erfüllt er denselben Zweck:
+> Er liefert den Stromimpuls der Motoren örtlich und hält ihn aus dem Rest
+> der Platine heraus, wo das ADC-Frontend der Liniensensoren sitzt.
 
 ---
 
@@ -94,7 +112,35 @@ Bauteilkürzel (`U1`, `R5` …) entsprechen der
 |---|---|---|---|---|---|
 | LED1, LED2 | LED gelb, 3 mm | 2 | THT | 0,20 | Vorne links/rechts, zeigen die Lenkbewegung. **3 mm statt 5 mm spart 0,8 g** |
 | LED3, LED4 | LED rot, 3 mm | 2 | THT | 0,20 | Rücklichter, im Fahrbetrieb dauerhaft an |
-| R9–R12 | 220 Ω | 4 | THT 1/4 W | 0,08 | ≈ 6 mA pro LED, unkritisch für die GPIOs |
+| R9–R12 | 220 Ω | 4 | THT 1/4 W | 0,08 | ≈ 5 mA pro LED |
+
+> **Kein MOSFET nötig.** ESP32-WROOM-32-Datenblatt v3.8, Tabelle 14: I_OH
+> typisch **40 mA** je Pin in der Domäne VDD3P3_RTC, bei mehreren gleichzeitig
+> treibenden Pins laut Fußnote 2 noch rund **29 mA**. Alle vier LED-Pins —
+> GPIO 14, 25, 26, 27 — liegen in dieser Domäne. Die 40 mA gelten allerdings
+> nur bei maximaler Treiberstärke; die Voreinstellung von Arduino und ESP-IDF
+> ist Stufe 2 mit etwa 20 mA. Auch das reicht hier um ein Mehrfaches.
+
+---
+
+## 5a · Entkopplung der Spannungsversorgung
+
+| Pos | Bauteil | Menge | Bauform | € | Bemerkung |
+|---|---|---|---|---|---|
+| C6 | 10 µF / 25 V Keramik | 1 | 0805 | 0,12 | Am ESP32, **VIN gegen GND**. Die Motoren hängen auf derselben 5-V-Schiene und ziehen Stromimpulse |
+| C7 | 100 nF Keramik | 1 | 0805 | 0,02 | dito, HF-Anteil |
+| C8 | 100 nF Keramik | 1 | 0805 | 0,02 | Am ESP32, **3V3 gegen GND**. Bulk bringt der AMS1117 des DevKits selbst mit, hier fehlt nur der schnelle Anteil |
+| C9, C10 | 100 nF Keramik | 2 | 0805 | 0,04 | Je einer an OS1 und OS2 |
+
+> **Was Kondensatoren hier nicht können:** Der dominierende Störpfad ist die
+> **Masse**, nicht die Versorgung — Motorrückstrom durch die Masse, auf die
+> sich der ADC bezieht. Der ADC des ESP32 misst gegen eine interne
+> 1,1-V-Bandgap-Referenz, nicht gegen 3,3 V; ein verschobenes Massepotential
+> verschiebt den Messwert also direkt. Dagegen hilft nur der **Sternpunkt**
+> aus [04 §2](04_PCB-Layout-Empfehlung.md).
+>
+> Bewusst **weggelassen**: 1 µF an den Sensoren (die TCRT5000 schalten nichts,
+> sie ziehen 8 mA Gleichstrom) und 10 µF an 3,3 V (doppelt gemoppelt).
 
 ---
 
@@ -122,14 +168,17 @@ Bauteilkürzel (`U1`, `R5` …) entsprechen der
 
 | | Einzelstück |
 |---|---|
-| Rechenkern | 6,10 € |
-| Versorgung mit **Fertigmodul** (2b) + Schiene | 11,08 € |
-| Motortreiber | 2,92 € |
+| Rechenkern | 6,30 € |
+| Versorgung mit **Fertigmodul** (2b) + Schiene | 11,10 € |
+| Motortreiber (inkl. C11/C12) | 3,16 € |
 | Sensorik | 0,98 € |
 | LEDs | 0,48 € |
+| Entkopplung (5a) | 0,20 € |
 | PCB + Mechanik | 4,90 € |
-| **Summe** | **≈ 26,50 €** |
+| **Summe** | **≈ 27,10 €** |
 | davon Akku | 7,50 € |
+
+Mit der I²C-Sensorik aus §8 kommen 7,10 € dazu: **≈ 34,20 €**.
 
 Mit der diskreten Ladeschaltung (2a) statt des Fertigmoduls wird es etwa 0,40 €
 teurer, dafür flacher und 1 g leichter — aber es kommen vier SMD-Bauteile
@@ -143,7 +192,10 @@ bei etwa **17 €** — in beiden Fällen dominiert der Akku den Preis.
 ## Einkaufsfallen, kurz zusammengefasst
 
 1. **TCRT5000 nackt kaufen**, nicht als Modul mit Komparator.
-2. **ESP32 DevKit mit 30 Pins**, nicht 36.
+2. **ESP32 DevKitC V4 mit 38 Pins.** Die 30-Pin-Version hat ein anderes
+   Rastermaß und eine andere Pinreihenfolge — der Schaltplan passt dann nicht.
+   Vor der Platinenbestellung den Reihenabstand mit dem Messschieber
+   nachmessen: Soll ist **25,4 mm**.
 3. **MT3608 auf 5,00 V trimmen**, bevor der ESP32 dran kommt.
 4. **R_prog am TP4056 tauschen** — Werkszustand 1 A ist für diese Zelle zu viel.
 5. **USB-C braucht 2× 5,1 kΩ** an CC1 und CC2 nach GND.
