@@ -59,3 +59,6 @@ pcb/fp-info-cache
 
 # Screenshots zum Durchsehen -- wie pcb/_render/ reine Zwischenergebnisse
 pcb/Bilder/
+
+# 3D-Modelle Dritter -- lokal gebraucht, nicht unsere zum Weitergeben
+local_Step Files/

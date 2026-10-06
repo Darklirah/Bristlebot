@@ -2,6 +2,61 @@
 
 Laufendes Protokoll. Neueste Einträge oben.
 
+## 2026-10-06 — Schaltplan neu aufgebaut: Bereiche und gezeichnete Leitungen
+
+**Gemacht**
+
+- Schaltplan vollstaendig neu aufgebaut, Blatt jetzt **A2** statt A3:
+  **175 gezeichnete Leitungen, 25 Knotenpunkte, null Netzlabels**
+- Fuenf beschriftete Bereiche: Rechenkern · Motortreiber · Sensoren
+  Linienerkennung · Sensoren Lage und Abstand · Signal-LEDs · Akku und
+  Ladevorrichtung
+- Neues Werkzeug `pcb/build_schematic.py`. Die acht Lagen (vier Drehungen,
+  zwei Spiegelungen) sind am lebenden KiCad **ausgemessen**, nicht geraten;
+  das Skript prueft am Ende selbst, ob jede Koordinate auf dem
+  1,27-mm-Raster liegt.
+- `pcb/gen_schematic.py` ist **gesperrt** — ein Lauf bricht jetzt mit einer
+  Meldung ab, statt den Schaltplan mit der alten Fassung zu ueberschreiben.
+  Die Datei bleibt als Beleg der Netzliste liegen.
+- Geprueft: ERC **0 Fehler**, keine verwaisten Leitungen, keine
+  Ueberlappungen, Netzliste knotengenau gegen den Entwurf abgeglichen.
+- Zwei echte Zeichenfehler gefunden und behoben: Leitungen liefen quer
+  durch die Gehaeuse von U2 und U5 hindurch.
+
+**Entscheidungen**
+
+- **Keine MOSFETs fuer die LEDs.** Nachgesehen im ESP32-WROOM-32-Datenblatt
+  v3.8, Tabelle 14: I_OH typisch **40 mA** je Pin in der Domaene
+  VDD3P3_RTC, bei mehreren gleichzeitig treibenden Pins noch rund 29 mA
+  (Fussnote 2). Alle vier LED-Pins — GPIO 14, 25, 26, 27 — liegen in dieser
+  Domaene. Vorwiderstand bleibt **220 Ohm**, rund 5 mA je LED.
+  Das spart zwoelf Bauteile auf einer Platine, deren groesstes Risiko die
+  Masse ist. Die 40 mA gelten allerdings nur bei maximaler Treiberstaerke;
+  die Voreinstellung von Arduino und ESP-IDF ist Stufe 2 mit etwa 20 mA.
+- **Versorgung ueber Power-Symbole**, nicht als durchgezogene Leitung.
+  GND, +5V und +3V3 quer ueber ein A2-Blatt zu ziehen waere unleserlicher,
+  nicht lesbarer. Je Netz ein PWR_FLAG an der Quelle.
+- **Netznamen** sind jetzt automatisch vergeben (`Net-(D1-A)` statt
+  `MOT_L_D`). Fuer das Platinenlayout waeren sprechende Namen nuetzlich —
+  ein Label auf einer bereits gezeichneten Leitung *benennt* nur, es
+  *verbindet* nicht. Offen, siehe unten.
+- Verbleibende Kreuzungen sind gewollt und ohne Knotenpunkt, also
+  elektrisch nicht verbunden: zwei am I2C-Bus (bei zwei Teilnehmern an
+  einem Zweidrahtbus nicht vermeidbar), zwei im Akkubereich, weil BAT+
+  zwischen zwei Massepins des Lademoduls liegt.
+
+**Offen**
+
+- [ ] Sprechende Netznamen? Nur benennend, die Verdrahtung bleibt gezeichnet
+- [ ] Zwei ERC-Warnungen `lib_symbol_mismatch` an D1/D2 — kosmetisch, Folge
+      des Aufloesens der Symbolvererbung (1N5819 erbt von SB120)
+
+**Als Naechstes**
+
+Review durch den Nutzer in KiCad, dann das Platinenlayout.
+
+---
+
 ## 2026-10-05 (7) — KiCad-MCP-Server, Schaltplan wird neu aufgebaut
 
 **Gemacht**

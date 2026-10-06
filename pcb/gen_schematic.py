@@ -374,6 +374,16 @@ def build():
 
 
 if __name__ == "__main__":
+    raise SystemExit(
+        "ABGELOEST -- dieses Skript schreibt nicht mehr.\n"
+        "Es wuerde den Schaltplan mit der alten, labelverdrahteten Fassung "
+        "ueberschreiben.\n"
+        "Der aktuelle Aufbau steht in build_schematic.py. Gepflegt wird der "
+        "Schaltplan seit dem 06.10.2026 ueber den KiCAD-MCP-Server, nicht "
+        "durch Neuerzeugung.\n"
+        "Diese Datei bleibt nur als Beleg der Netzliste liegen."
+    )
+
     text, nlabels, nnc = build()
     target = HERE / f"{PROJECT}.kicad_sch"
     target.write_text(text, encoding="utf-8")
