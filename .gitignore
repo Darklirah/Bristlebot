@@ -62,3 +62,7 @@ pcb/Bilder/
 
 # 3D-Modelle Dritter -- lokal gebraucht, nicht unsere zum Weitergeben
 local_Step Files/
+
+# KiCad-Platinen-Zwischenergebnisse
+pcb/_drc.json
+pcb/_nl*.xml
