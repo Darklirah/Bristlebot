@@ -2,6 +2,33 @@
 
 Laufendes Protokoll. Neueste Einträge oben.
 
+## 2026-10-07 — U5 blockierte den USB; Routingwerkzeug dauerhaft eingerichtet
+
+**Gemacht**
+
+- **U5 an die Hinterkante.** Pad 1 von U1 ist 3V3 (Antennenende), Pad 19 ist
+  5V — der Micro-USB sitzt also am +x-Ende bei x ≈ 154, mittig auf der
+  Modulbreite bei y = 85. U5 stand mit y 81,2…88,8 **genau davor**. Jetzt
+  y 97,0…104,62, Gehäusevorderkante 95,2, gut 4 mm Luft zum Steckergehäuse.
+- Dafür mussten **R16/R17** (Spannungsteiler VBAT → GPIO39) von x 156,5/160,5
+  nach x 150/154 wandern. Als 0805 dürfen sie überall in den hinteren Streifen.
+- Neu geroutet: 27/27 Netze, 91/91 Padpaare, 91 Durchkontaktierungen,
+  **0 unverbundene Elemente, 0 Abstandsverstöße, 0 lose Leitungsenden**.
+
+**Werkzeug dauerhaft eingerichtet** (gehört in die HowTo-Datei)
+
+| | |
+|---|---|
+| CLI + Quelle | `C:\Users\Frank-PC-AMD\Tools\KiCadRoutingTools` |
+| KiCad-Plugin | `~\Documents\KiCad\10.0\3rdparty\plugins\KiCadRoutingTools` |
+| Aufruf in KiCad | **Tools → External Plugins → KiCadRoutingTools** |
+| Nachinstalliert in KiCads Python | `scipy`, `shapely` (numpy und Pillow waren da) |
+
+Damit lässt sich das Routing auch **aus dem offenen PCB-Editor heraus**
+starten — das Ergebnis steht danach direkt im Editor, mit Undo.
+
+---
+
 ## 2026-10-07 — Platine geroutet: 27 von 27 Netzen, null unverbundene Elemente
 
 **Gemacht**
