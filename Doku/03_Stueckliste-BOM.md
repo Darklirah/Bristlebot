@@ -53,7 +53,8 @@ Bauteilkürzel (`U1`, `R5` …) entsprechen der
 
 | Pos | Bauteil | Menge | Bauform | € | Bemerkung |
 |---|---|---|---|---|---|
-| U5 | **MT3608 Step-Up-Modul**, einstellbar | 1 | THT-Modul | 1,20 | **Vor dem Anschluss des ESP32 im Leerlauf auf 5,00 V trimmen** |
+| U5 | **MT3608 Step-Up-Modul**, einstellbar | 1 | THT-Modul | 1,20 | **Wird umgebaut:** Poti raus, Festteiler rein — siehe Zeile darunter und [Inbetriebnahme Schritt 1a](07_Inbetriebnahme-und-Tuning.md) |
+| — | Metallschicht **110 kΩ** und **15 kΩ**, 1 % | je 1 | 0805 oder 0207 | 0,04 | **Modulumbau U5.** Ersetzen das Trimmpoti: 110 kΩ von VOUT nach FB, 15 kΩ von FB nach GND → $0{,}6 \times (1+110/15) = 5{,}00$ V. Gehören aufs Modul, nicht auf die Platine — deshalb ohne Referenz |
 | S1 | Schiebeschalter SPDT, THT | 1 | THT | 0,45 | Zwischen Akku-Schutzausgang und Eingang von U5 — nicht direkt an die Zelle |
 | C1 | 100 µF / **10 V** Elektrolyt | 1 | THT, Ø 6,3 mm | 0,18 | Am Ausgang von U5. 10 V reichen bei 5 V Schiene, zweifache Reserve ist bei Alu-Elkos üblich |
 | C2 | 10 µF Keramik / **25 V** | 1 | 0805 | 0,12 | **Nicht 10 V nehmen.** Ein X5R/X7R verliert unter Gleichspannung Kapazität; bei 5 V bleibt von einem 10-V-Typ oft nur die Hälfte übrig |
@@ -196,7 +197,9 @@ bei etwa **17 €** — in beiden Fällen dominiert der Akku den Preis.
    Rastermaß und eine andere Pinreihenfolge — der Schaltplan passt dann nicht.
    Vor der Platinenbestellung den Reihenabstand mit dem Messschieber
    nachmessen: Soll ist **25,4 mm**.
-3. **MT3608 auf 5,00 V trimmen**, bevor der ESP32 dran kommt.
+3. **MT3608 umbauen**, bevor er eingebaut wird: Poti auslöten, 110 kΩ / 15 kΩ
+   als Festteiler einsetzen, dann im Leerlauf 5,0 V nachmessen. Ein Poti auf
+   einem Vibrationsfahrzeug verstellt sich, und zwar irgendwann nach oben.
 4. **R_prog am TP4056 tauschen** — Werkszustand 1 A ist für diese Zelle zu viel.
 5. **USB-C braucht 2× 5,1 kΩ** an CC1 und CC2 nach GND.
 6. **JST-PH-Polung prüfen.** LiPo-Konfektionierungen sind nicht genormt; falsch

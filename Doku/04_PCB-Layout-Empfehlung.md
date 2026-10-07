@@ -149,7 +149,9 @@ Sensorik anzufassen.
 - [ ] Polung der JST-PH-Buchse gegen den tatsächlich gekauften Akku geprüft
 - [ ] Sensorabstand zur Linienbreite passend (15–20 mm bei 19-mm-Band)
 - [ ] Beschriftung im Siebdruck: Polung des Akkus, Soll-Ausgangsspannung von U5
-      („**SET 5V0**") direkt neben dem Trimmer
+      („**U5 = 5V0**") direkt neben der Lötaugenreihe von U5. Der Trimmer ist
+      dort nicht mehr — U5 wird vor dem Einbau auf einen Festteiler 110 k/15 k
+      umgebaut, siehe [Inbetriebnahme Schritt 1a](07_Inbetriebnahme-und-Tuning.md)
 
 ---
 

@@ -30,12 +30,59 @@ Bibliothek wird automatisch geholt.
 > bemessenen Step-Up ist „alles zusammenstecken und einschalten" ein guter Weg,
 > ein DevKit zu verlieren.
 
-### Schritt 1 — Step-Up einstellen, **bevor** der ESP32 dran kommt
+### Schritt 1a — Poti am MT3608 raus, Festteiler rein
 
-Akku an U5 anschließen, Ausgang **unbelastet** lassen, mit dem Multimeter messen
-und den Trimmer auf **5,00 V** drehen. Die Module kommen mit beliebiger
-Einstellung aus der Fabrik, oft über 20 V — das tötet das DevKit sofort.
-Danach die optionale Zenerdiode D3 einlöten.
+> **Vor dem Einbau von U5 machen, nicht danach.** Am eingebauten Modul kommst
+> du an die Lötstellen des Potis nicht mehr heran, und ausgelötet wird es
+> liegend auf dem Tisch in zwei Minuten.
+
+Das Trimmpoti auf dem MT3608-Modul hat zwei Nachteile auf genau diesem Gerät:
+es ist das höchste Bauteil des Moduls und stört, wenn das Modul als Finne
+senkrecht steht — und es ist ein **mechanisch verstellbarer Kontakt auf einem
+Fahrzeug, das seine Fortbewegung aus Vibration erzeugt**. Ein wandernder
+Schleifer heißt hier wandernde Versorgungsspannung, im schlechten Fall nach
+oben, und am 5-V-Pin des DevKits ist das kein kosmetisches Problem.
+
+Deshalb: **Poti auslöten und durch einen festen Spannungsteiler ersetzen.**
+
+Der MT3608 regelt seinen FB-Pin auf 0,6 V:
+
+$$V_\text{aus} = 0{,}6\,\text{V} \times \left(1 + \frac{R_\text{oben}}{R_\text{unten}}\right)$$
+
+| | Wert | Lage |
+|---|---|---|
+| $R_\text{oben}$ | **110 kΩ** | von **VOUT nach FB** — dorthin, wo das Poti saß |
+| $R_\text{unten}$ | **15 kΩ** | von **FB nach GND** |
+
+Nachgerechnet: $0{,}6 \times (1 + 110/15) = 0{,}6 \times 8{,}333 = \mathbf{5{,}00\ V}$.
+
+**Drei Punkte, die dabei schiefgehen können:**
+
+1. **Der werkseitige untere Widerstand muss raus.** Das Modul hat schon einen
+   Widerstand von FB nach GND. Bleibt er liegen, steht er *parallel* zu den
+   15 kΩ, der untere Zweig wird kleiner und die Ausgangsspannung **steigt**.
+   Also: den Platz des alten unteren Widerstands für die 15 kΩ benutzen, nicht
+   einfach zusätzlich bestücken.
+2. **1 %-Metallschicht nehmen, nicht 5 %.** Der Teiler ist mit 125 kΩ
+   hochohmig; dazu kommt die Toleranz der 0,6-V-Referenz. Mit 1 % landet man
+   realistisch bei 4,9–5,1 V, mit 5 % kann es 4,7–5,3 V werden.
+3. **Kurze Beine.** Ein hochohmiger Rückkopplungsknoten mit langen Drähten
+   neben einem 1,2-MHz-Schaltregler fängt sich Störungen ein und der Regler
+   fängt an zu pfeifen. Die Widerstände direkt an den Pads anlöten, nicht an
+   Draht hängen lassen.
+
+### Schritt 1b — nachmessen, **bevor** der ESP32 dran kommt
+
+Akku an U5 anschließen, Ausgang **unbelastet** lassen, mit dem Multimeter
+messen. Soll: **5,0 V ± 0,15 V**.
+
+Steht dort deutlich mehr, ist Punkt 1 von oben passiert — abklemmen und den
+unteren Zweig nachsehen. Steht dort 20 V oder mehr, hat das Modul noch seine
+Werkseinstellung, der Teiler ist also nicht wirksam. **In beiden Fällen den
+ESP32 nicht anschließen** — das tötet das DevKit sofort.
+
+Erst wenn die Spannung stimmt: die optionale Zenerdiode D3 einlöten und das
+Modul einbauen.
 
 ### Schritt 2 — Laden prüfen
 

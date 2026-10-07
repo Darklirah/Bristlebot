@@ -2,6 +2,45 @@
 
 Laufendes Protokoll. Neueste Einträge oben.
 
+## 2026-10-07 — MT3608 bekommt einen Festteiler statt des Potis
+
+**Gemacht**
+
+- [Doku/07](Doku/07_Inbetriebnahme-und-Tuning.md): Schritt 1 in **1a und 1b**
+  geteilt. 1a beschreibt den Modulumbau, 1b nur noch das Nachmessen.
+- [Doku/03](Doku/03_Stueckliste-BOM.md): U5 ist jetzt als Umbauteil
+  gekennzeichnet, die zwei Teilerwiderstände stehen als referenzlose Position
+  in der Liste (sie gehören aufs Modul, nicht auf die Platine). Einkaufsfalle 3
+  umformuliert.
+- [Doku/04](Doku/04_PCB-Layout-Empfehlung.md): Siebdruck-Hinweis angepasst —
+  „SET 5V0 neben dem Trimmer" stimmt nicht mehr, der Trimmer ist weg.
+
+**Entscheidung: Trimmpoti am MT3608 auslöten, 110 kΩ / 15 kΩ einsetzen**
+
+Zwei Gründe, der zweite ist der wichtigere:
+
+1. Das Poti ist das höchste Bauteil des Moduls und steht im Weg, sobald das
+   Modul als senkrechte Finne montiert wird.
+2. Ein Schleifkontakt auf einem Fahrzeug, dessen Antriebsprinzip Vibration
+   ist, verstellt sich. Verstellt er sich nach oben, hängt das DevKit an
+   mehr als 5 V.
+
+Gerechnet über die 0,6-V-Referenz des MT3608:
+0,6 V × (1 + 110 kΩ / 15 kΩ) = 0,6 × 8,333 = **5,00 V**.
+
+**Fallstrick, der dokumentiert ist:** Der werkseitige untere
+Rückkopplungswiderstand des Moduls muss raus. Bleibt er liegen, steht er
+parallel zu den 15 kΩ und die Ausgangsspannung steigt.
+
+**Geprüft**
+
+- Schaltplan nach der Nutzer-Bearbeitung gegengerechnet: Netzliste Knoten für
+  Knoten gegen den Vorstand verglichen, **keine Abweichung außer den von mir
+  nachträglich eingefügten Entkoppelkondensatoren**. ERC: 0 Fehler,
+  2 bekannte kosmetische Warnungen an D1/D2.
+
+---
+
 ## 2026-10-06 — Schaltplan neu aufgebaut: Bereiche und gezeichnete Leitungen
 
 **Gemacht**
