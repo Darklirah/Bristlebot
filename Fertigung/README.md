@@ -47,6 +47,7 @@ Weitergeben sind.
 | Nicht durchkontaktierte Löcher | 6 (Mechanik von OS1/OS2 und S1) |
 | Oberfläche | **noch nicht entschieden** — siehe unten |
 | Lötstopp / Siebdruck | freie Wahl, elektrisch egal |
+| Masseanbindung | **Wärmefallen**, Spalt 0,4 mm, vier Stege à 0,5 mm |
 
 Diese Werte liegen alle im **Standardprozess** der günstigen Fertiger; nichts
 davon löst einen Aufpreis aus.
@@ -69,6 +70,32 @@ und der Akkustecker, und die sind bedrahtet — `B_Paste` ist deshalb leer.
   Widerstände in 0805, 2 MOSFET in SOT-23.
 - Rahmenlos bestellen (Framework/Frameless), Dicke **0,12 mm**. Das ist für
   0805 und SOT-23 der übliche Wert; dünner braucht man erst ab 0,5-mm-Raster.
+
+---
+
+## 3a · Wärmefallen an der Massefläche
+
+Die Massefläche auf B.Cu hängt **nicht fest** an den Pads, sondern über
+Wärmefallen: sie hält 0,4 mm Abstand zum Pad und greift mit vier Stegen von
+0,5 mm Breite darauf zu.
+
+**Warum:** eine 70 × 52 mm große Kupferfläche zieht beim Handlöten die Wärme
+schneller ab, als ein Lötkolben sie nachliefert. Das Ergebnis sind kalte
+Lötstellen, die beim Messen oft noch leitend wirken und erst bei Vibration
+ausfallen — auf diesem Gerät also garantiert.
+
+**Elektrisch kostet das nichts:** vier Stege à 0,5 mm auf 35 µm tragen
+zusammen rund 6 A. Der größte Verbraucher auf dieser Masse ist der Step-Up
+mit knapp 0,8 A Eingangsstrom, und der hat zwei Pads. Faktor fünfzehn Reserve.
+
+Betroffen sind die **20 bedrahteten** Masse-Pads, die die Fläche direkt
+berühren: C1, C11, C12, J2, LED1–LED4, OS1, OS2, U1 (Pins 14/32/38),
+U2 (3×), U5 (2×), U6, U7.
+
+Die **16 SMD-Masse-Pads** auf der Oberseite (C2–C10, Q1, Q2, R3, R4, R7, R8,
+R17) berühren die Fläche gar nicht — sie hängen über eine kurze Leitung und
+eine Durchkontaktierung daran. Dort gibt es nichts zu entlasten, und die
+dünne Via-Hülse leitet ohnehin kaum Wärme ab.
 
 ---
 

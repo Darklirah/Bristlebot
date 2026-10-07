@@ -2,6 +2,29 @@
 
 Laufendes Protokoll. Neueste Einträge oben.
 
+## 2026-10-07 — Wärmefallen an der Massefläche
+
+Die Massefläche hing **fest** an den Pads (`connect_pads yes`, vom Router so
+gesetzt). Eine 70 × 52 mm große Kupferfläche zieht beim Handlöten die Wärme
+schneller ab, als ein Lötkolben sie nachliefert — das Ergebnis sind kalte
+Lötstellen, die beim Messen oft noch leitend wirken und erst bei Vibration
+ausfallen. Auf diesem Gerät also garantiert.
+
+Umgestellt auf **Wärmefallen**: Spalt 0,4 mm, vier Stege à 0,5 mm. Die
+vorhandenen Werte waren mit je 0,2 mm zu knapp und wurden ohnehin nicht
+benutzt.
+
+| | |
+|---|---|
+| Betroffen | die **20 bedrahteten** Masse-Pads, die die Fläche direkt berühren |
+| Nicht betroffen | die **16 SMD-Masse-Pads** auf der Oberseite — sie hängen über eine kurze Leitung und eine Durchkontaktierung an der Fläche, berühren sie also gar nicht |
+| Elektrisch | vier Stege à 0,5 mm auf 35 µm tragen zusammen rund 6 A. Größter Verbraucher ist der Step-Up mit knapp 0,8 A, und der hat zwei Pads — Faktor fünfzehn Reserve |
+| Geprüft | DRC 0 unverbundene Elemente, 0 Abstandsverstöße. Das B.Cu-Gerber wuchs um 38 KB, genau die zusätzliche Geometrie der Freistellungen |
+
+Fertigungsdaten neu erzeugt — das B.Cu-Gerber hat sich geändert.
+
+---
+
 ## 2026-10-07 — Siebdruck aufgeräumt, Fertigungsdaten erzeugt
 
 **Bestückungsdruck: von 96 Verstößen auf null**
