@@ -2,6 +2,56 @@
 
 Laufendes Protokoll. Neueste Einträge oben.
 
+## 2026-10-07 — Siebdruck aufgeräumt, Fertigungsdaten erzeugt
+
+**Bestückungsdruck: von 96 Verstößen auf null**
+
+| | vorher | nachher |
+|---|---|---|
+| `silk_overlap` | 60 | **0** |
+| `text_height` | 32 | **0** |
+| `silk_over_copper` | 4 | **0** |
+| `silk_edge_clearance` | 0 | **0** |
+
+Drei Eingriffe:
+
+1. **45 Wertefelder ausgeblendet.** Der Wert steht in der Stückliste; auf dem
+   Siebdruck kostet er nur Platz. Das Wertefeld von U1 lag auf dem Pad von C7.
+2. **Die 38 Pinnamen des DevKitC-Footprints auf F.Fab verschoben.** Sie stehen
+   auf 2,54 mm Raster, sind 0,7 mm hoch — unter der 0,8-mm-Regel — und jeder
+   Name ist länger als sein Rastermaß. Gedruckt gäbe das einen Schmierer, und
+   das aufgesteckte Modul deckt sie ohnehin zu; auf dem Modul selbst stehen
+   dieselben Namen lesbar drauf. Auf F.Fab bleiben sie in der
+   Bestückungszeichnung erhalten.
+3. **Alle 45 Referenzen** auf 0,8 mm gesetzt und neu platziert. Die Suche
+   probiert ein dichtes Raster um das Bauteil, nach Abstand sortiert, und
+   nimmt den nächstgelegenen Platz, der weder ein Pad noch eine andere
+   Siebdruckspur noch den Platinenrand berührt. Feste Ringe reichten nicht:
+   in den Ecken sprang ein 0,4-mm-Schritt über die letzte Lücke hinweg.
+
+**Drei Durchkontaktierungen vergrößert**, von 0,5/0,3 auf 0,7/0,4 — 0,1 mm
+Restring war die Untergrenze der günstigen Fertiger. Eine davon musste bei
+0,6/0,4 bleiben, sonst kam sie einer Signalleitung auf 0,175 mm nahe.
+
+**Fertigungsdaten unter [`Fertigung/`](Fertigung/README.md)**
+
+Gerber (9 Lagen), beide Bohrdateien mit Bohrplänen, Stückliste,
+Bestückungsdaten, Pastenschablone (nur Oberseite, 44 Öffnungen auf 21
+Bauteile — unten sitzt kein SMD) und das STEP-Modell der nackten Platine.
+Erzeugt von [`erzeuge_fertigungsdaten.sh`](Fertigung/erzeuge_fertigungsdaten.sh),
+damit es nach jeder Platinenänderung wiederholbar ist.
+
+Das vollständige STEP **mit** Bauteilen (23 MB) bleibt lokal unter
+`local_Step Files/` — es enthält Fremdmodelle aus den KiCad- und
+Espressif-Bibliotheken.
+
+**Offen: die Oberfläche.** HASL oder ENIG ist noch nicht entschieden. Bei 21
+SMD-Bauteilen über eine Pastenschablone spricht einiges für ENIG, weil HASL
+eine ungleichmäßige Lotbeule auf jedem Pad hinterlässt und die Schablone
+darauf kippelt.
+
+---
+
 ## 2026-10-07 — U5 blockierte den USB; Routingwerkzeug dauerhaft eingerichtet
 
 **Gemacht**

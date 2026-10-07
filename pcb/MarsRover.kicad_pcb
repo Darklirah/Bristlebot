@@ -97,7 +97,7 @@
 		(descr "ESP32-DevKitC: https://docs.espressif.com/projects/esp-idf/en/latest/esp32/hw-reference/esp32/get-started-devkitc.html")
 		(tags "ESP32")
 		(property "Reference" "U1"
-			(at 12.7 -2.1 0)
+			(at 1.6 0.4 0)
 			(layer "F.SilkS")
 			(uuid "ee169857-fd3d-4d1d-90bc-91c106bf8c5b")
 			(effects
@@ -110,6 +110,7 @@
 		(property "Value" "ESP32-DevKitC V4"
 			(at 12.7 24.13 90)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "42e7d426-ed62-4d1c-95b3-16d576b003b9")
 			(effects
 				(font
@@ -305,10 +306,21 @@
 			(layer "F.Fab")
 			(uuid "16e4a128-241e-461a-abbd-7812521d9044")
 		)
+		(fp_text user "REF**"
+			(at -0.00368 -0.00272 0)
+			(layer "F.Fab")
+			(uuid "932254b0-e63c-4bd6-9c7b-f53bd522b5fd")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(fp_text user "GND"
 			(at 24.13 0 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "c4dc82b0-e947-4787-9d0a-febbd3267d21")
 			(effects
 				(font
@@ -321,7 +333,7 @@
 		(fp_text user "3V3"
 			(at 1.27 0 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "5b44d331-2b6e-4269-964d-04ef280de6bb")
 			(effects
 				(font
@@ -334,7 +346,7 @@
 		(fp_text user "EN/RESET"
 			(at 8.88632 2.53728 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "f0c91fab-0e46-431d-9b6e-fe8be1714a3c")
 			(effects
 				(font
@@ -347,7 +359,7 @@
 		(fp_text user "GPIO23"
 			(at 24.13 2.54 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "9c19a9aa-d33e-4153-90e7-751090cc6253")
 			(effects
 				(font
@@ -360,7 +372,7 @@
 		(fp_text user "GPIO22"
 			(at 24.13 5.08 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "d143b24e-2d04-44f0-b200-41d132dd7871")
 			(effects
 				(font
@@ -373,7 +385,7 @@
 		(fp_text user "VP/GPIO36"
 			(at 1.27 5.08 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "f5a583d9-139c-4475-aaf6-96d41348d06e")
 			(effects
 				(font
@@ -386,7 +398,7 @@
 		(fp_text user "GPIO1/U0TXD"
 			(at 24.13 7.62 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "df7b71e6-26aa-4e77-9390-c53f31df71a5")
 			(effects
 				(font
@@ -399,7 +411,7 @@
 		(fp_text user "VN/GPIO39"
 			(at 1.27 7.62 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "5d68ab26-501b-4196-a29c-7a15fd66a093")
 			(effects
 				(font
@@ -412,7 +424,7 @@
 		(fp_text user "GPIO3/U0RXD"
 			(at 24.13 10.16 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "086efaa5-618b-406f-af5c-6b16bee8837e")
 			(effects
 				(font
@@ -425,7 +437,7 @@
 		(fp_text user "GPIO34"
 			(at 1.27 10.16 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "4b406e03-535d-43f8-a1fc-60b234812795")
 			(effects
 				(font
@@ -438,7 +450,7 @@
 		(fp_text user "GPIO21"
 			(at 24.13 12.7 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "6ec39642-872b-4725-bfff-97c8805b4a97")
 			(effects
 				(font
@@ -451,7 +463,7 @@
 		(fp_text user "GPIO35"
 			(at 1.27 12.7 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "30396c19-9441-466a-b72a-560ddf2ecbf4")
 			(effects
 				(font
@@ -464,7 +476,7 @@
 		(fp_text user "GND"
 			(at 24.13 15.24 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "ccde6cec-0e34-47bc-a631-106f3b5babfb")
 			(effects
 				(font
@@ -477,7 +489,7 @@
 		(fp_text user "GPIO32"
 			(at 1.27 15.24 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "d5dbb470-1ae1-405d-a904-e13e54bc0b0d")
 			(effects
 				(font
@@ -490,7 +502,7 @@
 		(fp_text user "GPIO19"
 			(at 24.13 17.78 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "1e79d14a-b775-4751-b8f3-1f7d2eff8aa9")
 			(effects
 				(font
@@ -503,7 +515,7 @@
 		(fp_text user "GPIO33"
 			(at 1.27 17.78 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "c0caf79c-7b46-4cf8-b294-49a90dd9c322")
 			(effects
 				(font
@@ -516,7 +528,7 @@
 		(fp_text user "GPIO18"
 			(at 24.13 20.32 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "c9910be3-9c36-4fa1-b48f-c71c8510fea0")
 			(effects
 				(font
@@ -529,7 +541,7 @@
 		(fp_text user "GPIO25"
 			(at 1.27 20.32 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "cb0081ee-a29f-4a8f-afd5-0e5df0287cf4")
 			(effects
 				(font
@@ -542,7 +554,7 @@
 		(fp_text user "GPIO5"
 			(at 24.13 22.86 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "69776b85-d7a6-4cda-a293-8470682d5592")
 			(effects
 				(font
@@ -555,7 +567,7 @@
 		(fp_text user "GPIO26"
 			(at 1.27 22.86 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "52535189-f90a-4d92-847e-a2b6c6abad7e")
 			(effects
 				(font
@@ -568,7 +580,7 @@
 		(fp_text user "GPIO17"
 			(at 24.13 25.4 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "ab8967ba-dfda-436b-af78-68a902d71653")
 			(effects
 				(font
@@ -581,7 +593,7 @@
 		(fp_text user "GPIO27"
 			(at 1.27 25.4 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "f8c8a45b-894c-4159-a6e5-eaaee244cbe8")
 			(effects
 				(font
@@ -594,7 +606,7 @@
 		(fp_text user "GPIO16"
 			(at 24.13 27.94 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "02955868-9472-4796-83ab-723da9d1c8f2")
 			(effects
 				(font
@@ -607,7 +619,7 @@
 		(fp_text user "GPIO14/MTMS"
 			(at 1.27 27.94 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "b1e74541-37fb-44c7-9ccd-6d5fc01215df")
 			(effects
 				(font
@@ -620,7 +632,7 @@
 		(fp_text user "GPIO4"
 			(at 24.13 30.48 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "3426be2e-e6d2-422b-bb83-9c01ec0b8680")
 			(effects
 				(font
@@ -633,7 +645,7 @@
 		(fp_text user "GPIO12/MTDI"
 			(at 1.27 30.48 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "0e9e011d-403f-4446-89d3-65b4ecd3a6ca")
 			(effects
 				(font
@@ -646,7 +658,7 @@
 		(fp_text user "GPIO0"
 			(at 24.13 33.02 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "a7e7ffdf-6ac4-4530-97f6-045eaf1c041a")
 			(effects
 				(font
@@ -659,7 +671,7 @@
 		(fp_text user "GND"
 			(at 1.27 33.02 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "5fe8c69d-671a-4865-b7bd-9210bbf6faa5")
 			(effects
 				(font
@@ -672,7 +684,7 @@
 		(fp_text user "GPIO2"
 			(at 24.13 35.56 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "014edb4b-0708-42ea-a33c-058039b007aa")
 			(effects
 				(font
@@ -685,7 +697,7 @@
 		(fp_text user "GPIO13/MTCK"
 			(at 1.27 35.56 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "31da6f32-6305-424d-8dab-fc6ca981d75e")
 			(effects
 				(font
@@ -698,7 +710,7 @@
 		(fp_text user "GPIO15/MTDO"
 			(at 24.13 38.1 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "fc9dd60b-5d88-4303-9193-8ea7d4ab6f99")
 			(effects
 				(font
@@ -711,7 +723,7 @@
 		(fp_text user "D2"
 			(at 1.27 38.1 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "aea1077a-4de1-4199-933f-6d90e9af296e")
 			(effects
 				(font
@@ -724,7 +736,7 @@
 		(fp_text user "D1"
 			(at 24.13 40.64 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "0b2f5433-1b30-47fb-9790-db6c2291059e")
 			(effects
 				(font
@@ -737,7 +749,7 @@
 		(fp_text user "D3"
 			(at 1.27 40.64 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "5bfc9fab-d1d4-4a76-bfbe-5b3f7105f6a5")
 			(effects
 				(font
@@ -750,7 +762,7 @@
 		(fp_text user "D0"
 			(at 24.13 43.18 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "5011b892-94c6-4d3b-922f-6dee58bba5f2")
 			(effects
 				(font
@@ -763,7 +775,7 @@
 		(fp_text user "CMD"
 			(at 1.27 43.18 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "7481ee2e-1bac-4e40-86dd-0eeacad1a206")
 			(effects
 				(font
@@ -776,7 +788,7 @@
 		(fp_text user "CLK"
 			(at 24.13 45.72 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "2df79b15-b17c-4458-a0db-50b1ddd7b1f1")
 			(effects
 				(font
@@ -789,7 +801,7 @@
 		(fp_text user "5V"
 			(at 1.26632 45.97128 0)
 			(unlocked yes)
-			(layer "F.SilkS")
+			(layer "F.Fab")
 			(uuid "44412e38-fd86-497f-bcee-e918b20c56ab")
 			(effects
 				(font
@@ -797,17 +809,6 @@
 					(thickness 0.15)
 				)
 				(justify left)
-			)
-		)
-		(fp_text user "REF**"
-			(at -0.00368 -0.00272 0)
-			(layer "F.Fab")
-			(uuid "932254b0-e63c-4bd6-9c7b-f53bd522b5fd")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
 			)
 		)
 		(pad "1" thru_hole rect
@@ -1248,7 +1249,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor handsolder")
 		(property "Reference" "R5"
-			(at 0 -1.65 0)
+			(at 0 1.8 0)
 			(layer "F.SilkS")
 			(uuid "7b96944b-a072-48fb-b224-c82f715ba79a")
 			(effects
@@ -1261,6 +1262,7 @@
 		(property "Value" "150R"
 			(at 0 1.65 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "e7917276-3fe6-4cea-a6b5-cc6bfb520543")
 			(effects
 				(font
@@ -1406,7 +1408,7 @@
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=7.62mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 7.62mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
 		(property "Reference" "R11"
-			(at 3.81 -2.37 0)
+			(at 0 -2.6 0)
 			(layer "F.SilkS")
 			(uuid "27c00372-86f0-4346-b041-2763d4b482b6")
 			(effects
@@ -1419,6 +1421,7 @@
 		(property "Value" "220R"
 			(at 3.81 2.37 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "0cfae621-2911-40ca-970b-5d0400d2d7b3")
 			(effects
 				(font
@@ -1626,7 +1629,7 @@
 		(descr "LED, diameter 3.0mm, 2 pins, generated by kicad-footprint-generator")
 		(tags "LED")
 		(property "Reference" "LED1"
-			(at 1.27 3 0)
+			(at 0 3.2 0)
 			(layer "F.SilkS")
 			(uuid "eed91973-9b89-4b1d-99df-1251ea3214c7")
 			(effects
@@ -1639,6 +1642,7 @@
 		(property "Value" "gelb - vorne links"
 			(at 1.27 2.96 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "adddef20-c964-4bef-82a0-ba7422a933a1")
 			(effects
 				(font
@@ -1859,7 +1863,7 @@
 		(descr "SOT, 3 Pin (JEDEC TO-236 Var AB https://www.jedec.org/document_search?search_api_views_fulltext=TO-236)")
 		(tags "SOT TO_SOT_SMD")
 		(property "Reference" "Q1"
-			(at 0 -2.4 0)
+			(at 0 -2.8 0)
 			(layer "F.SilkS")
 			(uuid "0c9cae0b-3e91-4e71-b897-6cdb7ea6a2db")
 			(effects
@@ -1872,6 +1876,7 @@
 		(property "Value" "AO3400A"
 			(at 0 2.4 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "a15fdf36-03b2-476a-8418-a336d3432973")
 			(effects
 				(font
@@ -2240,7 +2245,7 @@
 		(descr "LED, diameter 3.0mm, 2 pins, generated by kicad-footprint-generator")
 		(tags "LED")
 		(property "Reference" "LED3"
-			(at 1.27 -2.96 0)
+			(at 0 -3.2 0)
 			(layer "F.SilkS")
 			(uuid "70ea1324-31ed-43cb-8ecc-677377d9c5ca")
 			(effects
@@ -2253,6 +2258,7 @@
 		(property "Value" "rot - hinten links"
 			(at 1.27 2.96 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "4f6ccf0a-ce13-4076-894e-163abd1bbc12")
 			(effects
 				(font
@@ -2473,7 +2479,7 @@
 		(descr "SOT, 3 Pin (JEDEC TO-236 Var AB https://www.jedec.org/document_search?search_api_views_fulltext=TO-236)")
 		(tags "SOT TO_SOT_SMD")
 		(property "Reference" "Q2"
-			(at 0 -2.4 0)
+			(at 0 -2.8 0)
 			(layer "F.SilkS")
 			(uuid "82440335-c79c-4c6a-aefc-05fdbc002859")
 			(effects
@@ -2486,6 +2492,7 @@
 		(property "Value" "AO3400A"
 			(at 0 2.4 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "a077d1f0-75cb-48cb-8b66-f4b7bca0878c")
 			(effects
 				(font
@@ -2854,7 +2861,7 @@
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=7.62mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 7.62mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
 		(property "Reference" "R10"
-			(at 3.81 3 0)
+			(at 2.6 0 0)
 			(layer "F.SilkS")
 			(uuid "5de41e95-aaf4-40cc-bcf2-12cf1e8dd166")
 			(effects
@@ -2867,6 +2874,7 @@
 		(property "Value" "220R"
 			(at 3.81 2.37 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "68a0a4c0-b6d7-4562-8625-eade32030263")
 			(effects
 				(font
@@ -3074,7 +3082,7 @@
 		(descr "Through hole straight pin header, 1x04, 2.54mm pitch, single row")
 		(tags "Through hole pin header THT 1x04 2.54mm single row")
 		(property "Reference" "U7"
-			(at 2.5 4.31 0)
+			(at 2.6 0 0)
 			(layer "F.SilkS")
 			(uuid "10015afe-702b-4c5e-96c2-8b3e7eb15eee")
 			(effects
@@ -3087,6 +3095,7 @@
 		(property "Value" "GY-530 VL53L0X"
 			(at 0 10 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "f60f8c80-0dd8-4c71-8029-cd4e3adeca62")
 			(effects
 				(font
@@ -3331,7 +3340,7 @@
 		(descr "Through hole straight pin header, 1x02, 2.54mm pitch, single row")
 		(tags "Through hole pin header THT 1x02 2.54mm single row")
 		(property "Reference" "M2"
-			(at -3 1.27 0)
+			(at -2.6 0 0)
 			(layer "F.SilkS")
 			(uuid "08baa9bc-c348-4a40-8f07-2de42cf47783")
 			(effects
@@ -3344,6 +3353,7 @@
 		(property "Value" "Vibrationsmotor rechts"
 			(at 0 4.92 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "5f4c32cc-080a-4148-9514-7af82babc46e")
 			(effects
 				(font
@@ -3585,7 +3595,7 @@
 		(descr "CuK miniature slide switch, OS series, SPDT, https://www.ckswitches.com/media/1428/os.pdf")
 		(tags "switch SPDT")
 		(property "Reference" "S1"
-			(at 3.99 -2.99 0)
+			(at -1.8 -3.4 0)
 			(layer "F.SilkS")
 			(uuid "f6aa5d07-f88b-4c52-96ce-3481e7833e8c")
 			(effects
@@ -3598,6 +3608,7 @@
 		(property "Value" "Schiebeschalter"
 			(at 2 3 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "63923420-6367-42b7-8e46-56b26d74d4aa")
 			(effects
 				(font
@@ -3993,7 +4004,7 @@
 		(descr "CP, Radial series, Radial, pin pitch=2.00mm, diameter=5mm, height=7mm, Electrolytic Capacitor")
 		(tags "CP Radial series Radial pin pitch 2.00mm diameter 5mm height 7mm Electrolytic Capacitor")
 		(property "Reference" "C11"
-			(at 1 -3.75 0)
+			(at -3.6 0 0)
 			(layer "F.SilkS")
 			(uuid "737ad2ed-3494-433a-8e8a-a30c5072b998")
 			(effects
@@ -4006,6 +4017,7 @@
 		(property "Value" "47u/10V"
 			(at 1 3.75 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "4b68443c-3557-4040-a56d-71afcc0b6807")
 			(effects
 				(font
@@ -5355,7 +5367,7 @@
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing)")
 		(tags "capacitor")
 		(property "Reference" "C5"
-			(at 0 -1.68 0)
+			(at 0 -1.8 0)
 			(layer "F.SilkS")
 			(uuid "399ff533-39b3-4171-8e33-f57c93a858f8")
 			(effects
@@ -5368,6 +5380,7 @@
 		(property "Value" "100n"
 			(at 0 1.68 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "75207d8f-089e-46ac-adb9-68d121ec41cd")
 			(effects
 				(font
@@ -5513,7 +5526,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor handsolder")
 		(property "Reference" "R8"
-			(at 0 -1.65 0)
+			(at 0 -1.8 0)
 			(layer "F.SilkS")
 			(uuid "aaffad0a-52ff-4f80-b976-c08659bb8990")
 			(effects
@@ -5526,6 +5539,7 @@
 		(property "Value" "10k"
 			(at 0 1.65 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "7a689ffb-019b-42a4-96d6-472128834f02")
 			(effects
 				(font
@@ -5671,7 +5685,7 @@
 		(descr "Through hole straight pin header, 1x02, 2.54mm pitch, single row")
 		(tags "Through hole pin header THT 1x02 2.54mm single row")
 		(property "Reference" "M1"
-			(at -3 1.27 0)
+			(at -2.6 0 0)
 			(layer "F.SilkS")
 			(uuid "31f8e7f6-2e67-42d7-827f-77911b0d3f11")
 			(effects
@@ -5684,6 +5698,7 @@
 		(property "Value" "Vibrationsmotor links"
 			(at 0 4.92 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "7b6a1cd8-3b7d-4650-bd11-412c82c2ef11")
 			(effects
 				(font
@@ -5925,7 +5940,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor handsolder")
 		(property "Reference" "R1"
-			(at 0 -1.65 0)
+			(at 0 -1.8 0)
 			(layer "F.SilkS")
 			(uuid "ef72bf54-f532-4611-aa84-f99e26807d43")
 			(effects
@@ -5938,6 +5953,7 @@
 		(property "Value" "100R"
 			(at 0 1.65 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "f29ffb3d-22b9-43c9-81f5-6c257d0bd806")
 			(effects
 				(font
@@ -6083,7 +6099,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor handsolder")
 		(property "Reference" "R4"
-			(at 0 -1.65 0)
+			(at 0 -1.8 0)
 			(layer "F.SilkS")
 			(uuid "1dbce1c6-b85f-494a-beae-7d975b5b27ea")
 			(effects
@@ -6096,6 +6112,7 @@
 		(property "Value" "100k"
 			(at 0 1.65 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "5ede1f10-4667-44df-83fd-57382d28ccee")
 			(effects
 				(font
@@ -6241,7 +6258,7 @@
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing)")
 		(tags "capacitor")
 		(property "Reference" "C6"
-			(at 0 -1.68 0)
+			(at 0 -1.8 0)
 			(layer "F.SilkS")
 			(uuid "e7945314-06f2-4a4e-ac0d-13c7d1a09e21")
 			(effects
@@ -6254,6 +6271,7 @@
 		(property "Value" "10u/25V"
 			(at 0 1.68 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "2a660336-c583-462a-92dc-215541bebb6a")
 			(effects
 				(font
@@ -6399,7 +6417,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor handsolder")
 		(property "Reference" "R17"
-			(at 0 -1.65 90)
+			(at 0 1.8 90)
 			(layer "F.SilkS")
 			(uuid "e236ad09-9f5e-4fed-9610-5926a7ef29e5")
 			(effects
@@ -6412,6 +6430,7 @@
 		(property "Value" "100k"
 			(at 0 1.65 90)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "1c5675f1-1fe1-4df1-a628-3f50017b0758")
 			(effects
 				(font
@@ -6557,7 +6576,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor handsolder")
 		(property "Reference" "R3"
-			(at 0 -1.65 0)
+			(at 0 -1.8 0)
 			(layer "F.SilkS")
 			(uuid "bf7d6a7b-de9f-49ca-b717-72f7b3ea244f")
 			(effects
@@ -6570,6 +6589,7 @@
 		(property "Value" "100k"
 			(at 0 1.65 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "cda86941-9f79-4863-ba9b-bff8c7015551")
 			(effects
 				(font
@@ -6715,7 +6735,7 @@
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing)")
 		(tags "capacitor")
 		(property "Reference" "C3"
-			(at 0 -1.68 0)
+			(at 0 -1.8 0)
 			(layer "F.SilkS")
 			(uuid "437015e7-2318-42b5-8664-59d5b3ef250a")
 			(effects
@@ -6728,6 +6748,7 @@
 		(property "Value" "100n"
 			(at 0 1.68 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "25eda046-898d-443c-a569-50ae9041ce2d")
 			(effects
 				(font
@@ -6873,7 +6894,7 @@
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing)")
 		(tags "capacitor")
 		(property "Reference" "C10"
-			(at 0 -1.68 0)
+			(at 0 -1.8 0)
 			(layer "F.SilkS")
 			(uuid "6b35dfb0-8b02-498b-8201-1852a12bb83a")
 			(effects
@@ -6886,6 +6907,7 @@
 		(property "Value" "100n"
 			(at 0 1.68 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "ded05be0-22ed-4ec0-a1f6-12258b4dee10")
 			(effects
 				(font
@@ -7031,7 +7053,7 @@
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing)")
 		(tags "capacitor")
 		(property "Reference" "C2"
-			(at 0 -1.68 0)
+			(at 0 -1.8 0)
 			(layer "F.SilkS")
 			(uuid "3e8d1f07-2f7a-4e66-8ee0-4eb4b7029685")
 			(effects
@@ -7044,6 +7066,7 @@
 		(property "Value" "10u/25V"
 			(at 0 1.68 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "3b41d782-cedb-4b16-ab71-8bbbd7fd47dd")
 			(effects
 				(font
@@ -7189,7 +7212,7 @@
 		(descr "Diode, DO-41_SOD81 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=5.2*2.7mm^2, https://www.diodes.com/assets/Package-Files/DO-41-Plastic.pdf")
 		(tags "Diode DO-41_SOD81 series Axial Horizontal pin pitch 7.62mm  length 5.2mm diameter 2.7mm")
 		(property "Reference" "D1"
-			(at 3.81 -2.47 0)
+			(at -0.4 2.2 0)
 			(layer "F.SilkS")
 			(uuid "564b9bc9-8853-41b1-aace-250bb423b9d1")
 			(effects
@@ -7202,6 +7225,7 @@
 		(property "Value" "1N5819"
 			(at 3.81 2.47 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "6a33ba7e-d882-4678-96ea-dd5d4725c970")
 			(effects
 				(font
@@ -7494,7 +7518,7 @@
 		(descr "Diode, DO-41_SOD81 series, Axial, Horizontal, pin pitch=7.62mm, length*diameter=5.2*2.7mm^2, https://www.diodes.com/assets/Package-Files/DO-41-Plastic.pdf")
 		(tags "Diode DO-41_SOD81 series Axial Horizontal pin pitch 7.62mm  length 5.2mm diameter 2.7mm")
 		(property "Reference" "D2"
-			(at 3.81 -2.47 0)
+			(at -0.4 2.2 0)
 			(layer "F.SilkS")
 			(uuid "845b5faa-075b-4b85-a135-52e8012e4c0d")
 			(effects
@@ -7507,6 +7531,7 @@
 		(property "Value" "1N5819"
 			(at 3.81 2.47 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "c047a3a8-a4c8-410d-9453-b0db08548826")
 			(effects
 				(font
@@ -7799,7 +7824,7 @@
 		(descr "CP, Radial series, Radial, pin pitch=2.50mm, diameter=6.3mm, height=7mm, Electrolytic Capacitor")
 		(tags "CP Radial series Radial pin pitch 2.50mm diameter 6.3mm height 7mm Electrolytic Capacitor")
 		(property "Reference" "C1"
-			(at 1.25 -4.4 0)
+			(at -3.4 0 0)
 			(layer "F.SilkS")
 			(uuid "54196e8f-e151-4976-a8b9-4f454b98426b")
 			(effects
@@ -7812,6 +7837,7 @@
 		(property "Value" "100u/10V"
 			(at 1.25 4.4 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "2e402d3a-9a89-4e41-ba90-f78012fc58cc")
 			(effects
 				(font
@@ -9331,7 +9357,7 @@
 		(descr "LED, diameter 3.0mm, 2 pins, generated by kicad-footprint-generator")
 		(tags "LED")
 		(property "Reference" "LED4"
-			(at 1.27 -2.96 0)
+			(at -1.8 -3.2 0)
 			(layer "F.SilkS")
 			(uuid "ebd96555-79b9-4887-b3b0-fb4dcbcdf65d")
 			(effects
@@ -9344,6 +9370,7 @@
 		(property "Value" "rot - hinten rechts"
 			(at 1.27 2.96 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "cfa56ca2-1ca3-490f-a685-2fed069c9fc6")
 			(effects
 				(font
@@ -9564,7 +9591,7 @@
 		(descr "Through hole straight pin header, 1x04, 2.54mm pitch, single row")
 		(tags "Through hole pin header THT 1x04 2.54mm single row")
 		(property "Reference" "U6"
-			(at 2.5 3.31 0)
+			(at 2 -0.2 0)
 			(layer "F.SilkS")
 			(uuid "630ddab8-352d-4624-a1f3-2ed968b565ae")
 			(effects
@@ -9577,6 +9604,7 @@
 		(property "Value" "GY-521 MPU-6050"
 			(at 0 10 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "7b20fada-2d8a-4d02-8d0d-ff1018635e37")
 			(effects
 				(font
@@ -9827,7 +9855,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor handsolder")
 		(property "Reference" "R7"
-			(at 0 -1.65 0)
+			(at 0 1.8 0)
 			(layer "F.SilkS")
 			(uuid "fd54ac72-062a-4dd2-9abb-f448f464f9f9")
 			(effects
@@ -9840,6 +9868,7 @@
 		(property "Value" "10k"
 			(at 0 1.65 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "d394fb78-8c00-4f77-a7ef-7435ea8d0998")
 			(effects
 				(font
@@ -9985,7 +10014,7 @@
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing)")
 		(tags "capacitor")
 		(property "Reference" "C4"
-			(at 0 -1.68 0)
+			(at 0 -1.8 0)
 			(layer "F.SilkS")
 			(uuid "f2d0a4a4-55e8-444c-bc13-ba2d0db87c1f")
 			(effects
@@ -9998,6 +10027,7 @@
 		(property "Value" "100n"
 			(at 0 1.68 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "55db3438-0661-4186-8c8d-ac216cb0d728")
 			(effects
 				(font
@@ -10143,7 +10173,7 @@
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing)")
 		(tags "capacitor")
 		(property "Reference" "C7"
-			(at 0 -1.68 0)
+			(at 0 -1.8 0)
 			(layer "F.SilkS")
 			(uuid "60e2afaa-fda0-4496-af39-1617067ca001")
 			(effects
@@ -10156,6 +10186,7 @@
 		(property "Value" "100n"
 			(at 0 1.68 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "02f879cc-30b0-453a-a9ae-629cad805322")
 			(effects
 				(font
@@ -10301,7 +10332,7 @@
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing)")
 		(tags "capacitor")
 		(property "Reference" "C8"
-			(at 0 -1.68 0)
+			(at 0 -1.8 0)
 			(layer "F.SilkS")
 			(uuid "fd070f1d-89b4-48bd-bef1-29d8e60c6a90")
 			(effects
@@ -10314,6 +10345,7 @@
 		(property "Value" "100n"
 			(at 0 1.68 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "3ae2a089-5a10-49af-8e1a-6f6d010e2455")
 			(effects
 				(font
@@ -10459,7 +10491,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor handsolder")
 		(property "Reference" "R16"
-			(at 0 -1.65 90)
+			(at 0 -1.8 90)
 			(layer "F.SilkS")
 			(uuid "f8f32cc7-5021-4015-8aa9-a116f6656c5c")
 			(effects
@@ -10472,6 +10504,7 @@
 		(property "Value" "100k"
 			(at 0 1.65 90)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "34b4d90f-fa1b-4663-833a-5d661d6c8f10")
 			(effects
 				(font
@@ -10617,7 +10650,7 @@
 		(descr "Through hole straight pin header, 1x06, 2.54mm pitch, single row")
 		(tags "Through hole pin header THT 1x06 2.54mm single row")
 		(property "Reference" "U2"
-			(at 0 -2.38 0)
+			(at 0 -2.6 0)
 			(layer "F.SilkS")
 			(uuid "28221f9b-e4ce-435e-ac54-a9d5a7c6097e")
 			(effects
@@ -10630,6 +10663,7 @@
 		(property "Value" "TP4056-Modul"
 			(at 0 15.08 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "3c1be9d8-a416-4fdd-9051-67f890d4c0b3")
 			(effects
 				(font
@@ -10902,7 +10936,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor handsolder")
 		(property "Reference" "R6"
-			(at 0 -1.65 0)
+			(at 2 -1.8 0)
 			(layer "F.SilkS")
 			(uuid "86df9c54-b017-4e77-aee5-2c414606930e")
 			(effects
@@ -10915,6 +10949,7 @@
 		(property "Value" "150R"
 			(at 0 1.65 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "9de1798e-1f53-4b2a-85d9-8a04de299f09")
 			(effects
 				(font
@@ -11060,7 +11095,7 @@
 		(descr "Capacitor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf, https://docs.google.com/spreadsheets/d/1BsfQQcO9C6DZCsRaXUlFlo91Tg2WpOkGARC1WS5S8t0/edit?usp=sharing)")
 		(tags "capacitor")
 		(property "Reference" "C9"
-			(at 0 -1.68 0)
+			(at 0 -1.8 0)
 			(layer "F.SilkS")
 			(uuid "3dbd8d31-e9ef-4fde-9f1d-d4c0c7f7a51a")
 			(effects
@@ -11073,6 +11108,7 @@
 		(property "Value" "100n"
 			(at 0 1.68 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "2e829ec1-3b0d-415c-bac4-262fd183bead")
 			(effects
 				(font
@@ -11218,7 +11254,7 @@
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=7.62mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 7.62mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
 		(property "Reference" "R12"
-			(at 3.81 -2.37 0)
+			(at 0 -2.6 0)
 			(layer "F.SilkS")
 			(uuid "db7f481a-0b50-4332-b36b-e18a7a837751")
 			(effects
@@ -11231,6 +11267,7 @@
 		(property "Value" "220R"
 			(at 3.81 2.37 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "d08c0c71-8218-439c-bd97-f029b0b48336")
 			(effects
 				(font
@@ -11438,7 +11475,7 @@
 		(descr "Resistor, Axial_DIN0207 series, Axial, Horizontal, pin pitch=7.62mm, 0.25W = 1/4W, length*diameter=6.3*2.5mm^2, http://cdn-reichelt.de/documents/datenblatt/B400/1_4W%23YAG.pdf")
 		(tags "Resistor Axial_DIN0207 series Axial Horizontal pin pitch 7.62mm 0.25W = 1/4W length 6.3mm diameter 2.5mm")
 		(property "Reference" "R9"
-			(at 3.81 2.5 0)
+			(at 2.2 0 0)
 			(layer "F.SilkS")
 			(uuid "9ef99640-1e4e-41c0-9eaf-017271a5ed22")
 			(effects
@@ -11451,6 +11488,7 @@
 		(property "Value" "220R"
 			(at 3.81 2.37 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "9feacb01-11d9-47de-b5b9-205a2570e74b")
 			(effects
 				(font
@@ -11658,7 +11696,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC-7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor handsolder")
 		(property "Reference" "R2"
-			(at 0 -1.65 0)
+			(at 0 -1.8 0)
 			(layer "F.SilkS")
 			(uuid "6dcbf18f-5833-429e-a036-1ec5732fa33b")
 			(effects
@@ -11671,6 +11709,7 @@
 		(property "Value" "100R"
 			(at 0 1.65 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "59e16290-40c1-463f-8638-9f8a99cf5a1d")
 			(effects
 				(font
@@ -11816,7 +11855,7 @@
 		(descr "CP, Radial series, Radial, pin pitch=2.00mm, diameter=5mm, height=7mm, Electrolytic Capacitor")
 		(tags "CP Radial series Radial pin pitch 2.00mm diameter 5mm height 7mm Electrolytic Capacitor")
 		(property "Reference" "C12"
-			(at 1 -3.75 0)
+			(at -3.6 0.8 0)
 			(layer "F.SilkS")
 			(uuid "c8b07d90-a7cc-4f2f-9c61-c1afcab5a7a6")
 			(effects
@@ -11829,6 +11868,7 @@
 		(property "Value" "47u/10V"
 			(at 1 3.75 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "21c1c900-8552-42fb-9f32-ae9c2b841ca5")
 			(effects
 				(font
@@ -13178,7 +13218,7 @@
 		(descr "Through hole straight pin header, 1x04, 2.54mm pitch, single row")
 		(tags "Through hole pin header THT 1x04 2.54mm single row")
 		(property "Reference" "U5"
-			(at 0 -2.38 0)
+			(at 1.4 -2 0)
 			(layer "F.SilkS")
 			(uuid "0b0c30c2-a7fb-4886-9382-c32e610c09c8")
 			(effects
@@ -13191,6 +13231,7 @@
 		(property "Value" "MT3608 auf 5,00V"
 			(at 0 10 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "8c6e7a48-6848-4060-a3d8-55ffa96ccdc1")
 			(effects
 				(font
@@ -13441,7 +13482,7 @@
 		(descr "LED, diameter 3.0mm, 2 pins, generated by kicad-footprint-generator")
 		(tags "LED")
 		(property "Reference" "LED2"
-			(at 1.27 3 0)
+			(at 0 3.2 0)
 			(layer "F.SilkS")
 			(uuid "ff7b18d8-1576-4499-a52a-e41c914f3f3e")
 			(effects
@@ -13454,6 +13495,7 @@
 		(property "Value" "gelb - vorne rechts"
 			(at 1.27 2.96 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "7f77e30d-b34d-49a3-813f-bf89e54b41ca")
 			(effects
 				(font
@@ -13674,7 +13716,7 @@
 		(descr "IR Reflective Optical Sensor with Transistor Output TCRT5000 https://www.vishay.com/docs/83760/tcrt5000.pdf")
 		(tags "IR Reflective Optical Sensor with Transistor Output TCRT5000 Vishay Distance Sensor")
 		(property "Reference" "OS1"
-			(at -4.5 -0.96 0)
+			(at -0.4 2 0)
 			(layer "F.SilkS")
 			(uuid "3392fc4d-3067-45ab-acaf-38ea802c97c5")
 			(effects
@@ -13688,6 +13730,7 @@
 			(at 2.75 5.37 0)
 			(unlocked yes)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "78dacbf6-41b9-4f00-9402-675979bc1d85")
 			(effects
 				(font
@@ -14044,7 +14087,7 @@
 		(descr "IR Reflective Optical Sensor with Transistor Output TCRT5000 https://www.vishay.com/docs/83760/tcrt5000.pdf")
 		(tags "IR Reflective Optical Sensor with Transistor Output TCRT5000 Vishay Distance Sensor")
 		(property "Reference" "OS2"
-			(at -4.5 -0.87 0)
+			(at -2.8 0 0)
 			(layer "F.SilkS")
 			(uuid "638f7a19-68bd-49bd-9574-a497e11b2fda")
 			(effects
@@ -14058,6 +14101,7 @@
 			(at 2.75 5.37 180)
 			(unlocked yes)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "d29b4d25-b30c-43ba-8e65-cf3ec28203bb")
 			(effects
 				(font
@@ -14414,7 +14458,7 @@
 		(descr "JST PH series connector, S2B-PH-K (http://www.jst-mfg.com/product/pdf/eng/ePH.pdf)")
 		(tags "connector JST PH horizontal")
 		(property "Reference" "J2"
-			(at 1 2.55 0)
+			(at 0.4 2 0)
 			(layer "B.SilkS")
 			(uuid "c27b8480-8658-4ba4-8f71-0774540868c6")
 			(effects
@@ -14428,6 +14472,7 @@
 		(property "Value" "JST-PH 2,0"
 			(at 1 -7.45 0)
 			(layer "B.Fab")
+			(hide yes)
 			(uuid "8ff4467e-962f-4db0-bc97-9bcd505c9ec8")
 			(effects
 				(font
@@ -17180,8 +17225,8 @@
 	)
 	(via
 		(at 137.9 75.9)
-		(size 0.5)
-		(drill 0.3)
+		(size 0.7)
+		(drill 0.4)
 		(layers "F.Cu" "B.Cu")
 		(net "GND")
 		(uuid "4936fe4c-1d74-49bd-aad2-e72c67b3d64b")
@@ -17212,16 +17257,16 @@
 	)
 	(via
 		(at 144.3 77.5)
-		(size 0.5)
-		(drill 0.3)
+		(size 0.7)
+		(drill 0.4)
 		(layers "F.Cu" "B.Cu")
 		(net "GND")
 		(uuid "7241e1e2-f84e-4522-8fc1-3123333f94a7")
 	)
 	(via
 		(at 144.9 93.175)
-		(size 0.5)
-		(drill 0.3)
+		(size 0.6)
+		(drill 0.4)
 		(layers "F.Cu" "B.Cu")
 		(net "GND")
 		(uuid "83794e7e-b094-4732-bd80-01a3b0bb1db7")
