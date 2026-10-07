@@ -1,4 +1,10 @@
-Fehler: Mehrfach vorkommende Elemente #PWR34
-
-Fehler: Mehrfach vorkommende Elemente #PWR36
-
+Hinweis: Footprint R1 (Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder) aktualisiert: : (keine Änderungen)
+Hinweis: Footprint R2 (Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder) aktualisiert: : (keine Änderungen)
+Hinweis: Footprint R3 (Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder) aktualisiert: : (keine Änderungen)
+Hinweis: Footprint R4 (Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder) aktualisiert: : (keine Änderungen)
+Hinweis: Footprint R5 (Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder) aktualisiert: : (keine Änderungen)
+Hinweis: Footprint R6 (Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder) aktualisiert: : (keine Änderungen)
+Hinweis: Footprint R7 (Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder) aktualisiert: : (keine Änderungen)
+Hinweis: Footprint R8 (Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder) aktualisiert: : (keine Änderungen)
+Hinweis: Footprint R16 (Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder) aktualisiert: : (keine Änderungen)
+Hinweis: Footprint R17 (Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder) aktualisiert: : (keine Änderungen)

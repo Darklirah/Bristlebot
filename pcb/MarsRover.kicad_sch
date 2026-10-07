@@ -4162,6 +4162,17 @@
 		)
 		(uuid "c5fcaa70-8139-4654-9e21-5a7d5082e73b")
 	)
+	(text "Motoren sitzen abgesetzt. Auf der Platine je zwei Loetaugen,"
+		(exclude_from_sim no)
+		(at 118.11 157.48 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "0979f32b-9ced-4601-bb76-ececc1b6836a")
+	)
 	(text "MOTORTREIBER"
 		(exclude_from_sim no)
 		(at 118.364 25.654 0)
@@ -4208,6 +4219,17 @@
 			(justify left bottom)
 		)
 		(uuid "5c91e138-566f-491a-877f-cfa68ec06787")
+	)
+	(text "Fussabdruck PinHeader_1x02_P2.54mm_Vertical, Litze direkt einloeten."
+		(exclude_from_sim no)
+		(at 118.11 160.02 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "6ff1c0b6-e977-47ab-9707-6dea59a12f3c")
 	)
 	(text "AKKU UND LADEVORRICHTUNG"
 		(exclude_from_sim no)
@@ -4257,22 +4279,28 @@
 		(uuid "e63f49fd-bdf3-48f8-b369-d0b305d4456c")
 	)
 	(junction
-		(at 332.74 104.14)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "08aef2ae-cc3c-43b0-bf86-6ec5d1a24f88")
-	)
-	(junction
 		(at 144.78 139.7)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "085bf997-db61-4687-ada5-3a1c8d891823")
 	)
 	(junction
+		(at 332.74 104.14)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "08aef2ae-cc3c-43b0-bf86-6ec5d1a24f88")
+	)
+	(junction
 		(at 160.02 35.56)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "1806a09d-be90-4e75-97df-a6d515f4a5d0")
+	)
+	(junction
+		(at 213.36 320.04)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "1b4142c8-e183-413b-ad16-8e926600ad08")
 	)
 	(junction
 		(at 144.78 71.12)
@@ -4512,6 +4540,26 @@
 	)
 	(wire
 		(pts
+			(xy 250.19 49.53) (xy 250.19 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "066a7b27-37bb-4adb-807c-639b21147406")
+	)
+	(wire
+		(pts
+			(xy 139.7 212.09) (xy 139.7 207.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "07f5f66b-065c-44c3-ab90-1218d5d5dd86")
+	)
+	(wire
+		(pts
 			(xy 167.64 232.41) (xy 167.64 251.46)
 		)
 		(stroke
@@ -4529,6 +4577,26 @@
 			(type default)
 		)
 		(uuid "0978ad1a-f97a-4684-a4ba-de62b2ac1654")
+	)
+	(wire
+		(pts
+			(xy 99.06 218.44) (xy 99.06 223.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0a03aced-85fb-4202-a921-437eb0de2bc1")
+	)
+	(wire
+		(pts
+			(xy 250.19 41.91) (xy 250.19 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0a5e52a3-a7df-44ca-bb61-d59413dd40c2")
 	)
 	(wire
 		(pts
@@ -4852,6 +4920,16 @@
 	)
 	(wire
 		(pts
+			(xy 99.06 210.82) (xy 99.06 205.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "34eee83b-e846-45ca-84ea-a345fe898be0")
+	)
+	(wire
+		(pts
 			(xy 146.05 320.04) (xy 182.88 320.04)
 		)
 		(stroke
@@ -4899,6 +4977,16 @@
 			(type default)
 		)
 		(uuid "3ddd8320-5f17-4341-acd8-989548fa3f39")
+	)
+	(wire
+		(pts
+			(xy 189.23 50.8) (xy 189.23 57.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3fd9c9f2-b019-49b3-b122-bc6c3a5cc857")
 	)
 	(wire
 		(pts
@@ -5029,6 +5117,16 @@
 			(type default)
 		)
 		(uuid "533dda85-d2df-4012-8a32-f8ce82075c2e")
+	)
+	(wire
+		(pts
+			(xy 283.21 49.53) (xy 283.21 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "53e10c70-0282-44c1-9cd7-9164832af6a9")
 	)
 	(wire
 		(pts
@@ -5279,6 +5377,16 @@
 			(type default)
 		)
 		(uuid "796db87a-b80f-44ea-958f-4bdd5818f459")
+	)
+	(wire
+		(pts
+			(xy 213.36 320.04) (xy 213.36 322.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7a01099b-a799-481c-9aec-d13ad6064cb8")
 	)
 	(wire
 		(pts
@@ -5582,6 +5690,26 @@
 	)
 	(wire
 		(pts
+			(xy 266.7 49.53) (xy 266.7 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "af5433b9-867c-4f73-b27c-6d0f12cb18cf")
+	)
+	(wire
+		(pts
+			(xy 213.36 330.2) (xy 213.36 334.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "af706a7b-470e-4493-8058-96dae9ba2383")
+	)
+	(wire
+		(pts
 			(xy 144.78 151.13) (xy 144.78 154.94)
 		)
 		(stroke
@@ -5599,6 +5727,16 @@
 			(type default)
 		)
 		(uuid "b5d937c5-a20c-4b72-a31e-d68688a84c49")
+	)
+	(wire
+		(pts
+			(xy 139.7 219.71) (xy 139.7 224.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b61d585f-d216-4ec1-9735-70eada835924")
 	)
 	(wire
 		(pts
@@ -5802,6 +5940,26 @@
 	)
 	(wire
 		(pts
+			(xy 189.23 43.18) (xy 189.23 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cab745b8-a574-4786-b817-72095695ad02")
+	)
+	(wire
+		(pts
+			(xy 266.7 41.91) (xy 266.7 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cad93649-e1b2-4a87-979c-6f74dc55fa48")
+	)
+	(wire
+		(pts
 			(xy 144.78 71.12) (xy 152.4 71.12)
 		)
 		(stroke
@@ -5822,6 +5980,16 @@
 	)
 	(wire
 		(pts
+			(xy 189.23 119.38) (xy 189.23 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ce497117-ef9a-4854-98dd-88fcf0389fb6")
+	)
+	(wire
+		(pts
 			(xy 142.24 104.14) (xy 160.02 104.14)
 		)
 		(stroke
@@ -5839,6 +6007,16 @@
 			(type default)
 		)
 		(uuid "d062a6dc-b4a6-41ab-84f7-61e5b36a99e6")
+	)
+	(wire
+		(pts
+			(xy 283.21 41.91) (xy 283.21 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d265cb0b-c6af-49a9-9937-47f16579168e")
 	)
 	(wire
 		(pts
@@ -6042,6 +6220,16 @@
 	)
 	(wire
 		(pts
+			(xy 189.23 111.76) (xy 189.23 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f776fb79-cbb6-4242-97a8-10354f03e694")
+	)
+	(wire
+		(pts
 			(xy 109.22 189.23) (xy 111.76 189.23)
 		)
 		(stroke
@@ -6109,6 +6297,169 @@
 			(type default)
 		)
 		(uuid "ffc91f9d-f73b-4110-aad3-f0dd796f3389")
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 250.19 54.61 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "01a52f66-c733-4344-b182-c55d1de84c18")
+		(property "Reference" "#PWR50"
+			(at 255.27 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "GND"
+			(at 255.27 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 250.19 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 250.19 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 250.19 54.61 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "fe5c65d9-1c4b-4195-8701-76a85485086a")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "#PWR50")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 99.06 214.63 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "02b2d9c7-5585-47f9-b569-78d0e475f0c5")
+		(property "Reference" "C9"
+			(at 102.87 213.36 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100n"
+			(at 102.87 215.9 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 99.06 214.63 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 99.06 214.63 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 99.06 214.63 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "05dd4333-45ce-47b0-a91b-8195f8531c2c")
+		)
+		(pin "2"
+			(uuid "4073215b-ee96-4670-8132-dcdefde0b7b8")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "C9")
+					(unit 1)
+				)
+			)
+		)
 	)
 	(symbol
 		(lib_id "Diode:1N5819")
@@ -6272,6 +6623,87 @@
 			(project "MarsRover"
 				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
 					(reference "S1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 99.06 223.52 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "07680e35-fe6f-475f-915f-45ff8e93508c")
+		(property "Reference" "#PWR42"
+			(at 104.14 222.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "GND"
+			(at 104.14 224.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 99.06 223.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 99.06 223.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 99.06 223.52 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "72eb8e03-fb47-4259-9841-db8e15165b94")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "#PWR42")
 					(unit 1)
 				)
 			)
@@ -6688,6 +7120,251 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C_Polarized")
+		(at 189.23 46.99 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "257d4733-db65-48bb-9505-510eb8cbfbe2")
+		(property "Reference" "C11"
+			(at 193.04 45.72 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "47u/10V"
+			(at 193.04 48.26 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm"
+			(at 189.23 46.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 189.23 46.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 189.23 46.99 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "97ee5a83-df5f-4f8e-a749-55aa0a3ff2c4")
+		)
+		(pin "2"
+			(uuid "ba1e0ea7-baa9-45e4-89ae-93fd4157bbd1")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "C11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 250.19 45.72 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "25807c43-6893-4fb3-a5ba-18b167486e2b")
+		(property "Reference" "C6"
+			(at 254 44.45 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10u/25V"
+			(at 254 46.99 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 250.19 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 250.19 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 250.19 45.72 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "3a11c8a9-1ceb-43b6-b1ea-df57bcfb52c2")
+		)
+		(pin "2"
+			(uuid "b63244d5-02c3-4b8b-ab12-ef10a7fd6f68")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "C6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 189.23 57.15 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "29dd0370-4abf-4a91-9023-ed5b77fec0a4")
+		(property "Reference" "#PWR46"
+			(at 194.31 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "GND"
+			(at 194.31 58.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 189.23 57.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 189.23 57.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 189.23 57.15 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "d5410ba3-2ed1-43c5-ab37-318dca1911f5")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "#PWR46")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 160.02 83.82 0)
 		(unit 1)
@@ -6763,6 +7440,88 @@
 			(project "MarsRover"
 				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
 					(reference "#PWR07")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 139.7 215.9 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "2babe525-76b3-47e1-9f8a-ae5884b92a13")
+		(property "Reference" "C10"
+			(at 143.51 214.63 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100n"
+			(at 143.51 217.17 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 139.7 215.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 139.7 215.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 139.7 215.9 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "2443d0a0-8962-4eb3-9d8b-e71abf076959")
+		)
+		(pin "2"
+			(uuid "8b3c96ff-5420-4c16-8d75-35abcf671ff6")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "C10")
 					(unit 1)
 				)
 			)
@@ -6882,7 +7641,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 76.2 322.58 0)
 			(hide yes)
 			(show_name no)
@@ -7346,6 +8105,87 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3V3")
+		(at 283.21 36.83 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "4743eec8-95a8-4d42-b689-64a8d356859b")
+		(property "Reference" "#PWR39"
+			(at 288.29 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 288.29 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 283.21 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 283.21 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 283.21 36.83 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "0a05f763-d470-4cd0-9f7c-874994b155e3")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "#PWR39")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 444.5 215.9 0)
 		(unit 1)
@@ -7710,7 +8550,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 114.3 240.03 0)
 			(hide yes)
 			(show_name no)
@@ -7792,7 +8632,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 133.35 139.7 0)
 			(hide yes)
 			(show_name no)
@@ -7836,6 +8676,88 @@
 			(project "MarsRover"
 				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
 					(reference "R2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 266.7 45.72 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "53eeebc7-1c19-4410-b82d-65ccc4c66a52")
+		(property "Reference" "C7"
+			(at 270.51 44.45 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100n"
+			(at 270.51 46.99 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 266.7 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 266.7 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 266.7 45.72 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "cb3993ff-7593-42bc-8d38-f4b6fe929b0e")
+		)
+		(pin "2"
+			(uuid "e00ae146-4b46-4661-93fc-71d7ccebfa9a")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "C7")
 					(unit 1)
 				)
 			)
@@ -8081,6 +9003,87 @@
 			(project "MarsRover"
 				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
 					(reference "C3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 266.7 36.83 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "58d663c0-70a4-41a2-9fd1-d2566ab8ec9b")
+		(property "Reference" "#PWR37"
+			(at 271.78 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "+5V"
+			(at 271.78 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 266.7 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 266.7 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 266.7 36.83 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "5efb2a08-a42c-4291-bf40-60a2df2f4354")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "#PWR37")
 					(unit 1)
 				)
 			)
@@ -8554,7 +9557,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 109.22 196.85 0)
 			(hide yes)
 			(show_name no)
@@ -8679,6 +9682,87 @@
 			(project "MarsRover"
 				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
 					(reference "#PWR24")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 266.7 54.61 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "6bdf4c57-8ac1-4216-ad91-51755521a8cc")
+		(property "Reference" "#PWR38"
+			(at 271.78 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "GND"
+			(at 271.78 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 266.7 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 266.7 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 266.7 54.61 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "77cfc12c-8f51-4549-a389-a00cbba84123")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "#PWR38")
 					(unit 1)
 				)
 			)
@@ -8878,7 +9962,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 144.78 147.32 0)
 			(hide yes)
 			(show_name no)
@@ -8922,6 +10006,251 @@
 			(project "MarsRover"
 				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
 					(reference "R4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 213.36 326.39 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "856ba9aa-ee3b-4f0c-bc7a-bddb791c2502")
+		(property "Reference" "C5"
+			(at 217.17 325.12 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100n"
+			(at 217.17 327.66 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 213.36 326.39 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 213.36 326.39 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 213.36 326.39 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "bc315ca9-a1aa-4bf5-a797-3d70e48f38a1")
+		)
+		(pin "2"
+			(uuid "0c6905f8-68b4-4340-b1e9-dbaaeab8a235")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "C5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at 189.23 36.83 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "87e58259-d737-4748-a785-9384dba42926")
+		(property "Reference" "#PWR45"
+			(at 194.31 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "+5V"
+			(at 194.31 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 189.23 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 189.23 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 189.23 36.83 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "0d2698d6-00bb-4361-8582-280b6bb6ba3a")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "#PWR45")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 283.21 45.72 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "89df8159-ab6e-4209-ba79-8be743d33195")
+		(property "Reference" "C8"
+			(at 287.02 44.45 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100n"
+			(at 287.02 46.99 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 283.21 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 283.21 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 283.21 45.72 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "ae05c010-9bda-4fa5-9956-ba9b91197980")
+		)
+		(pin "2"
+			(uuid "7b90444c-f59a-4267-969e-aa298eee24ff")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "C8")
 					(unit 1)
 				)
 			)
@@ -9167,6 +10496,87 @@
 			(project "MarsRover"
 				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
 					(reference "#PWR03")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 189.23 125.73 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "9d5edda5-dabb-41b2-932f-507488646cb4")
+		(property "Reference" "#PWR48"
+			(at 194.31 124.46 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "GND"
+			(at 194.31 127 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 189.23 125.73 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 189.23 125.73 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 189.23 125.73 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "aa025702-cc20-44ac-8af1-c495427aec75")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "#PWR48")
 					(unit 1)
 				)
 			)
@@ -9463,7 +10873,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 133.35 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -9669,6 +11079,88 @@
 			(project "MarsRover"
 				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
 					(reference "#PWR31")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Polarized")
+		(at 189.23 115.57 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "a789aee1-9541-45a0-ad25-318f1d9cc367")
+		(property "Reference" "C12"
+			(at 193.04 114.3 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "47u/10V"
+			(at 193.04 116.84 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm"
+			(at 189.23 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 189.23 115.57 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 189.23 115.57 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "b9718df1-ddb0-408b-ac75-0c81ef35f1b2")
+		)
+		(pin "2"
+			(uuid "8cf63dd1-37ba-4f5a-967a-9d80b2c326f1")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "C12")
 					(unit 1)
 				)
 			)
@@ -9957,7 +11449,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 76.2 340.36 0)
 			(hide yes)
 			(show_name no)
@@ -10691,7 +12183,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 154.94 241.3 0)
 			(hide yes)
 			(show_name no)
@@ -10807,9 +12299,17 @@
 				)
 			)
 		)
-    (property "Hinweis" "Motor sitzt abgesetzt, Anschluss ueber zwei Loetaugen" (at 160.02 43.18 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
+		(property "Hinweis" "Motor sitzt abgesetzt, Anschluss ueber zwei Loetaugen"
+			(at 160.02 43.18 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "7b6336a7-30e8-4e83-bb2b-61bc19469017")
 		)
@@ -10858,7 +12358,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 144.78 78.74 0)
 			(hide yes)
 			(show_name no)
@@ -11055,9 +12555,17 @@
 				)
 			)
 		)
-    (property "Hinweis" "Motor sitzt abgesetzt, Anschluss ueber zwei Loetaugen" (at 160.02 111.76 0)
-      (effects (font (size 1.27 1.27)) (hide yes))
-    )
+		(property "Hinweis" "Motor sitzt abgesetzt, Anschluss ueber zwei Loetaugen"
+			(at 160.02 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "f065047a-9cf5-4ed4-853a-4abf135b3910")
 		)
@@ -11068,6 +12576,87 @@
 			(project "MarsRover"
 				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
 					(reference "M2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 213.36 334.01 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "d69b0b67-1e3b-4ed2-b95c-1dffc1da97ab")
+		(property "Reference" "#PWR49"
+			(at 218.44 332.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "GND"
+			(at 218.44 335.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 213.36 334.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 213.36 334.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 213.36 334.01 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "23dc8621-6428-48b2-a5ed-e0030c9eb2c3")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "#PWR49")
 					(unit 1)
 				)
 			)
@@ -11155,6 +12744,87 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3V3")
+		(at 99.06 205.74 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "dc5f9e20-cf6b-4d7c-9d11-e5c6350852c5")
+		(property "Reference" "#PWR41"
+			(at 104.14 204.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 104.14 207.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 99.06 205.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 99.06 205.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 99.06 205.74 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "5dba46ab-a6df-41ce-bfed-0107580c910d")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "#PWR41")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector_Generic:Conn_01x02")
 		(at 66.04 287.02 0)
 		(unit 1)
@@ -11187,7 +12857,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical"
+		(property "Footprint" "Connector_JST:JST_PH_S2B-PH-K_1x02_P2.00mm_Horizontal"
 			(at 66.04 287.02 0)
 			(hide yes)
 			(show_name no)
@@ -11237,6 +12907,87 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+5V")
+		(at 250.19 36.83 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "e0b7d4ba-85cc-448a-8b2d-ef849dc385b3")
+		(property "Reference" "#PWR35"
+			(at 255.27 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "+5V"
+			(at 255.27 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 250.19 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 250.19 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 250.19 36.83 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "dbb0a2e3-8393-497c-9506-329cbdea515f")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "#PWR35")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 149.86 198.12 0)
 		(unit 1)
@@ -11269,7 +13020,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 149.86 198.12 0)
 			(hide yes)
 			(show_name no)
@@ -11568,6 +13319,168 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 139.7 224.79 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "ec398437-ff41-4d5d-b4ba-b7b3f3c9e730")
+		(property "Reference" "#PWR44"
+			(at 144.78 223.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "GND"
+			(at 144.78 226.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 139.7 224.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 139.7 224.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 139.7 224.79 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "9bed1755-f40a-44e8-be09-541a0f8c4f45")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "#PWR44")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 139.7 207.01 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "ecb1291f-79f0-45e6-a8f4-7b9e5835ec69")
+		(property "Reference" "#PWR43"
+			(at 144.78 205.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 144.78 208.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 139.7 207.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 139.7 207.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 139.7 207.01 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "8947c02c-1819-4fc4-9e07-8b09a11f3c02")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "#PWR43")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector_Generic:Conn_01x04")
 		(at 167.64 307.34 0)
 		(unit 1)
@@ -11650,6 +13563,87 @@
 			(project "MarsRover"
 				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
 					(reference "U5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 283.21 54.61 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "ee0f072d-1d99-4b03-83ec-4cf4ee787f67")
+		(property "Reference" "#PWR40"
+			(at 288.29 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "GND"
+			(at 288.29 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 283.21 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 283.21 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 283.21 54.61 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "ff7643e7-9e0f-4490-bf1c-4dec7f920fab")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "#PWR40")
 					(unit 1)
 				)
 			)
@@ -12143,6 +14137,87 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+5V")
+		(at 189.23 105.41 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "f73bc3aa-79d9-46da-98e1-1af0b31e70a9")
+		(property "Reference" "#PWR47"
+			(at 194.31 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "+5V"
+			(at 194.31 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 189.23 105.41 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Datasheet" ""
+			(at 189.23 105.41 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Description" ""
+			(at 189.23 105.41 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "7c1ac30e-90a0-4ffb-a6d9-f2b44fee0850")
+		)
+		(instances
+			(project "MarsRover"
+				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
+					(reference "#PWR47")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 114.3 247.65 0)
 		(unit 1)
@@ -12302,2065 +14377,6 @@
 				)
 			)
 		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 213.36 326.39 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "856ba9aa-ee3b-4f0c-bc7a-bddb791c2502")
-		(property "Reference" "C5"
-			(at 217.17 325.12 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "100n"
-			(at 217.17 327.66 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 213.36 326.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 213.36 326.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 213.36 326.39 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "bc315ca9-a1aa-4bf5-a797-3d70e48f38a1")
-		)
-		(pin "2"
-			(uuid "0c6905f8-68b4-4340-b1e9-dbaaeab8a235")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "C5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 213.36 320.04) (xy 213.36 322.58)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7a01099b-a799-481c-9aec-d13ad6064cb8")
-	)
-	(junction
-		(at 213.36 320.04)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "1b4142c8-e183-413b-ad16-8e926600ad08")
-	)
-	(wire
-		(pts
-			(xy 213.36 330.20) (xy 213.36 334.01)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "af706a7b-470e-4493-8058-96dae9ba2383")
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 213.36 334.01 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "d69b0b67-1e3b-4ed2-b95c-1dffc1da97ab")
-		(property "Reference" "#PWR49"
-			(at 218.44 332.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "GND"
-			(at 218.44 335.28 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 213.36 334.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 213.36 334.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 213.36 334.01 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "23dc8621-6428-48b2-a5ed-e0030c9eb2c3")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "#PWR49")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 250.19 45.72 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "25807c43-6893-4fb3-a5ba-18b167486e2b")
-		(property "Reference" "C6"
-			(at 254.00 44.45 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10u/25V"
-			(at 254.00 46.99 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 250.19 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 250.19 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 250.19 45.72 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "3a11c8a9-1ceb-43b6-b1ea-df57bcfb52c2")
-		)
-		(pin "2"
-			(uuid "b63244d5-02c3-4b8b-ab12-ef10a7fd6f68")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "C6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 250.19 41.91) (xy 250.19 36.83)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0a5e52a3-a7df-44ca-bb61-d59413dd40c2")
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 250.19 36.83 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "e0b7d4ba-85cc-448a-8b2d-ef849dc385b3")
-		(property "Reference" "#PWR35"
-			(at 255.27 35.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "+5V"
-			(at 255.27 38.10 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 250.19 36.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 250.19 36.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 250.19 36.83 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "dbb0a2e3-8393-497c-9506-329cbdea515f")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "#PWR35")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 250.19 49.53) (xy 250.19 54.61)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "066a7b27-37bb-4adb-807c-639b21147406")
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 250.19 54.61 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "01a52f66-c733-4344-b182-c55d1de84c18")
-		(property "Reference" "#PWR50"
-			(at 255.27 53.34 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "GND"
-			(at 255.27 55.88 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 250.19 54.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 250.19 54.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 250.19 54.61 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "fe5c65d9-1c4b-4195-8701-76a85485086a")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "#PWR50")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 266.70 45.72 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "53eeebc7-1c19-4410-b82d-65ccc4c66a52")
-		(property "Reference" "C7"
-			(at 270.51 44.45 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "100n"
-			(at 270.51 46.99 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 266.70 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 266.70 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 266.70 45.72 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "cb3993ff-7593-42bc-8d38-f4b6fe929b0e")
-		)
-		(pin "2"
-			(uuid "e00ae146-4b46-4661-93fc-71d7ccebfa9a")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "C7")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 266.70 41.91) (xy 266.70 36.83)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cad93649-e1b2-4a87-979c-6f74dc55fa48")
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 266.70 36.83 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "58d663c0-70a4-41a2-9fd1-d2566ab8ec9b")
-		(property "Reference" "#PWR37"
-			(at 271.78 35.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "+5V"
-			(at 271.78 38.10 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 266.70 36.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 266.70 36.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 266.70 36.83 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "5efb2a08-a42c-4291-bf40-60a2df2f4354")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "#PWR37")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 266.70 49.53) (xy 266.70 54.61)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "af5433b9-867c-4f73-b27c-6d0f12cb18cf")
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 266.70 54.61 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "6bdf4c57-8ac1-4216-ad91-51755521a8cc")
-		(property "Reference" "#PWR38"
-			(at 271.78 53.34 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "GND"
-			(at 271.78 55.88 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 266.70 54.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 266.70 54.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 266.70 54.61 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "77cfc12c-8f51-4549-a389-a00cbba84123")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "#PWR38")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 283.21 45.72 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "89df8159-ab6e-4209-ba79-8be743d33195")
-		(property "Reference" "C8"
-			(at 287.02 44.45 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "100n"
-			(at 287.02 46.99 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 283.21 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 283.21 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 283.21 45.72 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "ae05c010-9bda-4fa5-9956-ba9b91197980")
-		)
-		(pin "2"
-			(uuid "7b90444c-f59a-4267-969e-aa298eee24ff")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "C8")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 283.21 41.91) (xy 283.21 36.83)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d265cb0b-c6af-49a9-9937-47f16579168e")
-	)
-	(symbol
-		(lib_id "power:+3V3")
-		(at 283.21 36.83 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "4743eec8-95a8-4d42-b689-64a8d356859b")
-		(property "Reference" "#PWR39"
-			(at 288.29 35.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 288.29 38.10 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 283.21 36.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 283.21 36.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 283.21 36.83 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0a05f763-d470-4cd0-9f7c-874994b155e3")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "#PWR39")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 283.21 49.53) (xy 283.21 54.61)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "53e10c70-0282-44c1-9cd7-9164832af6a9")
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 283.21 54.61 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "ee0f072d-1d99-4b03-83ec-4cf4ee787f67")
-		(property "Reference" "#PWR40"
-			(at 288.29 53.34 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "GND"
-			(at 288.29 55.88 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 283.21 54.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 283.21 54.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 283.21 54.61 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "ff7643e7-9e0f-4490-bf1c-4dec7f920fab")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "#PWR40")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 99.06 214.63 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "02b2d9c7-5585-47f9-b569-78d0e475f0c5")
-		(property "Reference" "C9"
-			(at 102.87 213.36 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "100n"
-			(at 102.87 215.90 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 99.06 214.63 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 99.06 214.63 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 99.06 214.63 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "05dd4333-45ce-47b0-a91b-8195f8531c2c")
-		)
-		(pin "2"
-			(uuid "4073215b-ee96-4670-8132-dcdefde0b7b8")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "C9")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 99.06 210.82) (xy 99.06 205.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "34eee83b-e846-45ca-84ea-a345fe898be0")
-	)
-	(symbol
-		(lib_id "power:+3V3")
-		(at 99.06 205.74 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "dc5f9e20-cf6b-4d7c-9d11-e5c6350852c5")
-		(property "Reference" "#PWR41"
-			(at 104.14 204.47 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 104.14 207.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 99.06 205.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 99.06 205.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 99.06 205.74 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "5dba46ab-a6df-41ce-bfed-0107580c910d")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "#PWR41")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 99.06 218.44) (xy 99.06 223.52)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0a03aced-85fb-4202-a921-437eb0de2bc1")
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 99.06 223.52 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "07680e35-fe6f-475f-915f-45ff8e93508c")
-		(property "Reference" "#PWR42"
-			(at 104.14 222.25 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "GND"
-			(at 104.14 224.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 99.06 223.52 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 99.06 223.52 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 99.06 223.52 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "72eb8e03-fb47-4259-9841-db8e15165b94")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "#PWR42")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 139.70 215.90 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "2babe525-76b3-47e1-9f8a-ae5884b92a13")
-		(property "Reference" "C10"
-			(at 143.51 214.63 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "100n"
-			(at 143.51 217.17 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 139.70 215.90 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 139.70 215.90 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 139.70 215.90 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "2443d0a0-8962-4eb3-9d8b-e71abf076959")
-		)
-		(pin "2"
-			(uuid "8b3c96ff-5420-4c16-8d75-35abcf671ff6")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "C10")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 139.70 212.09) (xy 139.70 207.01)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "07f5f66b-065c-44c3-ab90-1218d5d5dd86")
-	)
-	(symbol
-		(lib_id "power:+3V3")
-		(at 139.70 207.01 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "ecb1291f-79f0-45e6-a8f4-7b9e5835ec69")
-		(property "Reference" "#PWR43"
-			(at 144.78 205.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 144.78 208.28 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 139.70 207.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 139.70 207.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 139.70 207.01 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "8947c02c-1819-4fc4-9e07-8b09a11f3c02")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "#PWR43")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 139.70 219.71) (xy 139.70 224.79)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b61d585f-d216-4ec1-9735-70eada835924")
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 139.70 224.79 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "ec398437-ff41-4d5d-b4ba-b7b3f3c9e730")
-		(property "Reference" "#PWR44"
-			(at 144.78 223.52 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "GND"
-			(at 144.78 226.06 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 139.70 224.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 139.70 224.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 139.70 224.79 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "9bed1755-f40a-44e8-be09-541a0f8c4f45")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "#PWR44")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Polarized")
-		(at 189.23 46.99 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "257d4733-db65-48bb-9505-510eb8cbfbe2")
-		(property "Reference" "C11"
-			(at 193.04 45.72 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "47u/10V"
-			(at 193.04 48.26 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm"
-			(at 189.23 46.99 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 189.23 46.99 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 189.23 46.99 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "97ee5a83-df5f-4f8e-a749-55aa0a3ff2c4")
-		)
-		(pin "2"
-			(uuid "ba1e0ea7-baa9-45e4-89ae-93fd4157bbd1")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "C11")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 189.23 43.18) (xy 189.23 36.83)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cab745b8-a574-4786-b817-72095695ad02")
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 189.23 36.83 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "87e58259-d737-4748-a785-9384dba42926")
-		(property "Reference" "#PWR45"
-			(at 194.31 35.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "+5V"
-			(at 194.31 38.10 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 189.23 36.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 189.23 36.83 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 189.23 36.83 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0d2698d6-00bb-4361-8582-280b6bb6ba3a")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "#PWR45")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 189.23 50.80) (xy 189.23 57.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3fd9c9f2-b019-49b3-b122-bc6c3a5cc857")
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 189.23 57.15 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "29dd0370-4abf-4a91-9023-ed5b77fec0a4")
-		(property "Reference" "#PWR46"
-			(at 194.31 55.88 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "GND"
-			(at 194.31 58.42 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 189.23 57.15 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 189.23 57.15 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 189.23 57.15 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "d5410ba3-2ed1-43c5-ab37-318dca1911f5")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "#PWR46")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Polarized")
-		(at 189.23 115.57 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "a789aee1-9541-45a0-ad25-318f1d9cc367")
-		(property "Reference" "C12"
-			(at 193.04 114.30 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "47u/10V"
-			(at 193.04 116.84 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm"
-			(at 189.23 115.57 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 189.23 115.57 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 189.23 115.57 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "b9718df1-ddb0-408b-ac75-0c81ef35f1b2")
-		)
-		(pin "2"
-			(uuid "8cf63dd1-37ba-4f5a-967a-9d80b2c326f1")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "C12")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 189.23 111.76) (xy 189.23 105.41)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f776fb79-cbb6-4242-97a8-10354f03e694")
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 189.23 105.41 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "f73bc3aa-79d9-46da-98e1-1af0b31e70a9")
-		(property "Reference" "#PWR47"
-			(at 194.31 104.14 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "+5V"
-			(at 194.31 106.68 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 189.23 105.41 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 189.23 105.41 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 189.23 105.41 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "7c1ac30e-90a0-4ffb-a6d9-f2b44fee0850")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "#PWR47")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(wire
-		(pts
-			(xy 189.23 119.38) (xy 189.23 125.73)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ce497117-ef9a-4854-98dd-88fcf0389fb6")
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 189.23 125.73 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "9d5edda5-dabb-41b2-932f-507488646cb4")
-		(property "Reference" "#PWR48"
-			(at 194.31 124.46 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "GND"
-			(at 194.31 127.00 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 189.23 125.73 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Datasheet" ""
-			(at 189.23 125.73 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Description" ""
-			(at 189.23 125.73 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "aa025702-cc20-44ac-8af1-c495427aec75")
-		)
-		(instances
-			(project "MarsRover"
-				(path "/98a503a1-1298-44b2-b635-ecf3922d785e"
-					(reference "#PWR48")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(text "Motoren sitzen abgesetzt. Auf der Platine je zwei Loetaugen,"
-		(exclude_from_sim no)
-		(at 118.11 157.48 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "0979f32b-9ced-4601-bb76-ececc1b6836a")
-	)
-	(text "Fussabdruck PinHeader_1x02_P2.54mm_Vertical, Litze direkt einloeten."
-		(exclude_from_sim no)
-		(at 118.11 160.02 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "6ff1c0b6-e977-47ab-9707-6dea59a12f3c")
 	)
 	(sheet_instances
 		(path "/"

@@ -2,6 +2,75 @@
 
 Laufendes Protokoll. Neueste Einträge oben.
 
+## 2026-10-07 — Platine geroutet: 27 von 27 Netzen, null unverbundene Elemente
+
+**Gemacht**
+
+- Platzierung nachgezogen: J2 als **liegender** Stecker
+  (`JST_PH_S2B-PH-K_1x02_P2.00mm_Horizontal`) auf die **Unterseite**, weil der
+  Akku unter die Platine kommt und ein stehender Stecker in den 5-mm-Spalt
+  ragen würde; OS1/OS2 auf optimalen Abstand; U6 hinten mittig; S1 daneben.
+- **Geroutet** mit [KiCadRoutingTools](https://github.com/drandyhaas/KiCadRoutingTools)
+  (A\*-Router mit Rust-Kern, MIT, headless auf der `.kicad_pcb`).
+  Ergebnis: **27/27 Netze, 91/91 Padpaare, 101 Durchkontaktierungen,
+  0 unverbundene Elemente, 0 Abstandsverstöße, 0 Kurzschlüsse.**
+- Massefläche auf **B.Cu**, eine zusammenhängende Insel, 1,0 mΩ über 86 mm.
+
+**Entscheidungen**
+
+- **Sensorabstand OS1/OS2:** Die Fototransistoren zeigen nach innen und stehen
+  12,5 mm auseinander. Maßgeblich ist aber der **optische Messfleck**, der
+  jeweils mittig zwischen LED und Transistor liegt — die stehen damit
+  **18 mm** auseinander und liegen im von [Doku/04](Doku/04_PCB-Layout-Empfehlung.md)
+  geforderten Fenster 15–20 mm für ein 19-mm-Band.
+- **Kein Ausschnitt für den MPU-6050.** Ein Gyroskop misst die Drehrate eines
+  starren Körpers an jedem Punkt gleich; nur der Beschleunigungsmesser sieht
+  Zentrifugalterme, und die betragen bei 180 °/s und 30 mm Abstand 0,03 g —
+  zwei Größenordnungen unter der Motorvibration. Ein 22 × 17-mm-Loch mitten in
+  einer 1 mm dünnen Platte hätte also Steifigkeit und Massefläche gekostet,
+  ohne messbar etwas zu bringen. Damit ist Regel 1 aus Doku/04 §6 („nahe der
+  Drehachse") die **schwächste** der drei; Regel 2 (weit weg von den Motoren)
+  und Regel 3 (weich ankoppeln) bleiben.
+- **Keine Durchkontaktierung in einem Pad.** Der erste Lauf setzte 16 Vias
+  mitten in SMD-Pads. Das verlangt IPC-4761 Typ VII (gefüllt und überplattet);
+  beim Handlöten saugt es sonst das Lot in die Hülse. Mit
+  `--same-net-pad-clearance 0.2` sind es null.
+
+**Zwei Fehlschläge, beide Platzierung statt Routing**
+
+- R2 Pad 1 hatte links und rechts je **0,8 mm** Padabstand — genau die Breite,
+  die eine 0,4-mm-Leitung mit zweimal 0,2 mm Abstand braucht, also null
+  Spielraum. Daran scheiterten beide Router. R2 um 0,5 mm und Q2 um 0,6 mm
+  nach außen hat es gelöst. *(Erster Versuch mit 1 mm war zu viel und legte
+  R2 Pad 2 auf das Massepad von Q2 — vom DRC gefunden.)*
+- J2 deckte in der ersten Stellung die Unterseiten-Pads von LED3 und R11 ab.
+  Auf der Unterseite ist das kein Gehäuse-, sondern ein **Löt**problem.
+
+**Abweichungen von der Breitenvorgabe, bewusst**
+
+| Netz | Soll | Dünnste Stelle | Länge dort |
+|---|---|---|---|
+| +5V | 1,0 mm | 0,40 mm | 10,3 von 194 mm |
+| +3V3 | 0,8 mm | 0,40 mm | 5,6 von 177 mm |
+| GND (Zuleitungen) | 1,0 mm | 0,33 mm | 33 von 66 mm |
+| Net-(D1-A) | 1,0 mm | 0,40 mm | 15,7 von 35 mm |
+
+Das sind **Einschnürungen am Pad**: eine 1-mm-Leitung passt nicht in ein
+0805-Pad von 1,2 mm Breite, wenn der Nachbar 0,8 mm entfernt ist. 0,4 mm auf
+35 µm tragen nach IPC-2221 **1,23 A** bei 10 K Erwärmung; die Motoren ziehen
+zusammen rund 0,3 A. +3V3 wurde bewusst mit 0,8 statt 1,0 mm angefordert — es
+trägt nur die Sensorik (gut 40 mA), und 1 mm hätte Querungen gefressen, die
+die Signale brauchen.
+
+**Offen**
+
+- Siebdruck: 58 Überlappungen und 32 zu kleine Texte. Rein kosmetisch, aber
+  vor der Bestellung aufzuräumen.
+- 21 Courtyard-Überlappungen und 4 THT-Pads im Courtyard: alle unter dem
+  gesockelten DevKit, also gewollt.
+
+---
+
 ## 2026-10-07 — MT3608 bekommt einen Festteiler statt des Potis
 
 **Gemacht**

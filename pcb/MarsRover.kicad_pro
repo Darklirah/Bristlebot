@@ -490,15 +490,15 @@
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 2147483647,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.2,
+        "track_width": 0.4,
         "tuning_profile": "",
-        "via_diameter": 0.6,
-        "via_drill": 0.3,
+        "via_diameter": 0.8,
+        "via_drill": 0.4,
         "wire_width": 6
       },
       {
         "bus_width": 12,
-        "clearance": 0.25,
+        "clearance": 0.2,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
@@ -511,8 +511,8 @@
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 1.0,
         "tuning_profile": "",
-        "via_diameter": 1.0,
-        "via_drill": 0.5,
+        "via_diameter": 0.8,
+        "via_drill": 0.4,
         "wire_width": 6
       }
     ],
@@ -521,7 +521,40 @@
     },
     "net_colors": null,
     "netclass_assignments": null,
-    "netclass_patterns": []
+    "netclass_patterns": [
+      {
+        "netclass": "Leistung",
+        "pattern": "+5V"
+      },
+      {
+        "netclass": "Leistung",
+        "pattern": "+3V3"
+      },
+      {
+        "netclass": "Leistung",
+        "pattern": "GND"
+      },
+      {
+        "netclass": "Leistung",
+        "pattern": "Net-(D1-A)"
+      },
+      {
+        "netclass": "Leistung",
+        "pattern": "Net-(D2-A)"
+      },
+      {
+        "netclass": "Leistung",
+        "pattern": "Net-(S1-A)"
+      },
+      {
+        "netclass": "Leistung",
+        "pattern": "Net-(S1-B)"
+      },
+      {
+        "netclass": "Leistung",
+        "pattern": "Net-(J2-Pin_1)"
+      }
+    ]
   },
   "pcbnew": {
     "last_paths": {
@@ -648,13 +681,18 @@
       {
         "filename": "MarsRover.kicad_sch",
         "name": "MarsRover",
-        "uuid": "00000000-0000-0000-0000-000000000000"
+        "uuid": "98a503a1-1298-44b2-b635-ecf3922d785e"
       }
     ],
     "used_designators": "",
     "variants": []
   },
-  "sheets": [],
+  "sheets": [
+    [
+      "98a503a1-1298-44b2-b635-ecf3922d785e",
+      "MarsRover"
+    ]
+  ],
   "text_variables": {},
   "tuning_profiles": {
     "meta": {
