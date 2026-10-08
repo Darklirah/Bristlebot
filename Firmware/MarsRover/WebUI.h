@@ -167,6 +167,20 @@ select,input[type=text]{width:100%;background:var(--panel2);color:var(--fg);font
 .sec.s3 select,.sec.s3 input[type=text]{background:var(--panel);margin-bottom:9px}
 .sec .two{display:grid;grid-template-columns:1fr 1fr;gap:9px}
 
+/* --- Befehlsliste ---
+   Das native <select> bleibt als Datenspeicher stehen, wird aber
+   ausgeblendet: die Gruppenueberschriften eines <select> zeichnet das
+   Betriebssystem, und auf dem Handy ignoriert es jede Formatierung. Die
+   sichtbare Liste darueber ist deshalb selbst gebaut. Sie wird aus eben
+   diesem <select> erzeugt, damit die Befehle nur an einer Stelle stehen. */
+#aOp{display:none}
+#opList{display:flex;flex-direction:column;gap:4px;margin:0 0 12px}
+.opg{font-size:15px;font-weight:700;color:#ffe08a;margin:13px 0 5px;padding:0 2px}
+.opg:first-child{margin-top:0}
+.opb{border:1px solid var(--line);background:var(--panel);color:var(--fg);
+     font:inherit;font-size:13.5px;text-align:left;padding:9px 12px;border-radius:10px}
+.opb.sel{background:var(--accent);border-color:var(--accent);color:#06121f;font-weight:700}
+
 .bars{display:grid;grid-template-columns:auto 1fr;gap:5px 9px;align-items:center;font-size:12px;color:var(--dim)}
 .bar{height:9px;background:var(--panel2);border-radius:5px;overflow:hidden;position:relative}
 .bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .1s linear}
@@ -289,6 +303,7 @@ details .inner{padding:0 var(--pad) 6px}
           <option value="lo">von vorn wiederholen</option>
         </optgroup>
       </select>
+      <div id="opList"></div>
 
       <div id="pRad" class="hide">
         <label>Kurvenradius Stufe <b id="vRad">3</b> &ndash; <span id="tRad">eng</span></label>
@@ -720,6 +735,38 @@ function paintAddForm(){
   });
 }
 E("aOp").onchange=paintAddForm;
+
+/* --- Befehlsliste aus dem <select> aufbauen ---
+   Die Befehle stehen weiter nur im Markup des <select>; hier entsteht
+   daraus die sichtbare Liste. So kann kein Eintrag an einer Stelle
+   vergessen werden, und die uebrige Logik liest unveraendert
+   E("aOp").value. */
+function buildOpList(){
+  var sel=E("aOp"), box=E("opList"), gr=sel.getElementsByTagName("optgroup");
+  box.innerHTML="";
+  for(var i=0;i<gr.length;i++){
+    var h=document.createElement("div");
+    h.className="opg"; h.textContent=gr[i].label;
+    box.appendChild(h);
+    var op=gr[i].getElementsByTagName("option");
+    for(var j=0;j<op.length;j++){
+      var b=document.createElement("button");
+      b.type="button"; b.className="opb";
+      b.textContent=op[j].textContent;
+      b.setAttribute("data-op",op[j].value);
+      b.onclick=function(){
+        E("aOp").value=this.getAttribute("data-op");
+        paintOpList(); paintAddForm();
+      };
+      box.appendChild(b);
+    }
+  }
+}
+function paintOpList(){
+  var v=E("aOp").value, b=E("opList").getElementsByClassName("opb");
+  for(var i=0;i<b.length;i++)
+    b[i].className = (b[i].getAttribute("data-op")===v) ? "opb sel" : "opb";
+}
 function live(id,out,fn){ E(id).addEventListener("input",function(){ fn(this.value,E(out)) }) }
 live("aSpd","vSpd",function(v,o){ o.textContent=v });
 live("aDeg","vDeg",function(v,o){ o.textContent=v });
@@ -910,6 +957,7 @@ setInterval(function(){
   else         send("P");
 },100);
 
+buildOpList(); paintOpList();
 paintArm(); paintMode(); paintAddForm(); paintSteps(); connect();
 </script>
 </body>

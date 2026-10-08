@@ -1,6 +1,6 @@
 {
   "name": "One-of-a-Kind Mars Rover",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "funding_url": "https://github.com/Darklirah/One-of-a-Kind-Mars-Rover",
   "new_install_prompt_erase": true,
   "builds": [
