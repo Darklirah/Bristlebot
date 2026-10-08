@@ -15,6 +15,13 @@ können.
 > Steuerung vom Handy und selbst geschriebene Fahrprogramme. Ein Bristlebot
 > fährt, wohin er will — dieser hier fährt, wohin du willst.
 
+![Die fertig geroutete Platine, schräg von oben](Doku/bilder/platine_schraeg.jpg)
+
+*Die eigene Platine, 70 × 52 mm, zweilagig. Das ESP32-DevKit steckt quer auf
+Buchsenleisten; links und rechts stehen Laderegler und Step-Up-Wandler
+senkrecht als „Finnen". Weitere Ansichten mit Erklärung in
+[Doku/04 §7](Doku/04_PCB-Layout-Empfehlung.md#7--so-ist-sie-geworden).*
+
 **[→ Firmware direkt im Browser installieren](https://darklirah.github.io/One-of-a-Kind-Mars-Rover/)**
 
 Die ausführliche Projektbeschreibung samt Programmier-Kapitel steht in

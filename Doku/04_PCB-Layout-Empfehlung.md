@@ -2,6 +2,13 @@
 
 Für Variante A: DevKit gesteckt, 2-lagig, **1,0 mm FR4**, Außenmaß **50 × 38 mm**.
 
+> **Dies ist der Entwurfstext von vorher.** Die Platine ist inzwischen gebaut
+> und an einigen Stellen anders ausgefallen als hier empfohlen — vor allem
+> ist sie mit **70 × 52 mm** größer geworden, weil die Fertigmodule als
+> senkrechte Finnen danebenstehen. Die Zahlen, die wirklich bestellt werden,
+> stehen in [Fertigung/README.md](../Fertigung/README.md). Wie sie geworden
+> ist, zeigt [Abschnitt 7](#7--so-ist-sie-geworden) am Ende.
+
 ---
 
 ## 1 · Fertigungsparameter
@@ -206,3 +213,54 @@ Schwerpunkt nach vorn und nach oben. Zwei Gegenmaßnahmen, beide kostenlos:
 * Akku so weit **nach hinten** setzen, wie das Layout zulässt
 * PCB in **1,0 mm** statt 1,6 mm bestellen (siehe Checkliste oben) —
   das allein holt die Mastmasse mehr als zurück
+
+---
+
+## 7 · So ist sie geworden
+
+Drei Ansichten der fertig gerouteten Platine. Sie kommen aus KiCad selbst
+(`kicad-cli pcb render`), zeigen also exakt die Daten, die auch in die
+Gerber gehen — kein nachgezeichnetes Schaubild. Neu erzeugt werden sie von
+[`Fertigung/erzeuge_fertigungsdaten.sh`](../Fertigung/erzeuge_fertigungsdaten.sh).
+
+### Gesamtansicht
+
+![Schrägansicht der bestückten Platine](bilder/platine_schraeg.jpg)
+
+**Wozu dieses Bild dient:** der schnelle Eindruck, wie hoch das Ganze baut.
+Gut zu sehen ist, dass das DevKit die halbe Fläche überdeckt und auf
+Buchsenleisten gut 8,5 mm darüber schwebt — darunter liegt bewusst alles
+Flache. Für den Entwurf des 3D-Basismoduls ist das die Ansicht, an der man
+die Bauhöhe abschätzt; die genauen Maße liefert
+[`Fertigung/MarsRover-platine.step`](../Fertigung/MarsRover-platine.step).
+
+### Oberseite
+
+![Draufsicht auf die Oberseite](bilder/platine_oben.jpg)
+
+**Wozu dieses Bild dient:** die Bestückungsübersicht. Hier sieht man die
+Aufteilung in drei Streifen — **vorn** die Motoranschlüsse M1/M2, die
+Pufferelkos C11/C12 und der Abstandssensor U7; **in der Mitte** das DevKit
+quer mit den beiden Finnen U2 (Laderegler) und U5 (Step-Up) links und
+rechts; **hinten** Ladebuchse, Schalter S1, der Lagesensor U6 mittig und
+die roten LEDs.
+
+Rechts am DevKit ist der **Micro-USB** frei zugänglich — U5 stand dort
+ursprünglich davor und musste dafür an die Hinterkante wandern.
+
+### Unterseite
+
+![Ansicht der Unterseite](bilder/platine_unten.jpg)
+
+**Wozu dieses Bild dient:** die Unterseite ist die Seite, die den Boden
+sieht, und sie trägt die Teile, auf die es beim Linienfolgen ankommt. Die
+beiden **TCRT5000** stehen hier gegeneinander um 180° gedreht, so dass die
+Fototransistoren nach innen zeigen; ihre optischen Messflecken liegen damit
+18 mm auseinander, passend zu einem 19-mm-Band. Rechts hinten sitzt der
+**liegende Akkustecker**, damit das Kabel parallel zur Platine herauskommt
+und nicht in den Spalt zum darunterliegenden Akku ragt.
+
+Die olivfarbene Fläche über die ganze Platine ist die **Massefläche**. Rund
+um jedes bedrahtete Masse-Pad erkennt man den schmalen Ring der
+Wärmefalle — vier Stege statt voller Anbindung, damit die Fläche beim
+Handlöten die Wärme nicht schneller abzieht, als der Kolben sie nachliefert.

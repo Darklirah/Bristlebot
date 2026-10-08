@@ -77,6 +77,20 @@ h1{font-size:17px;margin:0;font-weight:600;letter-spacing:.2px;flex:1;
          text-transform:uppercase;letter-spacing:.06em}
 .row{display:flex;gap:8px;align-items:center}
 
+/* --- Fahrprogramm: die drei Arbeitsschritte farblich voneinander
+       abgesetzt. Sonst scrollt man auf dem Handy durch eine einzige graue
+       Flaeche und weiss nicht mehr, in welchem Teil man gerade ist.
+       Die Farben sind dieselben, mit denen die Schrittliste ihre
+       Befehlsarten markiert -- blau fahren, gelb Licht usw.          --- */
+.sec{border:1px solid var(--line);border-left:5px solid var(--dim);
+     border-radius:13px;padding:12px;margin:0 0 14px}
+.card .sec h2{font-size:18px;font-weight:700;color:var(--fg);margin:0 0 4px;
+     text-transform:none;letter-spacing:0}
+.sec .sub{font-size:12px;color:var(--dim);margin:0 0 12px}
+.sec.s1{background:#1a2432;border-left-color:var(--accent)}
+.sec.s2{background:#16271f;border-left-color:var(--ok)}
+.sec.s3{background:#2a2419;border-left-color:var(--warn)}
+
 /* --- Betriebsart: drei grosse Flaechen --- */
 .modes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .modes button{border:1px solid var(--line);background:var(--panel2);color:var(--dim);
@@ -148,10 +162,10 @@ select,input[type=text]{width:100%;background:var(--panel2);color:var(--fg);font
 .gauge .g i.full{background:var(--bad)}
 
 /* --- Befehl hinzufuegen --- */
-.add{background:var(--panel2);border:1px dashed var(--line);border-radius:12px;padding:12px;margin-bottom:12px}
-.add h3{margin:0 0 9px;font-size:13px;color:var(--fg);font-weight:600}
-.add select,.add input[type=text]{background:var(--panel);margin-bottom:9px}
-.add .two{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+/* Eingabefelder im Befehlsbaukasten dunkler als der Blockhintergrund,
+   sonst verschwimmen sie mit ihm. */
+.sec.s3 select,.sec.s3 input[type=text]{background:var(--panel);margin-bottom:9px}
+.sec .two{display:grid;grid-template-columns:1fr 1fr;gap:9px}
 
 .bars{display:grid;grid-template-columns:auto 1fr;gap:5px 9px;align-items:center;font-size:12px;color:var(--dim)}
 .bar{height:9px;background:var(--panel2);border-radius:5px;overflow:hidden;position:relative}
@@ -223,24 +237,34 @@ details .inner{padding:0 var(--pad) 6px}
 
   <!-- ============ Fahrprogramm ============ -->
   <div class="card hide" id="panProg">
-    <h2>Speicherplatz</h2>
-    <div class="slots" id="slots"></div>
+    <div class="sec s1">
+      <h2>Speicherplatz</h2>
+      <p class="sub">Vier Pl&auml;tze im Flash. Hier aussuchen, welchen du
+         bearbeitest, und ihm einen Namen geben.</p>
+      <div class="slots" id="slots"></div>
 
-    <label>Name</label>
-    <input type="text" id="pname" maxlength="20" placeholder="z.B. Achter fahren">
-
-    <h2>Ablauf</h2>
-    <ol id="steps"></ol>
-    <div id="empty">Noch leer &mdash; unten einen Befehl hinzuf&uuml;gen.</div>
-
-    <div class="gauge">
-      <div class="t"><span>Schritte</span>
-        <span><b id="gUsed">0</b> von <b id="gMax">48</b> belegt &middot; <b id="gFree">48</b> frei</span></div>
-      <div class="g"><i id="gBar"></i></div>
+      <label>Name</label>
+      <input type="text" id="pname" maxlength="20" placeholder="z.B. Achter fahren">
     </div>
 
-    <div class="add">
-      <h3>Befehl hinzuf&uuml;gen</h3>
+    <div class="sec s2">
+      <h2>Ablauf</h2>
+      <p class="sub">Die Befehle in der Reihenfolge, in der er sie abarbeitet.
+         Der Farbstreifen links zeigt die Art des Befehls.</p>
+      <ol id="steps"></ol>
+      <div id="empty">Noch leer &mdash; unten einen Fahrbefehl hinzuf&uuml;gen.</div>
+
+      <div class="gauge">
+        <div class="t"><span>Schritte</span>
+          <span><b id="gUsed">0</b> von <b id="gMax">48</b> belegt &middot; <b id="gFree">48</b> frei</span></div>
+        <div class="g"><i id="gBar"></i></div>
+      </div>
+    </div>
+
+    <div class="sec s3">
+      <h2>Fahrbefehl hinzuf&uuml;gen</h2>
+      <p class="sub">Befehl ausw&auml;hlen, die Einstellung darunter setzen,
+         dann einf&uuml;gen. Er landet am Ende des Ablaufs.</p>
       <select id="aOp">
         <optgroup label="Fahren">
           <option value="ge">geradeaus fahren</option>
