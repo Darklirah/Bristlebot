@@ -2,6 +2,50 @@
 
 Laufendes Protokoll. Neueste Einträge oben.
 
+## 2026-10-08 — Firmware 0.2.0 gebaut und für den Installer bereitgelegt
+
+**Gebaut:** `pio run -e esp32dev_core2`, sauberer Durchlauf von Null.
+**0 Fehler, 0 Warnungen** mit `-Wall`. RAM 15,2 %, Flash **70,3 %**
+(vorher 69,8 % — die neue Oberfläche kostet gut 6 kB).
+
+**Zwei Hürden, beide auf diesem Rechner, beide jetzt im Skript abgefangen**
+
+1. **TLS.** Der Build brach mit `CERTIFICATE_VERIFY_FAILED` ab: zwischen
+   PlatformIO und GitHub sitzt ein Scanner, der TLS aufbricht, und dessen
+   Wurzelzertifikat kennt Pythons `requests` nicht. `UV_SYSTEM_CERTS` half
+   nicht — das gilt nur für `uv`, hier scheiterte PlatformIOs eigener
+   Download. Gelöst, ohne die Prüfung abzuschalten: aus dem
+   Windows-Zertifikatsspeicher wird ein Bündel erzeugt (81 Zertifikate,
+   dazu `certifi`) und über `REQUESTS_CA_BUNDLE` untergeschoben.
+2. **Cache-Pfad.** `PLATFORMIO_CACHE_DIR='C:\pioc'` legt unter Git Bash
+   einen relativen Ordner `Firmware/pioc/` an statt `C:\pioc` zu benutzen.
+   Mit Vorwärtsschrägstrichen stimmt es.
+
+**Neues Skript
+[`Firmware/baue_und_veroeffentliche.sh`](Firmware/baue_und_veroeffentliche.sh)**
+
+Zwischen „kompiliert" und „mit dem Installer installierbar" liegen zwei
+Schritte, die man leicht vergisst. Das Skript nimmt sie mit:
+
+| Offset | Teil |
+|---|---|
+| `0x01000` | Bootloader |
+| `0x08000` | Partitionstabelle |
+| `0x0e000` | `boot_app0` |
+| `0x10000` | die Anwendung |
+
+Das `manifest.json` nennt **einen** Teil bei Offset 0 — also muss alles in
+ein zusammengefügtes Abbild. Nur `firmware.bin` hochzuladen hieße: Gerät
+ohne Bootloader, bootet nicht mehr. Dazu zieht das Skript auf Wunsch die
+Version im Manifest nach.
+
+**Ergebnis:** `docs/firmware/marsrover-esp32.bin`, 993 376 Byte, Aufbau
+Byte für Byte gegen das bisher veröffentlichte Abbild geprüft.
+Manifest auf **0.2.0**.
+
+> **Sichtbar wird das erst nach einem Push.** Der Installer liest die
+> Dateien von `darklirah.github.io`.
+
 ## 2026-10-08 — Der Roboter heißt überall Mars Rover
 
 Bisher stand „Bristlebot" verstreut in Doku, Firmware und Ordnernamen, weil

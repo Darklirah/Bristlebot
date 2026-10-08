@@ -1,13 +1,16 @@
 {
   "name": "One-of-a-Kind Mars Rover",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "funding_url": "https://github.com/Darklirah/One-of-a-Kind-Mars-Rover",
   "new_install_prompt_erase": true,
   "builds": [
     {
       "chipFamily": "ESP32",
       "parts": [
-        { "path": "firmware/marsrover-esp32.bin", "offset": 0 }
+        {
+          "path": "firmware/marsrover-esp32.bin",
+          "offset": 0
+        }
       ]
     }
   ]
