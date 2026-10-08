@@ -14,9 +14,23 @@ Er kann einer Linie folgen, sich von Hand per Joystick fahren lassen oder
 > **Zum Namen.** Das Projekt heißt *One-of-a-Kind Mars Rover* — jedes
 > gebaute Exemplar bekommt einen eigenen Namen und ein eigenes WLAN
 > (`MarsRover_Petra`), damit mehrere gleichzeitig nebeneinander fahren
-> können. Die **Bauart** heißt in der Fachliteratur *Bristlebot*; dieser
-> Begriff taucht in der technischen Dokumentation weiter auf, weil er dort
-> der verständlichere ist.
+> können. In der gesamten Dokumentation heißt der Roboter deshalb
+> durchgehend **Mars Rover**.
+
+> **Verwandt mit dem Bristlebot.** Vielleicht kennst du den *Bristlebot*:
+> jenen kleinen Vibrationsläufer aus einem Zahnbürstenkopf, einem
+> Unwuchtmotor und einer Knopfzelle, der über den Tisch summt. Der Mars
+> Rover fährt nach genau demselben Prinzip — nur kann er deutlich mehr:
+>
+> | Bristlebot | Mars Rover |
+> |---|---|
+> | ein Motor | **zwei** Motoren, und erst dadurch kann er lenken |
+> | fährt, wohin ihn der Zufall trägt | **folgt einer Linie** und sieht, wo sie liegt |
+> | keine Elektronik | ESP32 mit Lageerkennung und Abstandsmessung |
+> | an/aus | **vom Handy steuerbar**, mit selbst zusammengestellten Fahrprogrammen |
+>
+> Kurz gesagt: ein Bristlebot fährt, wohin er will — dieser hier fährt,
+> wohin du willst.
 
 ---
 

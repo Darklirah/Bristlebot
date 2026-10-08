@@ -31,7 +31,7 @@ desktop.ini
 .piolibdeps/
 
 # Arduino IDE Build-Cache
-/Firmware/bristlebot/build/
+/Firmware/MarsRover/build/
 
 # Editor
 .vscode/
@@ -72,3 +72,8 @@ pcb/_nl*.xml
 # wuerden bei jedem Neuerzeugen rauschen.
 Fertigung/gerber/
 Fertigung/pastenschablone/
+
+# Ausgabe des PCBWay-Plugins -- dieselben Daten wie in Fertigung/, dazu eine
+# Windows-Verknuepfung, die einen lokalen Pfad in ein oeffentliches Repo
+# traegt. Die Dateien bleiben liegen, nur eben nicht im Repo.
+pcb/pcbway_production/

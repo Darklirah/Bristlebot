@@ -1,5 +1,5 @@
 // =====================================================================
-//  Bristlebot -- SelfTest.h
+//  MarsRover -- SelfTest.h
 //  Eingebauter Funktionstest für Inbetriebnahme und Fehlersuche.
 //
 //  Läuft alle Ausgänge und Sensoren der Reihe nach durch und wiederholt

@@ -1,5 +1,5 @@
 // =====================================================================
-//  Bristlebot -- RobotState.h
+//  MarsRover -- RobotState.h
 //  Gemeinsame Typen: Betriebsart, Unterzustand, LED-Zustand, Tuning.
 // =====================================================================
 #pragma once

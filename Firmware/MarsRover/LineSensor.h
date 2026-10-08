@@ -1,5 +1,5 @@
 // =====================================================================
-//  Bristlebot -- LineSensor.h
+//  MarsRover -- LineSensor.h
 //  Zwei TCRT5000-Reflexkoppler links/rechts der Linie, analog an ADC1.
 //
 //  Ablauf:

@@ -1,5 +1,5 @@
 // =====================================================================
-//  Bristlebot -- Motors.h
+//  MarsRover -- Motors.h
 //  Zwei Vibrationsmotoren an einer NPN-Low-Side-Stufe, per LEDC-PWM.
 //
 //  Besonderheiten eines ERM-Vibrationsmotors:

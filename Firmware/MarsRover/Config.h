@@ -1,5 +1,5 @@
 // =====================================================================
-//  Bristlebot -- Config.h
+//  MarsRover -- Config.h
 //  Zentrale Stelle fuer Pins, Kennwerte und Feature-Flags.
 //  Nur hier anfassen, wenn Hardware oder Tuning sich aendert.
 // =====================================================================

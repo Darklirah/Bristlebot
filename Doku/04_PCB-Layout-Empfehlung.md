@@ -98,7 +98,8 @@ eine Sperrfläche (Keepout) definieren.
 **Motoren weit außen und weit vorn.** Das Lenkmoment ist das Produkt aus
 Vibrationskraft und Abstand zur Längsachse. Jeder Millimeter weiter außen zahlt
 sich direkt in Lenkautorität aus. Weit vorn bringt zusätzlich, dass die
-Vorderachse leichter ausbricht — genau das, was Lenken bei einem Bristlebot ist.
+Vorderachse leichter ausbricht — genau das, was Lenken bei einem
+Vibrationsantrieb bedeutet.
 
 **Sensoren vorn zwischen den Motoren.** Mittenabstand OS1 ↔ OS2 passend zur
 Linienbreite: bei einem 19-mm-Isolierband **15–20 mm**. Dann sieht jeder Sensor

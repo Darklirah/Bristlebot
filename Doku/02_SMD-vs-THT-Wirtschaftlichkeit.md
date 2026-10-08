@@ -96,10 +96,10 @@ ab **50 Stück** ist es nicht mehr diskutabel.
 
 ## 4 · Massebudget — der eigentliche Knackpunkt
 
-Ein Bristlebot bewegt sich durch Vibration: der Motor regt die schräggestellten
+Der Mars Rover bewegt sich durch Vibration: der Motor regt die schräggestellten
 Borsten an, die sich in eine Richtung leichter abstützen als in die andere. Die
-Antriebskraft steigt mit der Unwucht und **sinkt mit der Masse**. Typische
-funktionierende Bristlebots liegen bei 10–25 g.
+Antriebskraft steigt mit der Unwucht und **sinkt mit der Masse**. Vibrationsläufer
+dieser Bauart fahren erfahrungsgemäß zuverlässig bei 10–25 g.
 
 Massebudget für **Variante A** (dein gewählter Weg), 500 mAh, 1,6 mm PCB, 5-mm-LEDs:
 
@@ -119,7 +119,7 @@ Massebudget für **Variante A** (dein gewählter Weg), 500 mAh, 1,6 mm PCB, 5-mm
 | JST-Buchse, Litzen | 1,5 g |
 | **Summe** | **≈ 42,6 g** |
 
-Das ist **rund doppelt so schwer wie ein klassischer Bristlebot**. Es wird
+Das ist **rund doppelt so schwer wie ein einfacher Vibrationsläufer**. Es wird
 fahren, aber eher kriechen als flitzen, und die Lenkautorität der
 Vibrationsdifferenz ist bei hoher Masse gering. Das ist das größte technische
 Risiko im Projekt — nicht die Elektronik.

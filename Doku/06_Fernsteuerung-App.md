@@ -33,13 +33,13 @@ Reglerabstimmung im Betrieb — und null Installationsaufwand auf fremden Gerät
 ## 2 · Die gebaute Web-App
 
 Der ESP32 spannt einen eigenen Access Point auf und liefert die Oberfläche selbst
-aus. Quelle: [`Firmware/bristlebot/WebUI.h`](../Firmware/bristlebot/WebUI.h),
-Serverlogik in [`RemoteControl.cpp`](../Firmware/bristlebot/RemoteControl.cpp).
+aus. Quelle: [`Firmware/MarsRover/WebUI.h`](../Firmware/MarsRover/WebUI.h),
+Serverlogik in [`RemoteControl.cpp`](../Firmware/MarsRover/RemoteControl.cpp).
 
 ### Benutzung
 
 1. Roboter einschalten.
-2. Am Handy ins WLAN **`Bristlebot`** verbinden, Passwort **`bristlebot`**.
+2. Am Handy ins WLAN **`MarsRover_…`** verbinden, Passwort **`marsrover`**.
 3. Die Bedienseite klappt meist von selbst auf (Captive-Portal-Erkennung).
    Falls nicht: Browser öffnen, **`http://192.168.4.1`** eingeben.
 
@@ -98,11 +98,11 @@ nicht braucht, liegt hinter dem zugeklappten Experten-Bereich.
 
 ### Passwort und SSID ändern
 
-In [`Config.h`](../Firmware/bristlebot/Config.h):
+In [`Config.h`](../Firmware/MarsRover/Config.h):
 
 ```cpp
-static const char AP_SSID[]     = "Bristlebot";
-static const char AP_PASSWORD[] = "bristlebot";  // min. 8 Zeichen!
+static const char AP_PREFIX[]   = "MarsRover";   // Netzname, MAC haengt hinten an
+static const char AP_PASSWORD[] = "marsrover";   // min. 8 Zeichen!
 ```
 
 WPA2 braucht mindestens 8 Zeichen. Ein leerer String gibt einen offenen AP —

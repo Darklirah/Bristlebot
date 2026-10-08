@@ -1,5 +1,5 @@
 // =====================================================================
-//  Bristlebot -- WebUI.h
+//  MarsRover -- WebUI.h
 //  Die komplette Bedienoberflaeche als eine Datei im Flash.
 //
 //  Gestaltungsvorgabe: einfach bedienbar, geeignet ab 14 Jahren.

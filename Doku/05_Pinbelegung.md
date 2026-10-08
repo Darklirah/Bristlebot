@@ -1,6 +1,6 @@
 # Pinbelegung — ESP32 DevKit V1, 30-Pin
 
-Maßgeblich ist `Firmware/bristlebot/Config.h`. Diese Tabelle muss damit
+Maßgeblich ist `Firmware/MarsRover/Config.h`. Diese Tabelle muss damit
 übereinstimmen; im Zweifel gilt die Header-Datei.
 
 ---

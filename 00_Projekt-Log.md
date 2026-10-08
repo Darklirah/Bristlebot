@@ -2,6 +2,57 @@
 
 Laufendes Protokoll. Neueste Einträge oben.
 
+## 2026-10-08 — Der Roboter heißt überall Mars Rover
+
+Bisher stand „Bristlebot" verstreut in Doku, Firmware und Ordnernamen, weil
+der Begriff am 05.10. ausdrücklich als Bauartbezeichnung stehenbleiben
+sollte. **Diese Regel ist aufgehoben.** Der Begriff steht jetzt nur noch in
+**je einem erklärenden Absatz** in [README](README.md) und
+[Doku/00](Doku/00_Projektbeschreibung.md), der die Verwandtschaft nett und
+verständlich beschreibt — mit einer kleinen Gegenüberstellung, was der Mars
+Rover mehr kann. Überall sonst heißt er Mars Rover.
+
+**Umbenannt**
+
+| vorher | nachher |
+|---|---|
+| `Firmware/bristlebot/` | `Firmware/MarsRover/` |
+| `bristlebot.ino` | `MarsRover.ino` |
+| `src_dir = bristlebot` in `platformio.ini` | `src_dir = MarsRover` |
+| Kopfkommentare in 12 Firmware-Dateien | auf `MarsRover` |
+| Pfadangaben in Doku 05, 06, 07 und README | auf den neuen Ordner |
+
+> **Für den nächsten Build:** der Ordnername hat sich geändert, PlatformIO
+> baut deshalb einmal komplett neu. `Firmware/.pio/` darf dafür weg, muss
+> aber nicht — es ist ohnehin gitignoriert.
+>
+> Der Ordnername musste mitwandern, weil die Arduino IDE verlangt, dass
+> Ordner und `.ino`-Datei gleich heißen.
+
+**Zwei echte Fehler gefunden, nicht nur Namen**
+
+Beim Durchgehen fiel auf, dass die Dokumentation an zwei Stellen ein
+**Passwort nannte, das die Firmware gar nicht mehr benutzt**:
+
+| Stelle | stand da | richtig ist |
+|---|---|---|
+| [Doku/06 §Benutzung](Doku/06_Fernsteuerung-App.md) | WLAN `Bristlebot`, Passwort `bristlebot` | WLAN `MarsRover_…`, Passwort `marsrover` |
+| [docs/index.html](docs/index.html) (Web-Installer) | Passwort `bristlebot` | Passwort `marsrover` |
+
+In `Config.h` steht seit Längerem `AP_PREFIX = "MarsRover"` und
+`AP_PASSWORD = "marsrover"`. Wer sich an die Doku gehalten hätte, wäre nicht
+ins WLAN gekommen. Ebenfalls nachgezogen: das Code-Beispiel in Doku/06 zeigte
+noch ein `AP_SSID`, das es nicht mehr gibt, und die erwartete
+Konsolenausgabe in [Doku/07](Doku/07_Inbetriebnahme-und-Tuning.md).
+
+**Nicht angefasst: die älteren Einträge in diesem Log.** Das Repo hieß
+damals wirklich `Darklirah/Bristlebot` und das Verzeichnis `Bristlebot/` —
+ein Protokoll, das rückwirkend umgeschrieben wird, ist als Protokoll
+wertlos. Der Eintrag vom 05.10., der die alte Regel festlegte, hat einen
+Nachtrag bekommen, der auf ihre Aufhebung verweist.
+
+---
+
 ## 2026-10-07 — Wärmefallen an der Massefläche
 
 Die Massefläche hing **fest** an den Pads (`connect_pads yes`, vom Router so
@@ -367,6 +418,10 @@ die restlichen rund 30 Bauteile ergänzen.
 
 **Projekt heißt jetzt „One-of-a-Kind Mars Rover".** „Bristlebot" bleibt in
 der Technikdoku als Bezeichnung der Bauart stehen.
+
+> *Nachtrag vom 08.10.2026: diese Regel ist aufgehoben. Der Begriff steht
+> jetzt nur noch in je einem erklärenden Absatz in README und
+> Projektbeschreibung, sonst heißt der Roboter überall Mars Rover.*
 
 **Erfolgreich kompiliert — erstmals.**
 

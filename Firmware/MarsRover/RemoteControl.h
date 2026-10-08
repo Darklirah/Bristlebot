@@ -1,5 +1,5 @@
 // =====================================================================
-//  Bristlebot -- RemoteControl.h
+//  MarsRover -- RemoteControl.h
 //
 //  Der ESP32 spannt einen eigenen Access Point auf und liefert die
 //  Bedienoberflaeche selbst aus. Damit laeuft die Fernsteuerung auf

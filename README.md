@@ -2,10 +2,18 @@
 
 > Dieses Projekt wurde mit Unterstützung von [Claude Code](https://claude.com/claude-code) entwickelt.
 
-Linienfolgender, programmierbarer Zahnbürsten-Roboter auf ESP32 (Bauart:
-Bristlebot), aufgebaut auf einer eigenen Platine. Jedes Exemplar bekommt
-einen eigenen Namen und ein eigenes WLAN (`MarsRover_Petra`), damit mehrere
-nebeneinander fahren können.
+Linienfolgender, programmierbarer Zahnbürsten-Roboter auf ESP32, aufgebaut
+auf einer eigenen Platine. Jedes Exemplar bekommt einen eigenen Namen und
+ein eigenes WLAN (`MarsRover_Petra`), damit mehrere nebeneinander fahren
+können.
+
+> **Verwandt mit dem Bristlebot.** Der Mars Rover fährt nach demselben
+> Prinzip wie ein *Bristlebot* — jener kleine Vibrationsläufer aus einem
+> Zahnbürstenkopf, einem Unwuchtmotor und einer Knopfzelle, der über den
+> Tisch summt. Er kann nur deutlich mehr: **zwei** Antriebe statt einem,
+> damit er überhaupt lenken kann, zwei Augen für die Linie unter sich,
+> Steuerung vom Handy und selbst geschriebene Fahrprogramme. Ein Bristlebot
+> fährt, wohin er will — dieser hier fährt, wohin du willst.
 
 **[→ Firmware direkt im Browser installieren](https://darklirah.github.io/One-of-a-Kind-Mars-Rover/)**
 
@@ -72,8 +80,8 @@ lässt die Motoren laufen.
 ```
 Firmware/
   platformio.ini
-  bristlebot/
-    bristlebot.ino      Zustandsmaschine, PD-Regler, Telemetrie
+  MarsRover/
+    MarsRover.ino       Zustandsmaschine, PD-Regler, Telemetrie
     Config.h            Pins, Kennwerte, Feature-Flags  <- hier tunen
     RobotState.h        Betriebsart, Phase, Tuningstruktur
     Motors.*            PWM, Kennlinienspreizung, Kickstart, Duty-Begrenzung

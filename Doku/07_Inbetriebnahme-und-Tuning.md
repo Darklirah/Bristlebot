@@ -12,7 +12,7 @@
 2. Bibliotheksverwalter: **WebSockets** von *Markus Sattler* („arduinoWebSockets"),
    Version ≥ 2.4.1. Das ist die **einzige** externe Abhängigkeit, alles andere
    ist Teil des Cores.
-3. Ordner `Firmware/bristlebot/` öffnen (`bristlebot.ino` anklicken, die `.h`-
+3. Ordner `Firmware/MarsRover/` öffnen (`MarsRover.ino` anklicken, die `.h`-
    und `.cpp`-Dateien erscheinen als Tabs).
 4. Board: **ESP32 Dev Module**, Flash Size 4 MB, Partition Scheme
    *Default 4MB with spiffs*, Upload Speed 921600.
@@ -96,8 +96,8 @@ Ladestrom am besten einmal in Reihe messen: soll ≈ 255 mA sein, nicht 1 A.
 Firmware flashen. Serielle Konsole auf 115200 Baud, es muss erscheinen:
 
 ```
-Bristlebot startet
-AP   : Bristlebot / bristlebot
+MarsRover startet
+AP   : MarsRover_A3F2 / marsrover
 URL  : http://192.168.4.1/
 Duty : max 613 von 1023 (3.0 V Motor an 5.0 V Schiene)
 Kal. : FEHLT
@@ -243,7 +243,7 @@ Motoren, nicht an der Elektronik. Die Schwelle gilt für beide gemeinsam.
 
 ### 4.2 Grundvibration
 
-Mit **40 %** anfangen. Das ist bewusst langsam: ein zu schneller Bristlebot
+Mit **40 %** anfangen. Das ist bewusst langsam: ein zu schneller Mars Rover
 schießt über die Linie hinaus, bevor der Regler reagieren kann.
 
 ### 4.3 Kp — Lenkstärke
@@ -274,7 +274,7 @@ Flash-Schreibvorgänge pro Sekunde.
 
 ### Startwerte im Code
 
-In [`Config.h`](../Firmware/bristlebot/Config.h) stehen die Vorgabewerte
+In [`Config.h`](../Firmware/MarsRover/Config.h) stehen die Vorgabewerte
 (`CTRL_KP_DEFAULT` usw.) für den Fall, dass das NVS leer ist. Hat sich ein Satz
 Werte bewährt, dort eintragen.
 
@@ -285,8 +285,8 @@ Werte bewährt, dort eintragen.
 * **Linie:** schwarzes Isolierband, 19 mm, auf weißem Papier oder heller Platte.
   Mattes Material — Hochglanz spiegelt die IR-LED direkt in den Fototransistor
   und verfälscht die Messung.
-* **Kurvenradius:** zum Anfangen nicht unter 150 mm. Ein Bristlebot hat wenig
-  Lenkautorität, 90°-Ecken sind nichts für den ersten Versuch.
+* **Kurvenradius:** zum Anfangen nicht unter 150 mm. Ein Vibrationsantrieb hat
+  wenig Lenkautorität, 90°-Ecken sind nichts für den ersten Versuch.
 * **Untergrund:** glatt und hart. Teppich frisst die Vibration vollständig.
 * **Beleuchtung:** gleichmäßig. Harte Schlagschatten und direkte Sonne (viel IR!)
   verschieben den Arbeitspunkt; dann neu kalibrieren.

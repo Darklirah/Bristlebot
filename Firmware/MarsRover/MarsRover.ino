@@ -1,6 +1,8 @@
 // =====================================================================
 //  O N E - O F - A - K I N D   M A R S   R O V E R
-//  Linienfolgender Zahnbuersten-Roboter auf ESP32 (Bauart: Bristlebot)
+//  Linienfolgender Zahnbuersten-Roboter auf ESP32.
+//  Fortbewegung wie bei einem Bristlebot -- Vibration auf schraegen
+//  Borsten -- aber mit zwei Antrieben, Liniensensorik und WLAN.
 //
 //  Drei Betriebsarten, umschaltbar in der Web-App:
 //    manuell   Joystick

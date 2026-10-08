@@ -1,5 +1,5 @@
 // =====================================================================
-//  Bristlebot -- Leds.h
+//  MarsRover -- Leds.h
 //  4 Signal-LEDs: 2x gelb vorne, 2x rot hinten.
 //
 //  Zwei Betriebsarten:

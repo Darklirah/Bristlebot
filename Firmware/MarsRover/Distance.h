@@ -1,5 +1,5 @@
 // =====================================================================
-//  Bristlebot -- Distance.h
+//  MarsRover -- Distance.h
 //  VL53L0X auf dem Mast: Abstand nach vorn, in Millimetern.
 //
 //  Benoetigt die Bibliothek "VL53L0X" von Pololu (Library Manager).

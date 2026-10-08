@@ -1,5 +1,5 @@
 // =====================================================================
-//  Bristlebot -- Imu.h
+//  MarsRover -- Imu.h
 //  MPU-6050 am I2C: Kurswinkel, Kippschutz.
 //
 //  WAS ER LIEFERT

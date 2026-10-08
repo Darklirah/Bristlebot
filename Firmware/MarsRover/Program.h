@@ -1,5 +1,5 @@
 // =====================================================================
-//  Bristlebot -- Program.h
+//  MarsRover -- Program.h
 //  Fahrprogramme: Speicherung in vier Flash-Slots, Prüfung, Ablauf.
 //
 //  ZEITMODELL
