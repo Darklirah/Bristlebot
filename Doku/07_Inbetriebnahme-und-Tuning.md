@@ -96,12 +96,19 @@ Ladestrom am besten einmal in Reihe messen: soll ≈ 255 mA sein, nicht 1 A.
 Firmware flashen. Serielle Konsole auf 115200 Baud, es muss erscheinen:
 
 ```
-MarsRover startet
+One-of-a-Kind Mars Rover startet
 AP   : MarsRover_A3F2 / marsrover
 URL  : http://192.168.4.1/
 Duty : max 613 von 1023 (3.0 V Motor an 5.0 V Schiene)
 Kal. : FEHLT
+Prog : Platz 1 "", 0 Schritte
+IMU  : nicht gefunden
+Dist : nicht gefunden
 ```
+
+`IMU` und `Dist` melden „gefunden", sobald die beiden I²C-Platinchen
+angeschlossen sind. Auf einem nackten DevKit stehen dort „nicht gefunden",
+und das ist kein Fehler — die Firmware läuft trotzdem durch.
 
 Handy ins WLAN, Seite aufrufen, Statuspunkt muss grün werden. Wenn das steht,
 funktioniert die halbe Anlage.
