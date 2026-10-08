@@ -49,6 +49,55 @@ Serverlogik in [`RemoteControl.cpp`](../Firmware/MarsRover/RemoteControl.cpp).
 > Fenster schließen und die Seite in Safari direkt über die IP aufrufen. Das
 > Portal-Fenster von iOS ist eine eingeschränkte WebView.
 
+### So sieht sie aus
+
+Vier Bildschirmfotos sagen mehr als die Tabelle darunter. Sie stammen aus
+der Vorschaufassung mit eingespeisten Beispieldaten — der Aufbau ist
+derselbe, den die Firmware ausliefert.
+
+#### Selbst fahren
+
+![Hauptansicht mit Joystick](bilder/app_fahren.jpg)
+
+Die Startansicht. Oben der Netzname des Roboters und der Statuspunkt, dann
+der große Freigabeknopf — der ist **rot, solange die Motoren freigegeben
+sind**, und beschriftet mit *Motoren sperren*. Darunter die Wahl der
+Betriebsart, darunter das Joystickfeld: hoch ist schneller, seitlich lenkt.
+Der Knopf folgt dem Finger bis an den Rand.
+
+#### Dem Roboter einen Namen geben
+
+![Namensabfrage beim ersten Start](bilder/app_name.jpg)
+
+Dieses Fenster klappt beim ersten Start von selbst auf, später erreicht man
+es über den Stiftknopf oben rechts. Unter dem Eingabefeld steht **live
+mitgerechnet**, wie das WLAN danach heißt — hier `MarsRover_Petra`.
+
+#### Fahrprogramm zusammenstellen
+
+![Programmeditor mit den drei Bereichen](bilder/app_programm.jpg)
+
+Der Editor ist in drei farbige Bereiche geteilt, damit man auf dem Handy
+nicht die Orientierung verliert: **blau** die Wahl des Speicherplatzes,
+**grün** der Ablauf, **gelb** der Baukasten darunter. In der Schrittliste
+zeigt ein Farbstreifen links die Art jedes Befehls — blau Fahren, grau
+Warten, gelb Licht, violett Ablaufsteuerung. Unten der Schrittzähler.
+
+#### Befehl aussuchen
+
+![Befehlsliste mit Gruppen](bilder/app_befehle.jpg)
+
+Die Befehle sind nach **Fahren, Zeit, Licht, Ablauf** gruppiert; die
+Gruppenüberschriften stehen hellgelb und fett über ihren Einträgen. Der
+gewählte Befehl ist blau hervorgehoben, und darunter erscheinen genau die
+Einstellungen, die er braucht — beim Drehbefehl also Drehwinkel **und**
+Geschwindigkeit.
+
+> **Warum keine Auswahlliste:** die Gruppenüberschriften eines `<select>`
+> zeichnet das Betriebssystem. Android und iOS öffnen einen eigenen Dialog,
+> der jede Formatierung der Seite ignoriert — hervorheben ließe sich dort
+> nichts. Die Liste ist deshalb selbst gebaut.
+
 ### Was die Oberfläche kann
 
 | Element | Funktion |

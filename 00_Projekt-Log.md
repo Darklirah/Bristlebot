@@ -31,15 +31,13 @@ Firmware **0.2.1** gebaut und veröffentlicht: RAM 15,2 %, Flash 70,4 %.
 Online gegengeprüft — das Abbild auf GitHub Pages ist bitgleich mit dem
 gebauten (995 440 Byte).
 
-**Vorgemerkt für später**
-
-- [ ] **Wenn die Oberfläche abgeschlossen ist: die Renderings in der Doku
-      durch die neuen Ansichten ersetzen.** Heute liegen unter
-      `Doku/bilder/` drei Platinen-Renderings, erzeugt von
-      [`Fertigung/erzeuge_fertigungsdaten.sh`](Fertigung/erzeuge_fertigungsdaten.sh);
-      Bildschirmfotos der Weboberfläche gibt es noch keine —
-      [Doku/06](Doku/06_Fernsteuerung-App.md) beschreibt die App bisher nur
-      in Text. Vor dem Umsetzen klären, welche von beiden gemeint sind.
+**Nachtrag am selben Tag: die Bildschirmfotos sind da.** Die Rückfrage hat
+sich erledigt — gemeint war die Oberfläche. [Doku/06](Doku/06_Fernsteuerung-App.md)
+hat jetzt einen Abschnitt „So sieht sie aus" mit **vier** Aufnahmen:
+Hauptansicht mit Joystick, Namensabfrage, Programmeditor mit den drei
+farbigen Bereichen und die Befehlsliste mit den Gruppenüberschriften. Sie
+entstehen aus `.preview/index.html` und sind mit einem Lauf neu erzeugt,
+falls sich an der Oberfläche noch etwas ändert.
 
 ## 2026-10-08 — Firmware 0.2.0 gebaut und für den Installer bereitgelegt
 
