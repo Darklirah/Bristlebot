@@ -96,6 +96,38 @@ nicht braucht, liegt hinter dem zugeklappten Experten-Bereich.
 * **Maximal 4 Clients**, Sendeleistung auf 11 dBm reduziert (spart Strom, im
   Zimmer mehr als ausreichend).
 
+### Dem Roboter einen Namen geben
+
+Der Rover hat keine Anzeige und keine Tasten — die Web-App ist die einzige
+Stelle, an der er zu seinem Namen kommt.
+
+**Beim ersten Start fragt die App von selbst.** Sobald sie sich verbindet und
+feststellt, dass noch kein eigener Name gespeichert ist, klappt ein Fenster
+auf: *„Wie soll dein Rover heißen?"* Wer das überspringen will, tippt auf
+**Später** — dann bleibt es bei der automatischen Kennung aus den letzten vier
+Stellen der MAC-Adresse (`MarsRover_A3F2`). Gefragt wird einmal je
+Sitzung, nicht bei jedem Verbindungsabbruch.
+
+**Später umbenennen** geht über den **Stiftknopf oben neben dem Namen** oder
+über *Experten → Roboter umbenennen*. Beide öffnen dasselbe Fenster.
+
+**Nach dem Speichern startet der Rover neu.** Das ist keine Schikane: den
+WLAN-Namen vergibt der ESP32 beim Hochfahren in `softAP()`. Ohne Neustart
+würde der Name zwar im Speicher stehen, das Netz aber bis zum nächsten
+Einschalten noch alt heißen. Die App schickt deshalb `N|<name>` und direkt
+nach der Quittung `Z`. **Danach am Handy ins neue WLAN wechseln.**
+
+**Was aus der Eingabe wird**, zeigt das Fenster live mit: Umlaute werden
+umgeschrieben (`Jürgen` → `MarsRover_Juergen`, `Groß` → `MarsRover_Gross`),
+Leerzeichen und Bindestriche werden zu Unterstrichen, alles Übrige fällt
+weg, und bei 16 Zeichen ist Schluss. Die Regel steht in `setApName()` in
+[`RemoteControl.cpp`](../Firmware/MarsRover/RemoteControl.cpp) und ist in der
+App Zeichen für Zeichen nachgebaut, damit die Vorschau nicht lügt.
+
+> **Warum Umlaute umgeschrieben werden:** ein `ü` sind in UTF-8 zwei Bytes,
+> und keines davon ist für sich genommen ein Buchstabe. Ohne die Umschrift
+> fielen sie stillschweigend weg — aus `Jürgen` würde `Jrgen`.
+
 ### Passwort und SSID ändern
 
 In [`Config.h`](../Firmware/MarsRover/Config.h):

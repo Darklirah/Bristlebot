@@ -31,11 +31,37 @@ void RemoteControl::buildSsid() {
 bool RemoteControl::setApName(const char* name) {
   char clean[AP_NAME_MAX + 1];
   uint8_t o = 0;
-  // Nur das, was in einem Netznamen nicht stoert. Leerzeichen werden zu
-  // Unterstrichen, alles Uebrige faellt weg.
+  // Nur das, was in einem Netznamen nicht stoert. Leerzeichen und
+  // Bindestriche werden zu Unterstrichen, alles Uebrige faellt weg.
+  //
+  // Umlaute werden vorher umgeschrieben (ae, oe, ue, ss). Ohne das wuerde
+  // aus "Juergen" zwar "Juergen", aus "Jürgen" aber "Jrgen" -- die zwei
+  // UTF-8-Bytes eines Umlauts sind einzeln kein isalnum() und fielen
+  // stillschweigend weg. Fuer deutsche Namen ist das der Normalfall, nicht
+  // die Ausnahme.
   for (const char* p = name; *p && o < AP_NAME_MAX; p++) {
-    const char c = *p;
-    if (isalnum((unsigned char)c))      clean[o++] = c;
+    const unsigned char c = (unsigned char)*p;
+
+    // UTF-8: die Umlaute liegen alle in C3 xx.
+    if (c == 0xC3 && *(p + 1)) {
+      const unsigned char d = (unsigned char)*(p + 1);
+      const char* ers = nullptr;
+      switch (d) {
+        case 0xA4: case 0x84: ers = "ae"; break;   // ä Ä
+        case 0xB6: case 0x96: ers = "oe"; break;   // ö Ö
+        case 0xBC: case 0x9C: ers = "ue"; break;   // ü Ü
+        case 0x9F:            ers = "ss"; break;   // ß
+      }
+      p++;                                  // das zweite Byte ist verbraucht
+      if (!ers) continue;                   // anderes C3-Zeichen: weglassen
+      // Grossbuchstabe bleibt gross: Ä -> Ae, nicht AE.
+      const bool gross = (d == 0x84 || d == 0x96 || d == 0x9C);
+      if (o < AP_NAME_MAX) clean[o++] = gross ? (char)toupper(ers[0]) : ers[0];
+      if (o < AP_NAME_MAX) clean[o++] = ers[1];
+      continue;
+    }
+
+    if (isalnum(c))                            clean[o++] = (char)c;
     else if (c == ' ' || c == '-' || c == '_') clean[o++] = '_';
   }
   clean[o] = '\0';

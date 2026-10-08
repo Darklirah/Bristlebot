@@ -48,7 +48,26 @@ body{
 }
 .wrap{max-width:560px;margin:0 auto;padding:var(--pad);display:flex;flex-direction:column;gap:var(--pad)}
 header{display:flex;align-items:center;gap:10px}
-h1{font-size:17px;margin:0;font-weight:600;letter-spacing:.2px;flex:1}
+h1{font-size:17px;margin:0;font-weight:600;letter-spacing:.2px;flex:1;
+   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Stiftknopf neben dem Namen -- das ist der Weg zum Umbenennen, und er
+   soll immer sichtbar sein, nicht in den Experten vergraben. */
+#bRename{flex:0 0 auto;background:var(--panel2);color:var(--dim);border:1px solid var(--line);
+   font:inherit;font-size:15px;line-height:1;padding:7px 10px;border-radius:10px}
+#bRename:active{background:var(--line);color:var(--fg)}
+
+/* Dialog ueber der ganzen Seite: Erststart-Abfrage und Umbenennen teilen
+   sich denselben. */
+.ov{position:fixed;inset:0;background:#000b;display:flex;align-items:center;
+    justify-content:center;padding:18px;z-index:50}
+.ov[hidden]{display:none}
+.dlg{background:var(--panel);border:1px solid var(--line);border-radius:16px;
+     padding:18px;width:100%;max-width:420px;box-shadow:0 20px 60px #000a}
+.dlg h3{margin:0 0 8px;font-size:17px;font-weight:600}
+.dlg input[type=text]{margin-bottom:6px}
+.dlgrow{display:flex;gap:9px;margin-top:14px}
+.dlgrow .btn{flex:0 0 auto}
+.dlgrow .big{flex:1;margin:0;font-size:15px;padding:14px}
 #dot{width:10px;height:10px;border-radius:50%;background:var(--bad);flex:0 0 auto;
      box-shadow:0 0 0 3px rgba(255,92,108,.15)}
 #dot.on{background:var(--ok);box-shadow:0 0 0 3px rgba(57,217,138,.18)}
@@ -74,7 +93,7 @@ h1{font-size:17px;margin:0;font-weight:600;letter-spacing:.2px;flex:1}
 .btn.pri{background:var(--accent);border-color:var(--accent);color:#06121f}
 .btn.sm{padding:9px 11px;font-size:13px}
 
-#pad{position:relative;width:100%;aspect-ratio:1/1;max-height:44vh;margin:0 auto;
+#pad{position:relative;width:100%;aspect-ratio:1/1;max-height:62vh;margin:0 auto;
      background:var(--panel2);border:1px solid var(--line);border-radius:22px;
      touch-action:none;overflow:hidden}
 #cross:before,#cross:after{content:"";position:absolute;background:var(--line)}
@@ -168,6 +187,7 @@ details .inner{padding:0 var(--pad) 6px}
   <header>
     <div id="dot"></div>
     <h1 id="hdr">Mars Rover</h1>
+    <button id="bRename" title="Roboter umbenennen" aria-label="Roboter umbenennen">&#9998;</button>
     <div id="conn">verbinde&hellip;</div>
   </header>
 
@@ -356,9 +376,8 @@ details .inner{padding:0 var(--pad) 6px}
       </label>
       <label>anhalten unter <b id="vGuard">90</b> mm Abstand</label>
       <input type="range" id="sGuard" min="40" max="600" step="10" value="90">
-      <label>Eigener Name dieses Rovers <b id="vSsid">&mdash;</b></label>
-      <input type="text" id="apname" maxlength="16" placeholder="z.B. Petra &ndash; leer = automatisch">
-      <button class="btn sm" id="bName" style="width:100%;margin-bottom:9px">Namen speichern und neu starten</button>
+      <label>WLAN dieses Rovers <b id="vSsid">&mdash;</b></label>
+      <button class="btn sm" id="bRename2" style="width:100%;margin-bottom:9px">Roboter umbenennen</button>
       <button class="btn sm" id="bGyro" style="width:100%;margin-bottom:9px">Lagesensor nullen</button>
       <button class="btn sm" id="bCalReset" style="width:100%">Linien-Kalibrierung l&ouml;schen</button>
       <p class="note">Anlaufschwelle so weit hochdrehen, bis beide Motoren gerade
@@ -369,9 +388,31 @@ details .inner{padding:0 var(--pad) 6px}
   <button class="big" id="bStop" style="background:var(--bad);color:#fff">NOTHALT</button>
 </div>
 
+<!-- ============ Namensdialog ============
+     Einer fuer beides: die Abfrage beim ersten Start und das spaetere
+     Umbenennen. Unterschiedlich sind nur Ueberschrift, Einleitung und die
+     Beschriftung des Abbruchknopfes.                                    -->
+<div class="ov" id="nameOv" hidden>
+  <div class="dlg">
+    <h3 id="nameTitle">Wie soll dein Rover hei&szlig;en?</h3>
+    <p class="note" id="nameIntro" style="margin-top:0"></p>
+    <input type="text" id="nameIn" maxlength="16" placeholder="z.B. Petra"
+           autocomplete="off" autocapitalize="words" spellcheck="false">
+    <p class="note" style="margin:0">Er hei&szlig;t dann im WLAN
+       <b id="namePrev">&mdash;</b>. Erlaubt sind Buchstaben und Ziffern;
+       Leerzeichen und Bindestriche werden zu Unterstrichen, alles
+       &Uuml;brige f&auml;llt weg. Leer lassen = automatische Kennung.</p>
+    <div class="dlgrow">
+      <button class="btn sm" id="nameCancel">Sp&auml;ter</button>
+      <button class="big" id="nameOk">Speichern und neu starten</button>
+    </div>
+  </div>
+</div>
+
 <script>
 "use strict";
 var ws=null, armed=false, mode=0, jx=0, jy=0;
+var curApName="", nameAsked=false, renameRestart=false;
 var tune={kp:0.55,kd:0.08,base:0.55,min:0.35};
 var slots=[], slotSteps=[], activeSlot=0, maxSteps=48;
 var prog=[], runPc=-1;
@@ -455,8 +496,14 @@ function connect(){
     if(d.t==="cfg")   { applyCfg(d);   return }
     if(d.t==="slots") { applySlots(d); return }
     if(d.t==="prog")  { applyProg(d);  return }
-    if(d.t==="err")   { toast(d.m,false); return }
-    if(d.t==="ok")    { toast(d.m,true);  return }
+    if(d.t==="err")   { renameRestart=false; toast(d.m,false); return }
+    if(d.t==="ok")    {
+      toast(d.m,true);
+      /* Der Netzname wird erst beim Hochfahren gesetzt -- also sofort
+         nach der Quittung neu starten. */
+      if(renameRestart){ renameRestart=false; setTimeout(function(){ send("Z") },150) }
+      return;
+    }
     paint(d);
   };
 }
@@ -552,8 +599,15 @@ function paint(d){
 }
 function applyCfg(d){
   tune={kp:d.kp,kd:d.kd,base:d.base,min:d.min};
-  if(d.ssid){ E("vSsid").textContent=d.ssid; document.title=d.ssid }
-  if(document.activeElement!==E("apname")) E("apname").value=d.apname||"";
+  if(d.ssid){
+    E("vSsid").textContent=d.ssid;
+    E("hdr").textContent=d.ssid;
+    document.title=d.ssid;
+  }
+  curApName = d.apname || "";
+  /* Erster Start: der Rover hat noch keinen eigenen Namen. Einmal je
+     Sitzung fragen -- nicht bei jedem Verbindungsabbruch wieder. */
+  if(!nameAsked && !curApName){ nameAsked=true; openName(true) }
   E("sKp").value=Math.round(d.kp*100);     E("vKp").textContent=d.kp.toFixed(2);
   E("sKd").value=Math.round(d.kd*100);     E("vKd").textContent=d.kd.toFixed(2);
   E("sBase").value=Math.round(d.base*100); E("vBase").textContent=Math.round(d.base*100);
@@ -710,10 +764,57 @@ E("bTest").onclick=function(){
   send("S,"+(E("bTest").textContent.indexOf("stoppen")>0?0:1));
 };
 E("bCalReset").onclick=function(){ send("R") };
-E("bName").onclick    =function(){
-  send("N|"+E("apname").value.trim());
-  setTimeout(function(){ send("Z") },700);
-  toast("Gespeichert 2013 der Rover startet neu. Danach ins neue WLAN wechseln.",true);
+
+/* =================== Name und Umbenennen ===================
+   Der Rover hat keine Anzeige, also ist diese Seite die einzige Stelle,
+   an der er einen Namen bekommen kann. Der Name wandert in den
+   WLAN-Namen -- und den vergibt der ESP32 beim Hochfahren. Deshalb muss
+   nach dem Speichern neu gestartet werden, sonst heisst das Netz bis zum
+   naechsten Aus- und Einschalten noch wie vorher.                        */
+function nameClean(v){
+  /* Dieselbe Regel wie setApName() in RemoteControl.cpp, damit der
+     Nutzer vorher sieht, was wirklich gespeichert wird. Umlaute zuerst,
+     sonst wuerde aus "Juergen" ein anderer Name als aus "Jürgen". */
+  return v.replace(/ä/g,"ae").replace(/Ä/g,"Ae")
+          .replace(/ö/g,"oe").replace(/Ö/g,"Oe")
+          .replace(/ü/g,"ue").replace(/Ü/g,"Ue")
+          .replace(/ß/g,"ss")
+          .replace(/[^A-Za-z0-9 _-]/g,"").replace(/[ \-_]/g,"_").slice(0,16);
+}
+function namePreview(){
+  var c=nameClean(E("nameIn").value);
+  E("namePrev").textContent = c ? ("MarsRover_"+c) : "MarsRover_<Kennung>";
+}
+function openName(first){
+  E("nameTitle").textContent = first ? "Wie soll dein Rover heißen?"
+                                     : "Roboter umbenennen";
+  E("nameIntro").textContent = first
+    ? "Er fährt schon, hat aber noch keinen Namen. Gib ihm einen – "
+      + "so erkennst du ihn später im WLAN wieder, auch wenn mehrere "
+      + "nebeneinander stehen."
+    : "Der Name steht im WLAN-Namen. Nach dem Speichern startet der Rover "
+      + "neu, damit das Netz sofort richtig heißt.";
+  E("nameCancel").textContent = first ? "Später" : "Abbrechen";
+  E("nameIn").value = curApName;
+  namePreview();
+  E("nameOv").hidden = false;
+  setTimeout(function(){ try{ E("nameIn").focus() }catch(e){} },50);
+}
+function closeName(){ E("nameOv").hidden = true }
+E("nameIn").addEventListener("input",namePreview);
+E("bRename").onclick  = function(){ openName(false) };
+E("bRename2").onclick = function(){ openName(false) };
+E("nameCancel").onclick = closeName;
+E("nameOk").onclick = function(){
+  renameRestart = true;
+  send("N|"+nameClean(E("nameIn").value));
+  closeName();
+  toast("Gespeichert – der Rover startet neu. Danach ins neue WLAN wechseln.",true);
+  /* Falls die Quittung ausbleibt, trotzdem neu starten. */
+  clearTimeout(openName._h);
+  openName._h = setTimeout(function(){
+    if(renameRestart){ renameRestart=false; send("Z") }
+  },1500);
 };
 E("bGyro").onclick    =function(){ send("G"); toast("Nullpunkt wird aufgenommen – Roboter ruhig halten.",true) };
 function sendGuard(){ send("O,"+(E("cGuard").checked?1:0)+","+E("sGuard").value) }
@@ -737,9 +838,19 @@ slider("sKd","vKd","kd",function(v){ return v.toFixed(2) });
 slider("sBase","vBase","base",function(v){ return Math.round(v*100) });
 slider("sMin","vMin","min",function(v){ return Math.round(v*100) });
 
-/* =================== Joystick =================== */
+/* =================== Joystick ===================
+   Der Knopf ist 30 % des Feldes breit, sein Radius also 15 %. Eine
+   Verschiebung in Prozent bezieht sich in CSS auf die EIGENE Breite --
+   bei 50 % kam der Knopf deshalb nur 15 % des Feldes vom Mittelpunkt weg,
+   waehrend der Finger bis zum Rand (50 %) ging. Damit der Knopf dem Finger
+   folgt und innen bleibt, darf sein Mittelpunkt bis 50 % - 15 % = 35 % des
+   Feldes wandern; auf die Knopfbreite gerechnet sind das 35/30 = 116 %.   */
+var KNOB_TRAVEL = 116;
 var pad=E("pad"), active=false;
-function knob(x,y){ E("knob").style.transform="translate("+(x*50)+"%,"+(-y*50)+"%)" }
+function knob(x,y){
+  E("knob").style.transform =
+    "translate("+(x*KNOB_TRAVEL)+"%,"+(-y*KNOB_TRAVEL)+"%)";
+}
 function fromEvent(ev){
   var r=pad.getBoundingClientRect();
   var x=(ev.clientX-r.left)/r.width*2-1;
