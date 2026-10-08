@@ -2,6 +2,45 @@
 
 Laufendes Protokoll. Neueste Einträge oben.
 
+## 2026-10-08 — Befehlsauswahl mit eigener Liste (Firmware 0.2.1)
+
+Die Gruppen *Fahren / Zeit / Licht / Ablauf* steckten in einem nativen
+`<select>`. Dessen `optgroup`-Beschriftungen zeichnet das **Betriebssystem**:
+Android und iOS öffnen einen eigenen Auswahldialog, der jede Formatierung
+der Seite ignoriert. Per CSS wäre „hellgelb und fett" dort nie angekommen.
+
+**Deshalb eine selbst gebaute Liste:**
+
+- Das `<select>` bleibt als Datenspeicher stehen, nur ausgeblendet — alles
+  andere liest unverändert `E("aOp").value`, kein Risiko an den drei
+  Stellen, die davon abhängen.
+- Die sichtbare Liste **erzeugt sich aus eben diesem `<select>`**. Die
+  Befehle stehen weiter nur an einer Stelle im Markup; ein neuer Eintrag
+  taucht automatisch an der richtigen Stelle auf.
+- Gruppenüberschrift 15 px fett in `#ffe08a`, der gewählte Befehl blau
+  hervorgehoben statt in einem zugeklappten Feld zu verschwinden.
+
+**Geprüft:** fünf Befehle quer durch alle vier Gruppen angeklickt, jedes Mal
+kommt der richtige Wert an und es erscheinen genau die passenden
+Einstellfelder.
+
+**Bewusst in Kauf genommen:** die Liste ist immer ausgeklappt, gut 600 px
+statt eines zugeklappten Feldes. Dafür ist alles auf einen Blick sichtbar.
+
+Firmware **0.2.1** gebaut und veröffentlicht: RAM 15,2 %, Flash 70,4 %.
+Online gegengeprüft — das Abbild auf GitHub Pages ist bitgleich mit dem
+gebauten (995 440 Byte).
+
+**Vorgemerkt für später**
+
+- [ ] **Wenn die Oberfläche abgeschlossen ist: die Renderings in der Doku
+      durch die neuen Ansichten ersetzen.** Heute liegen unter
+      `Doku/bilder/` drei Platinen-Renderings, erzeugt von
+      [`Fertigung/erzeuge_fertigungsdaten.sh`](Fertigung/erzeuge_fertigungsdaten.sh);
+      Bildschirmfotos der Weboberfläche gibt es noch keine —
+      [Doku/06](Doku/06_Fernsteuerung-App.md) beschreibt die App bisher nur
+      in Text. Vor dem Umsetzen klären, welche von beiden gemeint sind.
+
 ## 2026-10-08 — Firmware 0.2.0 gebaut und für den Installer bereitgelegt
 
 **Gebaut:** `pio run -e esp32dev_core2`, sauberer Durchlauf von Null.
